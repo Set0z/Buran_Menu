@@ -1,7 +1,7 @@
 ﻿#Объявление глобальных переменных
 $(if($PSCulture -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню"} else {$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Menu"})
 $scriptDir = $PSScriptRoot
-$env:version = "0.1"
+$env:version = "1.1"
 $ver= $env:version
 $filePath = Join-Path -Path $scriptDir -ChildPath 'win_act.ps1'
 
