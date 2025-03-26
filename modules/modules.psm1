@@ -5,6 +5,7 @@ $scstate = $env:script_state
 function Goto-main {
     Write-Host "Env: |$env:script_state|"
     Write-Host "State: |$scstate|"
+    pause
     if ($scstate = "Internet"){irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1" | iex}
     $filePath = Join-Path -Path $scriptDir -ChildPath 'script.ps1'
     Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
