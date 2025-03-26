@@ -1,7 +1,9 @@
-﻿$ver= $env:version
+﻿#Тут описаны подключаемые модули
+$ver= $env:version
+$scstate = $env:script_state
 #Функция возвращения в главное меню
 function Goto-main {
-    if ($PSScriptRoot -eq ""){irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1" | iex}
+    if ($scstate = "Internet"){irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1" | iex}
     $filePath = Join-Path -Path $scriptDir -ChildPath 'script.ps1'
     Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
     exit

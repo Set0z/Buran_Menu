@@ -3,6 +3,7 @@ $(if($PSCulture -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню"}
 $env:version = "1.1"
 $ver= $env:version
 if ($PSScriptRoot -eq "") {
+    $env:script_state = "Internet"
     irm "https://raw.githubusercontent.com/Set0z/Test_ps/refs/heads/main/modules.psm1" >> $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1')
     Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking
 } else {
