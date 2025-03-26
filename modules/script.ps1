@@ -59,6 +59,7 @@ do {
     #Write-Host "Вы нажали: $choice"
     if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
         if ($PSScriptRoot -eq "") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/win_act.ps1" | iex}
+        pause
         $filePath = Join-Path -Path $scriptDir -ChildPath 'win_act.ps1'
         Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
         exit
