@@ -3,10 +3,11 @@ $ver= $env:version
 $scstate = $env:script_state
 #Функция возвращения в главное меню
 function Goto-main {
-    if ($scstate = "Internet"){irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1" | iex}
-    $filePath = Join-Path -Path $scriptDir -ChildPath 'script.ps1'
-    Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
-    exit
+    if ($scstate -eq "Internet"){irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1" | iex} else {
+        $filePath = Join-Path -Path $scriptDir -ChildPath 'script.ps1'
+        Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
+        exit
+    }
 }
 
 #Функция смены цвета фона и текста ('цвет фона', 'цвет текста', 'нужна ли очистка консоли')

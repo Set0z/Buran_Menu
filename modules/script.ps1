@@ -1,4 +1,5 @@
-﻿#Объявление глобальных переменных
+﻿
+#Объявление глобальных переменных
 $(if($PSCulture -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню"} else {$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Menu"})
 $env:version = "1.1"
 $ver= $env:version
@@ -59,7 +60,6 @@ do {
     #Write-Host "Вы нажали: $choice"
     if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
         if ($PSScriptRoot -eq "") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/win_act.ps1" | iex}
-        pause
         $filePath = Join-Path -Path $scriptDir -ChildPath 'win_act.ps1'
         Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
         exit
@@ -94,6 +94,9 @@ do {
         Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"")
         exit
     }
-} until ((($choice -eq "D7") -or ($choice -eq "NumPad7")) -or ($choice -eq "Escape")) #Выход из программы
+    if (($choice -eq "D7") -or ($choice -eq "NumPad7") -or ($choice -eq "Escape")){
+        exit
+    }
+} until ($choice -eq "D7") #Выход из программы
 
 #pause
