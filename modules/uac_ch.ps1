@@ -5,7 +5,6 @@ $Menu_Lang = $env:BURAN_lang
 $ver= $env:version
 
 if ($PSScriptRoot -eq "") {
-    irm "https://raw.githubusercontent.com/Set0z/Test_ps/refs/heads/main/modules.psm1" >> $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1')
     Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking
 } else {
     $scriptDir = $PSScriptRoot

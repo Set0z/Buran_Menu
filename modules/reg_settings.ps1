@@ -7,7 +7,6 @@ $registryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell 
 New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT
 
 if ($PSScriptRoot -eq "") {
-    irm "https://raw.githubusercontent.com/Set0z/Test_ps/refs/heads/main/modules.psm1" >> $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1')
     Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking
 } else {
     $scriptDir = $PSScriptRoot
