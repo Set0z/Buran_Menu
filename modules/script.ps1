@@ -95,6 +95,11 @@ do {
         exit
     }
     if (($choice -eq "D7") -or ($choice -eq "NumPad7") -or ($choice -eq "Escape")){
+        if ($PSScriptRoot -eq "") {
+            Draw-Banner -Text_After_Color "White" -Background_After_Color "DarkMagenta" -Clear "1"
+            Clear-Host
+            return
+        }
         exit
     }
 } until ($choice -eq "D7") #Выход из программы
