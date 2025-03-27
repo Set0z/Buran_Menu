@@ -3,12 +3,15 @@
 $(if($PSCulture -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню"} else {$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Menu"})
 $env:version = "1.0"
 $ver= $env:version
+Write-Host "Скрипт рут: $PSScriptRoot"
+Write-Host "Выбор: $choice"
+
 if ($PSScriptRoot -eq "") {
     $env:script_state = "Internet"
     if (Test-Path $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1')) {Remove-Item $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -Force}
     irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/modules.psm1" >> $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1')
     Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking
-} else {
+} elseif ($PSScriptRoot -ne "") {
     $scriptDir = $PSScriptRoot
     Import-Module $($PSScriptRoot + "/modules") -DisableNameChecking
 }
@@ -96,6 +99,9 @@ do {
         exit
     }
     if (($choice -eq "D7") -or ($choice -eq "NumPad7") -or ($choice -eq "Escape")){
+        Clear-Host
+        Write-Host "Exit"
+        pause
         if ($env:script_state -eq "Internet") {
             Set-ConsoleColor "DarkMagenta" "White" 1
             Clear-Host
