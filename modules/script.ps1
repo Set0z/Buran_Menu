@@ -95,7 +95,7 @@ do {
         exit
     }
     if (($choice -eq "D7") -or ($choice -eq "NumPad7") -or ($choice -eq "Escape")){
-        if ($PSScriptRoot -ne "") {
+        if ($PSScriptRoot -eq "") {
             Set-ConsoleColor "DarkMagenta" "White" 1
             Clear-Host
             return
