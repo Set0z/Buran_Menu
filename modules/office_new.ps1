@@ -30,9 +30,9 @@ function Project_Visio_ver{
     )
     Draw-Banner
     Center-Text "   $(Lang-translate -rus "Выберите версию:" -eng "Choose Version:")" -NewLine
-    Write-Host "                  [1] $Name Professional`n"
-    Write-Host "                  [2] $Name Standard`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[3] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m`n"
+    Align-TextCenter "[1] $Name Professional"
+    Align-TextCenter "[2] $Name Standard"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[3] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
 
 
     do {
@@ -81,12 +81,12 @@ function installation_select{
             Draw-Banner
             Center-Text "$(Lang-translate -rus "Выберите что нужно установить" -eng "Select what you need to install")" -NewLine
             Write-Host ""
-            Write-Host "                                    $(if($selected_programs.Contains("Word")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Word       $(if($selected_programs.Contains("Excel")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Excel       $(if($selected_programs.Contains("PowerPoint")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) PowerPoint`n"
-            Write-Host "                                    $(if($selected_programs.Contains("OneNote")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) OneNote    $(if($selected_programs.Contains("Outlook")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Outlook     $(if($selected_programs.Contains("Publisher")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Publisher`n"
-            Write-Host "$(if ($Office_version -ne "O365ProPlusRetail"){"               "})                                    $(if($selected_programs.Contains("Access")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Access" -NoNewline
+            Align-TextCenter "$(if($selected_programs.Contains("Word")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Word       $(if($selected_programs.Contains("Excel")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Excel       $(if($selected_programs.Contains("PowerPoint")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) PowerPoint" -Offset 22
+            Align-TextCenter "$(if($selected_programs.Contains("OneNote")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) OneNote    $(if($selected_programs.Contains("Outlook")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Outlook     $(if($selected_programs.Contains("Publisher")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Publisher" -Offset 22
+            if ($Office_version -ne "O365ProPlusRetail"){Align-TextCenter "$(if($selected_programs.Contains("Access")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Access" -NoNewLine -Offset 7}
             if ($Office_version -eq "O365ProPlusRetail"){
-                Write-Host "     $(if($selected_programs.Contains("Skype")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) Skype       $(if($selected_programs.Contains("Teams")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[9]"}) Teams`n"
-                Write-Host "                                                   $(if($selected_programs.Contains("OneDrive")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[0]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[0]"}) OneDrive`n"
+                Align-TextCenter "$(if($selected_programs.Contains("Access")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Access     $(if($selected_programs.Contains("Skype")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) Skype       $(if($selected_programs.Contains("Teams")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[9]"}) Teams" -Offset 22
+                Align-TextCenter "$(if($selected_programs.Contains("OneDrive")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[0]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[0]"}) OneDrive" -Offset 7
             } else {Write-Host " "}
             Write-Host "`n"
             Center-Text "$(Lang-translate -rus "[Enter] Подтвердить выбор    [Esc] Выход в Главное Меню" -eng "[Enter] Confirm the Choice    [Esc] Exit to Main Menu")"
@@ -219,12 +219,12 @@ function Activation{
     if($OfficeVersion -eq "") {
         Draw-Banner
         Center-Text "$(Lang-translate -rus "Выберите версию Office:" -eng "Select the Office version:")" -NewLine
-        Write-Host "                  [1] Office 365`n"
-        Write-Host "                  [2] Office 2024`n"
-        Write-Host "                  [3] Office 2021`n"
-        Write-Host "                  [4] Office 2019`n"
-        Write-Host "                  [5] Office 2016`n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[6] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m`n"
+        Align-TextCenter "[1] Office 365"
+        Align-TextCenter "[2] Office 2024"
+        Align-TextCenter "[3] Office 2021"
+        Align-TextCenter "[4] Office 2019"
+        Align-TextCenter "[5] Office 2016"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[6] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
         do {
         $choice = [Console]::ReadKey($true).Key
         if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -302,9 +302,9 @@ function Office_Already_Fownloaded{
 function First_menu {
     Draw-Banner
     Center-Text "   $(Lang-translate -rus "Выберите действие:" -eng "Choose the action:")" -NewLine
-    Write-Host "                  [1] $(Lang-translate -rus "Загрузка" -eng "Download")`n"
-    Write-Host "                  [2] $(Lang-translate -rus "Активация" -eng "Activation")`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[3] $(Lang-translate -rus "Выход" -eng "Exit")$([char]27)[48;5;0m$([char]27)[38;5;2m`n"
+    Align-TextCenter "[1] $(Lang-translate -rus "Загрузка" -eng "Download")"
+    Align-TextCenter "[2] $(Lang-translate -rus "Активация" -eng "Activation")"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[3] $(Lang-translate -rus "Выход" -eng "Exit")$([char]27)[48;5;0m$([char]27)[38;5;2m"
 
 
     do {
@@ -323,9 +323,9 @@ function First_menu {
 function Language{
     Draw-Banner
     Center-Text "   $(Lang-translate -rus "Выберите язык:" -eng "Choose the Language:")" -NewLine
-    Write-Host "                  [1] $(Lang-translate -rus "Русский" -eng "Russian")`n"
-    Write-Host "                  [2] $(Lang-translate -rus "Английский" -eng "English")`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[3] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m`n"
+    Align-TextCenter "[1] $(Lang-translate -rus "Русский" -eng "Russian")"
+    Align-TextCenter "[2] $(Lang-translate -rus "Английский" -eng "English")"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[3] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
 
 
     do {
@@ -348,12 +348,12 @@ function Language{
 function version {
     Draw-Banner
     Center-Text "   $(Lang-translate -rus "Выберите версию:" -eng "Choose the Version:")" -NewLine
-    Write-Host "                  [1] Office 365 `n"
-    Write-Host "                  [2] Office 2024 `n"
-    Write-Host "                  [3] Office 2021 `n"
-    Write-Host "                  [4] Office 2019 `n"
-    Write-Host "                  [5] Office 2016 `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[6] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m`n"
+    Align-TextCenter "[1] Office 365"
+    Align-TextCenter "[2] Office 2024"
+    Align-TextCenter "[3] Office 2021"
+    Align-TextCenter "[4] Office 2019"
+    Align-TextCenter "[5] Office 2016"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[6] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
 
 
     do {
@@ -388,9 +388,9 @@ function office_365{
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Выберите нужный пакет:" -eng "Select the desired package:")"
     Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/O365ProPlusRetail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .iso)" -NewLine
-    Write-Host "                  [1] Office 365 Professional | (Word, Excel, PowerPoint OneNote, Access, OneDrive"
-    Write-Host "                                                 Outlook (classic), Publisher, Skype , Teams)`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[2] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
+    Align-TextCenter "[1] Office 365 Professional | (Word, Excel, PowerPoint OneNote, Access, OneDrive" -NoNewLine
+    Align-TextCenter "                               Outlook (classic), Publisher, Skype , Teams)"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[2] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
 
 
     do {
@@ -422,11 +422,11 @@ function office_2024{
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Выберите нужный пакет:" -eng "Select the desired package:")"
     Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlus2024Retail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .iso)" -NewLine
-    Write-Host "                  [1] Office 2024 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access"
-    Write-Host "                                                       Skype, Teams)`n"
-    Write-Host "                  [2] Project 2024`n"
-    Write-Host "                  [3] Visio 2024`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[4] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
+    Align-TextCenter "[1] Office 2024 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access" -NoNewLine
+    Align-TextCenter "                                     Skype, Teams)"
+    Align-TextCenter "[2] Project 2024"
+    Align-TextCenter "[3] Visio 2024"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
 
 
     do {
@@ -527,11 +527,11 @@ function office_2021{
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Выберите нужный пакет:" -eng "Select the desired package:")"
     Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlus2021Retail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .iso)" -NewLine
-    Write-Host "                  [1] Office 2021 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access"
-    Write-Host "                                                       Skype, Teams)`n"
-    Write-Host "                  [2] Project 2021`n"
-    Write-Host "                  [3] Visio 2021`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[4] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
+    Align-TextCenter "[1] Office 2021 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access" -NoNewLine
+    Align-TextCenter "                                     Skype, Teams)"
+    Align-TextCenter "[2] Project 2021"
+    Align-TextCenter "[3] Visio 2021"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
 
 
     do {
@@ -628,11 +628,11 @@ function office_2019{
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Выберите нужный пакет:" -eng "Select the desired package:")"
     Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlus2019Retail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .iso)" -NewLine
-    Write-Host "                  [1] Office 2019 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access"
-    Write-Host "                                                       Skype, Teams)`n"
-    Write-Host "                  [2] Project 2019`n"
-    Write-Host "                  [3] Visio 2019`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[4] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
+    Align-TextCenter "[1] Office 2019 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access" -NoNewline
+    Align-TextCenter "                                     Skype, Teams)"
+    Align-TextCenter "[2] Project 2019"
+    Align-TextCenter "[3] Visio 2019"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
 
 
     do {
@@ -729,11 +729,11 @@ function office_2016{
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Выберите нужный пакет:" -eng "Select the desired package:")"
     Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlusRetail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .iso)" -NewLine
-    Write-Host "                  [1] Office 2016 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access"
-    Write-Host "                                                       Skype, Teams)`n"
-    Write-Host "                  [2] Project 2016`n"
-    Write-Host "                  [3] Visio 2016`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[4] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
+    Align-TextCenter "[1] Office 2016 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access" -NoNewLine
+    Align-TextCenter "                                     Skype, Teams)"
+    Align-TextCenter "[2] Project 2016"
+    Align-TextCenter "[3] Visio 2016"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
 
 
     do {

@@ -3,9 +3,6 @@
 $(if($PSCulture -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню"} else {$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Menu"})
 $env:version = "1.0"
 $ver= $env:version
-Write-Host "Скрипт рут: $PSScriptRoot"
-Write-Host "Выбор: $choice"
-pause
 if ($PSScriptRoot -eq "") {
     $env:script_state = "Internet"
     if (Test-Path $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1')) {Remove-Item $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -Force}
@@ -41,21 +38,14 @@ if ($env:BURAN_lang -eq $null){
 #Отрисовка меню
 Draw-Banner -Text_Color "Green"
 Set-ConsoleColor 'black' 'Magenta'
-Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите действие"} else {"Choose the Action"})"
-Write-Host ""
-Write-Host "                  [1] $(if($Menu_Lang -eq "ru-Ru"){"Активация Windows 10/11"} else {"Windows 10/11 Activation"})"
-Write-Host ""
-Write-Host "                  [2] $(if($Menu_Lang -eq "ru-Ru"){"Конфигурация Удалённого Рабочего Стола"} else {"Remoute Desktop Configuration"})"
-Write-Host ""
-Write-Host "                  [3] $(if($Menu_Lang -eq "ru-Ru"){"Скачивание/Активация Microsoft Office"} else {"Microsoft Office Download/Activation"})"
-Write-Host ""
-Write-Host "                  [4] $(if($Menu_Lang -eq "ru-Ru"){"UAC Настройки"} else {"UAC Settings"})"
-Write-Host ""
-Write-Host "                  [5] $(if($Menu_Lang -eq "ru-Ru"){"Настройки реестра"} else {"Registry settings"})"
-Write-Host ""
-Write-Host "                  [6] $(if($Menu_Lang -eq "ru-Ru"){"Установка и обновление приложений (Winget)"} else {"App Upgrade and Install (winget)"})"
-Write-Host ""
-Write-Host "                  $([char]27)[48;5;13m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;13m$([char]27)[38;5;0mВыход$([char]27)[48;5;0m"} else {"$([char]27)[48;5;13m$([char]27)[38;5;0mExit$([char]27)[48;5;0m"})"
+Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите действие"} else {"Choose the Action"})" -NewLine
+Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Активация Windows 10/11"} else {"Windows 10/11 Activation"})"
+Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"Конфигурация Удалённого Рабочего Стола"} else {"Remoute Desktop Configuration"})"
+Align-TextCenter "[3] $(if($Menu_Lang -eq "ru-Ru"){"Скачивание/Активация Microsoft Office"} else {"Microsoft Office Download/Activation"})"
+Align-TextCenter "[4] $(if($Menu_Lang -eq "ru-Ru"){"UAC Настройки"} else {"UAC Settings"})"
+Align-TextCenter "[5] $(if($Menu_Lang -eq "ru-Ru"){"Настройки реестра"} else {"Registry settings"})"
+Align-TextCenter "[6] $(if($Menu_Lang -eq "ru-Ru"){"Установка и обновление приложений (Winget)"} else {"App Upgrade and Install (winget)"})"
+Align-TextCenter "$([char]27)[48;5;13m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;13m$([char]27)[38;5;0mВыход$([char]27)[48;5;0m"} else {"$([char]27)[48;5;13m$([char]27)[38;5;0mExit$([char]27)[48;5;0m"})"
 
 #Цикл отрисовки и считывания нажатий
 do {
@@ -99,14 +89,6 @@ do {
         exit
     }
     if (($choice -eq "D7") -or ($choice -eq "NumPad7") -or ($choice -eq "Escape")){
-        Clear-Host
-        Write-Host "Exit"
-        pause
-        if ($env:script_state -eq "Internet") {
-            Set-ConsoleColor "DarkMagenta" "White" 1
-            Clear-Host
-            return
-        }
         exit
     }
 } until ($choice -eq "D7") #Выход из программы

@@ -22,10 +22,10 @@ if ($PSScriptRoot -eq "") {
 function Version-selection {
 Draw-Banner
 Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите версию Windows"} else {"Select the Windows version"})" -NewLine
-Write-Host "                 [1] Windows 10 Home/Pro`n"
-Write-Host "                 [2] Windows 11 Home/Pro`n"
-Write-Host "                 [3] $(if($Menu_Lang -eq "ru-Ru"){"Узнать время до истечения активации"} else {"Time before the activation expiration"})`n"
-Write-Host "                 $([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mВыход в меню$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack to menu$([char]27)[0m"})"
+Align-TextCenter "[1] Windows 10 Home/Pro"
+Align-TextCenter "[2] Windows 11 Home/Pro"
+Align-TextCenter "[3] $(if($Menu_Lang -eq "ru-Ru"){"Узнать время до истечения активации"} else {"Time before the activation expiration"})"
+Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mВыход в меню$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack to menu$([char]27)[0m"})"
 do {
     $choice = [Console]::ReadKey($true).Key            #считывание нажатия
     #Write-Host "Вы нажали: $choice"
@@ -51,14 +51,10 @@ $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Выбор дейст
 #Выбор действия
 function Action-selection {
 Draw-Banner
-Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите действие"} else {"Select the action"})"
-Write-Host ""
-Write-Host "                 [1] $(if($Menu_Lang -eq "ru-Ru"){"Активировать/Продлить Windows"} else {"Activate/Renew Windows"})"
-Write-Host ""
-Write-Host "                 [2] $(if($Menu_Lang -eq "ru-Ru"){"Деактивировать Windows"} else {"Deactivate Windows"})"
-Write-Host ""
-Write-Host "                 $([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-Write-Host ""
+Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите действие"} else {"Select the action"})" -NewLine
+Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Активировать/Продлить Windows"} else {"Activate/Renew Windows"})"
+Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"Деактивировать Windows"} else {"Deactivate Windows"})"
+Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
 do {
     $choice = [Console]::ReadKey($true).Key            #считывание нажатия
     #Write-Host "Вы нажали: $choice"

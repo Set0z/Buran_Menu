@@ -61,15 +61,14 @@ Set-ConsoleColor $Background_After_Color $Text_After_Color
 function Center-Text {
     param (
         [string]$Text,
-        [switch]$NewLine,
-        [switch]$Offset
+        [switch]$NewLine
     )
 
     # Удаляем управляющие последовательности (цветовые коды ANSI)
     $cleanText = $Text -replace '\x1b\[[0-9;]*m', ''
 
     # Получаем ширину консоли
-    if($Offset) {$consoleWidth = (([console]::WindowWidth) - 18)} else {$consoleWidth = ([console]::WindowWidth)}
+    $consoleWidth = ([console]::WindowWidth)
 
     # Вычисляем количество пробелов для отступа
     $padding = [math]::Max(0, ($consoleWidth - $cleanText.Length) / 2)
@@ -80,6 +79,30 @@ function Center-Text {
     # Выводим текст
     Write-Host $centeredText
     if ($NewLine){Write-Host ""}
+}
+
+
+function Align-TextCenter {
+    param (
+        [string]$content,
+        [int]$Offset = 42,
+        [switch]$NoNewLine
+    )
+    $content = $content -replace '\x1b\[[0-9;]*(?<![0-9])m', ''  # Убираем атрибуты кроме цветов
+    $content = $content + "$([char]27)[48;5;0m"
+
+    # Получаем ширину консоли
+    $consoleWidth = [Console]::WindowWidth
+
+    # Вычисляем необходимое количество пробелов для центрирования
+    $spacesNeeded = [Math]::Max(0, (($consoleWidth) / 2) - $Offset)
+
+    # Создаём строку из пробелов
+    $leadingSpaces = " " * [Math]::Floor($spacesNeeded)
+    
+    # Выводим отцентрированный текст
+    Write-Output "$leadingSpaces$content"
+    if ($NoNewLine) {} else {Write-Host ""}
 }
 
 #Загрузка файла
