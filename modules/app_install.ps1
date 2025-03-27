@@ -979,7 +979,7 @@ function Documents{
     Write-Host "                  [1] $(if($Menu_Lang -eq "ru-Ru"){"Офисы\"} else {"Office Suites\"}) `n"
     Write-Host "                  [2] $(if($Menu_Lang -eq "ru-Ru"){"Электронные книги\"} else {"E-book\"}) `n"
     Write-Host "                  [3] $(if($Menu_Lang -eq "ru-Ru"){"PDF инструменты\"} else {"PDF Tools\"}) `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
+    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
 
 
     do {
@@ -1972,7 +1972,7 @@ function Main-page-three {
             if (($choice -eq "F2") -or ($choice -eq "NumPad2")){
                 programs_print -exit_to "Main-page-three"
             }
-            if ($choice -eq "A"){Main-page-two}
+            if (($choice -eq "A") -or ($choice -eq "LeftArrow")){Main-page-two}
             if ($choice -eq "Escape"){Main-menu}
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5"))-or (($choice -eq "D6") -or ($choice -eq "NumPad6"))-or (($choice -eq "D7") -or ($choice -eq "NumPad7"))-or (($choice -eq "D8") -or ($choice -eq "NumPad8"))-or (($choice -eq "D9") -or ($choice -eq "NumPad9")) -or ($choice -eq "A") -or ($choice -eq "Escape")) #Выход из цикла
 }
@@ -2030,8 +2030,8 @@ function Main-page-two {
             if (($choice -eq "F2") -or ($choice -eq "NumPad2")){
                 programs_print -exit_to "Main-page-two"
             }
-            if ($choice -eq "A"){Main-menu}
-            if ($choice -eq "D"){Main-page-three}
+            if (($choice -eq "A") -or ($choice -eq "LeftArrow")){Main-menu}
+            if (($choice -eq "D") -or ($choice -eq "RightArrow")){Main-page-three}
             if ($choice -eq "Escape"){Main-menu}
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5"))-or (($choice -eq "D6") -or ($choice -eq "NumPad6"))-or (($choice -eq "D7") -or ($choice -eq "NumPad7"))-or (($choice -eq "D8") -or ($choice -eq "NumPad8"))-or (($choice -eq "D9") -or ($choice -eq "NumPad9")) -or ($choice -eq "A") -or ($choice -eq "D") -or ($choice -eq "Escape")) #Выход из цикла
 }
@@ -2114,7 +2114,7 @@ function Main-menu {
                 } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")))
             }
             if ($choice -eq "Spacebar") {installation}
-            if ($choice -eq "D"){Main-page-two}
+            if (($choice -eq "D") -or ($choice -eq "RightArrow")){Main-page-two}
             if ($choice -eq "Escape"){
                 Draw-Banner
                 Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Вы точно хотите выйти?"} else {"Are you sure you want exit?"})`n"

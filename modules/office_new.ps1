@@ -54,6 +54,29 @@ function installation_select{
         [string]$Download_directory
     )
     if ($Office_version -eq ""){}
+    if (($Office_version -eq "Project") -or ($Office_version -eq "Visio")){
+        Draw-Banner
+        Center-Text "$(Lang-translate -rus "Установка..." -eng "Installing...")"
+
+        $used = (Get-PSDrive -PSProvider FileSystem).Name
+        $all = [char[]]([char]'C'..[char]'Z')  
+        $drive_letter = $null
+        foreach ($letter in $all) {
+            if ($letter -notin $used) {
+            $drive_letter = $letter
+            $drive_letter = $drive_letter + ":"
+             break
+            }
+        }
+        $diskImg = Mount-DiskImage -ImagePath $Download_directory -NoDriveLetter
+        $volInfo = $diskImg | Get-Volume
+        mountvol $drive_letter $volInfo.UniqueId
+        if ([System.IntPtr]::Size -eq 8) {$edition = "64"} else {$edition = "32"}
+        $setup_path = "$drive_letter\Office\Setup"
+        $setup_path = $setup_path + $edition + ".exe"
+        Start-Process -FilePath $setup_path -Wait -NoNewWindow
+        First_menu
+    }
     do {
             Draw-Banner
             Center-Text "$(Lang-translate -rus "Выберите что нужно установить" -eng "Select what you need to install")" -NewLine
@@ -257,11 +280,11 @@ function Office_Already_Fownloaded{
     )
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Есть ли у вас образ диска $($Version).img?" -eng "Do you have a disk image $($Version).img?")" -NewLine
-    Center-Text "$(Lang-translate -rus "[1] Да   [2] Нет" -eng "[1] Yes   [2] No")" -NewLine
+    Center-Text "$(Lang-translate -rus "[1] Нет   [2] Да" -eng "[1] No   [2] Yes")" -NewLine
 
     do {
         $choice = [Console]::ReadKey($true).Key
-        if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
+        if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
             $download_dir = Folder-choose -default $false
             if ($download_dir -eq $null) {version}
             $download_dir = $download_dir + "\$($Version).img"
@@ -444,7 +467,7 @@ function office_2024{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Office_version "ProjectStd2024Retail.img" -Download_directory $download_dir
+                installation_select -Office_version "Project" -Download_directory $download_dir
             } else {
                 $download_dir = Folder-choose -default $false
 
@@ -459,7 +482,7 @@ function office_2024{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Office_version "ProjectPro2024Retail.img" -Download_directory $download_dir
+                installation_select -Office_version "Project" -Download_directory $download_dir
             }
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
@@ -477,7 +500,7 @@ function office_2024{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Office_version "VisioStd2024Retail.img" -Download_directory $download_dir
+                installation_select -Office_version "Visio" -Download_directory $download_dir
             } else {
                 $download_dir = Folder-choose -default $false
 
@@ -492,7 +515,7 @@ function office_2024{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Office_version "VisioPro2024Retail.img" -Download_directory $download_dir
+                installation_select -Office_version "Visio" -Download_directory $download_dir
             }
         }
         if (($choice -eq "D4") -or ($choice -eq "NumPad4")){version}
@@ -545,7 +568,7 @@ function office_2021{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Project" -Download_directory $download_dir
             } else {
                 $download_dir = Folder-choose -default $false
 
@@ -560,7 +583,7 @@ function office_2021{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Project" -Download_directory $download_dir
             }
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
@@ -578,7 +601,7 @@ function office_2021{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Visio" -Download_directory $download_dir
             } else {
                 $download_dir = Folder-choose -default $false
 
@@ -593,7 +616,7 @@ function office_2021{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Visio" -Download_directory $download_dir
             }
         }
         if (($choice -eq "D4") -or ($choice -eq "NumPad4")){version}
@@ -646,7 +669,7 @@ function office_2019{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Project" -Download_directory $download_dir
             } else {
                 $download_dir = Folder-choose -default $false
 
@@ -661,7 +684,7 @@ function office_2019{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Project" -Download_directory $download_dir
             }
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
@@ -679,7 +702,7 @@ function office_2019{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Visio" -Download_directory $download_dir
             } else {
                 $download_dir = Folder-choose -default $false
 
@@ -694,7 +717,7 @@ function office_2019{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Visio" -Download_directory $download_dir
             }
         }
         if (($choice -eq "D4") -or ($choice -eq "NumPad4")){version}
@@ -747,7 +770,7 @@ function office_2016{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Project" -Download_directory $download_dir
             } else {
                 $download_dir = Folder-choose -default $false
 
@@ -762,7 +785,7 @@ function office_2016{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Project" -Download_directory $download_dir
             }
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
@@ -780,7 +803,7 @@ function office_2016{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Visio" -Download_directory $download_dir
             } else {
                 $download_dir = Folder-choose -default $false
 
@@ -795,7 +818,7 @@ function office_2016{
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
                 Write-Host " "
                 pause
-                installation_select -Onedrive 
+                installation_select -Office_version "Visio" -Download_directory $download_dir
             }
         }
         if (($choice -eq "D4") -or ($choice -eq "NumPad4")){version}

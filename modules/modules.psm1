@@ -131,7 +131,7 @@ function Download-FileWithProgress {
                 $totalBytesReadMB = [math]::Round($totalBytesRead / 1MB, 1)
                 
                 $percentComplete = ($totalBytesRead / $totalSize) * 100
-                Write-Progress -PercentComplete $percentComplete -Status "Загрузка файла..." -Activity "Загружено: $totalBytesReadMB MB из $totalSizeMB MB"
+                Write-Progress -PercentComplete $percentComplete -Status "Загрузка файла..." -Activity "Загружено: $totalBytesReadMB MB из $totalSizeMB MB     (Обновляется каждые $seconds секунд)"
                 
                 $lastProgressUpdateTime = $currentTime
             }
@@ -149,7 +149,7 @@ function Download-FileWithProgress {
                 $totalBytesReadMB = [math]::Round($totalBytesRead / 1MB, 1)
                 
                 $percentComplete = ($totalBytesRead / $totalSize) * 100
-                Write-Progress -PercentComplete $percentComplete -Status "File download..." -Activity "Downloaded: $totalBytesReadMB MB из $totalSizeMB MB"
+                Write-Progress -PercentComplete $percentComplete -Status "File download..." -Activity "Downloaded: $totalBytesReadMB MB из $totalSizeMB MB     (Update every $seconds seconds)"
                 
                 $lastProgressUpdateTime = $currentTime
             }
