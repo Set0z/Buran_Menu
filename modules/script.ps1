@@ -5,7 +5,7 @@ $env:version = "1.0"
 $ver= $env:version
 Write-Host "Скрипт рут: $PSScriptRoot"
 Write-Host "Выбор: $choice"
-
+pause
 if ($PSScriptRoot -eq "") {
     $env:script_state = "Internet"
     if (Test-Path $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1')) {Remove-Item $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -Force}
