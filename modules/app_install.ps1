@@ -19,14 +19,12 @@ function Audio{
 
     function Audio-Players{
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Аудио >> Аудио Плееры"} else {"Audio >> Audio Players"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("PeterPawlowski.foobar2000")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Foobar2000 `n"
-        Write-Host "                  $(if($winget_programs.Contains("AIMP.AIMP")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) AIMP `n"
-        Write-Host "                  $(if($winget_programs.Contains("Audacious.MediaPlayer")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Audacious `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Аудио >> Аудио Плееры"} else {"Audio >> Audio Players"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("PeterPawlowski.foobar2000")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Foobar2000"
+        Align-TextCenter "$(if($winget_programs.Contains("AIMP.AIMP")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) AIMP"
+        Align-TextCenter "$(if($winget_programs.Contains("Audacious.MediaPlayer")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Audacious"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
 
 
         do {
@@ -54,13 +52,11 @@ function Audio{
 
     function Audio-Recording{
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Аудио >> Аудиозапись"} else {"Audio >> Audio Recording"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("Audacity.Audacity")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Audacity `n"
-        Write-Host "                  $(if($winget_programs.Contains("Ocenaudio.Ocenaudio")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Ocenaudio `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Аудио >> Аудиозапись"} else {"Audio >> Audio Recording"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("Audacity.Audacity")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Audacity"
+        Align-TextCenter "$(if($winget_programs.Contains("Ocenaudio.Ocenaudio")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Ocenaudio"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
 
 
         do {
@@ -84,15 +80,13 @@ function Audio{
 
     function Music-Notation{
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Аудио >> Музыкальная нотация"} else {"Audio >> Music Notation"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("Denemo.Denemo")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Denemo `n"
-        Write-Host "                  $(if($winget_programs.Contains("WilbertBerendsen.Frescobaldi")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Frescobaldi `n"
-        Write-Host "                  $(if($winget_programs.Contains("LilyPond.LilyPond")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) LilyPond `n"
-        Write-Host "                  $(if($winget_programs.Contains("Musescore.Musescore")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) MuseScore `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Аудио >> Музыкальная нотация"} else {"Audio >> Music Notation"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("Denemo.Denemo")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Denemo"
+        Align-TextCenter "$(if($winget_programs.Contains("WilbertBerendsen.Frescobaldi")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Frescobaldi"
+        Align-TextCenter "$(if($winget_programs.Contains("LilyPond.LilyPond")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) LilyPond"
+        Align-TextCenter "$(if($winget_programs.Contains("Musescore.Musescore")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) MuseScore"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
 
 
         do {
@@ -124,16 +118,14 @@ function Audio{
 
     function Music-Production{
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Аудио >> Музыкальное продюсирование"} else {"Audio >> Music Production"})Production"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("LMMS.LMMS")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) LMMS `n"
-        Write-Host "                  $(if($winget_programs.Contains("BandLab.Cakewalk")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Cakewalk `n"
-        Write-Host "                  $(if($winget_programs.Contains("tildearrow.Furnace")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Furnace `n"
-        Write-Host "                  $(if($winget_programs.Contains("MilkyTracker.MilkyTracker")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) MilkyTracker `n"
-        Write-Host "                  $(if($winget_programs.Contains("OpenMPT.OpenMPT")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) OpenMPT `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Аудио >> Музыкальное продюсирование"} else {"Audio >> Music Production"})Production" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("LMMS.LMMS")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) LMMS"
+        Align-TextCenter "$(if($winget_programs.Contains("BandLab.Cakewalk")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Cakewalk"
+        Align-TextCenter "$(if($winget_programs.Contains("tildearrow.Furnace")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Furnace"
+        Align-TextCenter "$(if($winget_programs.Contains("MilkyTracker.MilkyTracker")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) MilkyTracker"
+        Align-TextCenter "$(if($winget_programs.Contains("OpenMPT.OpenMPT")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) OpenMPT"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
 
 
         do {
@@ -169,18 +161,16 @@ function Audio{
 
 
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Аудио"} else {"Audio"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("FxSound.FxSound")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) FXSound `n"
-    Write-Host "                  $(if($winget_programs.Contains("File-New-Project.EarTrumpet")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) EarTrumpet `n"
-    Write-Host "                  $(if($winget_programs.Contains("JeniusApps.Ambie")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Ambie `n"
-    Write-Host "                  [4] $(if($Menu_Lang -eq "ru-Ru"){"Аудиоплееры\"} else {"Audio Players\"})`n"
-    Write-Host "                  [5] $(if($Menu_Lang -eq "ru-Ru"){"Аудиозапись\"} else {"Audio Recording\"})`n"
-    Write-Host "                  [6] $(if($Menu_Lang -eq "ru-Ru"){"Музыкальная нотация\"} else {"Music Notation\"})`n"
-    Write-Host "                  [7] $(if($Menu_Lang -eq "ru-Ru"){"Музыкальное продюсирование\"} else {"Music Production\"})`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Аудио"} else {"Audio"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("FxSound.FxSound")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) FXSound"
+    Align-TextCenter "$(if($winget_programs.Contains("File-New-Project.EarTrumpet")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) EarTrumpet"
+    Align-TextCenter "$(if($winget_programs.Contains("JeniusApps.Ambie")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Ambie"
+    Align-TextCenter "[4] $(if($Menu_Lang -eq "ru-Ru"){"Аудиоплееры\"} else {"Audio Players\"})"
+    Align-TextCenter "[5] $(if($Menu_Lang -eq "ru-Ru"){"Аудиозапись\"} else {"Audio Recording\"})"
+    Align-TextCenter "[6] $(if($Menu_Lang -eq "ru-Ru"){"Музыкальная нотация\"} else {"Music Notation\"})"
+    Align-TextCenter "[7] $(if($Menu_Lang -eq "ru-Ru"){"Музыкальное продюсирование\"} else {"Music Production\"})"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
 
 
     do {
@@ -222,20 +212,18 @@ function Browsers{
 
     function Browsers-page-two{
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Браузеры"} else {"Browsers"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("Brave.Brave")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Brave `n"
-        Write-Host "                  $(if($winget_programs.Contains("LibreWolf.LibreWolf")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) LibreWolf `n"
-        Write-Host "                  $(if($winget_programs.Contains("MoonchildProductions.PaleMoon")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Pale Moon `n"
-        Write-Host "                  $(if($winget_programs.Contains("qutebrowser.qutebrowser")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Qutebrowser `n"
-        Write-Host "                  $(if($winget_programs.Contains("MullvadVPN.MullvadBrowser")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Mullvad Browser `n"
-        Write-Host "                  $(if($winget_programs.Contains("Vivaldi.Vivaldi")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Vivaldi `n"
-        Write-Host "                  $(if($winget_programs.Contains("Zen-Team.Zen-Browser")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Zen Browser `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Страница 2"} else {"Page 2"})"
-        Write-Host "                                                   <- [A]"
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Браузеры"} else {"Browsers"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("Brave.Brave")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Brave"
+        Align-TextCenter "$(if($winget_programs.Contains("LibreWolf.LibreWolf")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) LibreWolf"
+        Align-TextCenter "$(if($winget_programs.Contains("MoonchildProductions.PaleMoon")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Pale Moon"
+        Align-TextCenter "$(if($winget_programs.Contains("qutebrowser.qutebrowser")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Qutebrowser"
+        Align-TextCenter "$(if($winget_programs.Contains("MullvadVPN.MullvadBrowser")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Mullvad Browser"
+        Align-TextCenter "$(if($winget_programs.Contains("Vivaldi.Vivaldi")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Vivaldi"
+        Align-TextCenter "$(if($winget_programs.Contains("Zen-Team.Zen-Browser")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Zen Browser"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n"
+        Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"Страница 2"} else {"Page 2"})"
+        Align-TextCenter "$([char]27)[48;5;0m$([char]27)[38;5;10m                                 <- [A]" -NoNewLine
     
 
         do {
@@ -279,21 +267,19 @@ function Browsers{
 
 
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Браузеры"} else {"Browsers"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("Google.Chrome")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Chrome `n"
-    Write-Host "                  $(if($winget_programs.Contains("Opera.OperaGX")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Opera GX `n"
-    Write-Host "                  $(if($winget_programs.Contains("Opera.Opera")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Opera `n"
-    Write-Host "                  $(if($winget_programs.Contains("Mozilla.Firefox")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Firefox `n"
-    Write-Host "                  $(if($winget_programs.Contains("Hibbiki.Chromium")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Chromium `n"
-    Write-Host "                  $(if($winget_programs.Contains("eloston.ungoogled-chromium")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Ungoogled-Chromium `n"
-    Write-Host "                  $(if($winget_programs.Contains("TorProject.TorBrowser")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Tor Browser `n"
-    Write-Host "                  $(if($winget_programs.Contains("TheBrowserCompany.Arc")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) Arc `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n"
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Страница 1"} else {"Page 1"})"
-    Center-Text "            [D] ->"
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Браузеры"} else {"Browsers"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("Google.Chrome")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Chrome"
+    Align-TextCenter "$(if($winget_programs.Contains("Opera.OperaGX")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Opera GX"
+    Align-TextCenter "$(if($winget_programs.Contains("Opera.Opera")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Opera"
+    Align-TextCenter "$(if($winget_programs.Contains("Mozilla.Firefox")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Firefox"
+    Align-TextCenter "$(if($winget_programs.Contains("Hibbiki.Chromium")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Chromium"
+    Align-TextCenter "$(if($winget_programs.Contains("eloston.ungoogled-chromium")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Ungoogled-Chromium"
+    Align-TextCenter "$(if($winget_programs.Contains("TorProject.TorBrowser")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Tor Browser"
+    Align-TextCenter "$(if($winget_programs.Contains("TheBrowserCompany.Arc")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) Arc "
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
+    Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"Страница 1"} else {"Page 1"})"
+    Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m            [D] ->"
     
 
     do {
@@ -343,20 +329,15 @@ function Communication{
 
     function Messaging{
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Общение >> Мессенджеры"} else {"Communication >> Messaging"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("Discord.Discord")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Discord `n"
-        Write-Host "                  $(if($winget_programs.Contains("Telegram.TelegramDesktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Telegram Desktop `n"
-        Write-Host "                  $(if($winget_programs.Contains("Rakuten.Viber")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Viber `n"
-        Write-Host "                  $(if($winget_programs.Contains("Microsoft.Teams.Free")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Microsoft Teams `n"
-        Write-Host "                  $(if($winget_programs.Contains("Microsoft.Skype")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Skype `n"
-        Write-Host "                  $(if($winget_programs.Contains("TeamSpeakSystems.TeamSpeakClient")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) TeamSpeak `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Общение >> Мессенджеры"} else {"Communication >> Messaging"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("Discord.Discord")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Discord"
+        Align-TextCenter "$(if($winget_programs.Contains("Telegram.TelegramDesktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Telegram Desktop"
+        Align-TextCenter "$(if($winget_programs.Contains("Rakuten.Viber")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Viber"
+        Align-TextCenter "$(if($winget_programs.Contains("Microsoft.Teams.Free")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Microsoft Teams"
+        Align-TextCenter "$(if($winget_programs.Contains("Microsoft.Skype")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Skype"
+        Align-TextCenter "$(if($winget_programs.Contains("TeamSpeakSystems.TeamSpeakClient")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) TeamSpeak"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -393,23 +374,18 @@ function Communication{
     }
 
     function Email_Clients{
-
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Общение >> Почтовые клиенты"} else {"Communication >> Email Clients"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("Blix.BlueMail")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) BlueMail `n"
-        Write-Host "                  $(if($winget_programs.Contains("VladimirYakovlev.ElectronMail")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) ElectronMail `n"
-        Write-Host "                  $(if($winget_programs.Contains("eMClient.eMClient")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) eM Client `n"
-        Write-Host "                  $(if($winget_programs.Contains("Tencent.Foxmail")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Foxmail `n"
-        Write-Host "                  $(if($winget_programs.Contains("Mailbird.Mailbird")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Mailbird `n"
-        Write-Host "                  $(if($winget_programs.Contains("Foundry376.Mailspring")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Mailspring `n"
-        Write-Host "                  $(if($winget_programs.Contains("Postbox.Postbox")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Postbox `n"
-        Write-Host "                  $(if($winget_programs.Contains("Mozilla.Thunderbird")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) ThunderBird `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Общение >> Почтовые клиенты"} else {"Communication >> Email Clients"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("Blix.BlueMail")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) BlueMail"
+        Align-TextCenter "$(if($winget_programs.Contains("VladimirYakovlev.ElectronMail")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) ElectronMail"
+        Align-TextCenter "$(if($winget_programs.Contains("eMClient.eMClient")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) eM Client"
+        Align-TextCenter "$(if($winget_programs.Contains("Tencent.Foxmail")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Foxmail"
+        Align-TextCenter "$(if($winget_programs.Contains("Mailbird.Mailbird")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Mailbird"
+        Align-TextCenter "$(if($winget_programs.Contains("Foundry376.Mailspring")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Mailspring"
+        Align-TextCenter "$(if($winget_programs.Contains("Postbox.Postbox")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Postbox"
+        Align-TextCenter "$(if($winget_programs.Contains("Mozilla.Thunderbird")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) ThunderBird"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -452,20 +428,12 @@ function Communication{
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5"))-or (($choice -eq "D6") -or ($choice -eq "NumPad6"))-or (($choice -eq "D7") -or ($choice -eq "NumPad7"))-or (($choice -eq "D8") -or ($choice -eq "NumPad8"))-or (($choice -eq "D9") -or ($choice -eq "NumPad9")) -or ($choice -eq "Escape")) #Выход из цикла
     }
 
-
-
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Общение"} else {"Communication"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host ""
-    Write-Host "                  [1] $(if($Menu_Lang -eq "ru-Ru"){"Мессенджеры\"} else {"Messaging\"}) `n"
-    Write-Host "                  [2] $(if($Menu_Lang -eq "ru-Ru"){"Почтовые клиенты\"} else {"Email Clients\"}) `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Общение"} else {"Communication"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Мессенджеры\"} else {"Messaging\"})"
+    Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"Почтовые клиенты\"} else {"Email Clients\"})"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -487,19 +455,15 @@ function Compression_and_Archiving{
 
 
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Сжатие и Архивирование"} else {"Compression and Archiving"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("RARLab.WinRAR")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) WinRAR `n"
-    Write-Host "                  $(if($winget_programs.Contains("7zip.7zip")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) 7-Zip `n"
-    Write-Host "                  $(if($winget_programs.Contains("Bandisoft.Bandizip")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Bandizip `n"
-    Write-Host "                  $(if($winget_programs.Contains("muCommander.muCommander")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) muCommander `n"
-    Write-Host "                  $(if($winget_programs.Contains("M2Team.NanaZip")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) NanaZip `n"
-    Write-Host "                  $(if($winget_programs.Contains("Giorgiotani.Peazip")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) PeaZip `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
-    
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Сжатие и Архивирование"} else {"Compression and Archiving"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("RARLab.WinRAR")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) WinRAR"
+    Align-TextCenter "$(if($winget_programs.Contains("7zip.7zip")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) 7-Zip"
+    Align-TextCenter "$(if($winget_programs.Contains("Bandisoft.Bandizip")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Bandizip"
+    Align-TextCenter "$(if($winget_programs.Contains("muCommander.muCommander")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) muCommander"
+    Align-TextCenter "$(if($winget_programs.Contains("M2Team.NanaZip")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) NanaZip"
+    Align-TextCenter "$(if($winget_programs.Contains("Giorgiotani.Peazip")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) PeaZip"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -538,21 +502,17 @@ function Customize{
 
     function System_Customization{
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Кастомизация >> Кастомизация системы"} else {"Customize >> System Customization"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("winaero.tweaker")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Winaero `n"
-        Write-Host "                  $(if($winget_programs.Contains("RamenSoftware.Windhawk")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Windhawk `n"
-        Write-Host "                  $(if($winget_programs.Contains("Venturi.HideVolumeOSD")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) HideVolumeOSD `n"
-        Write-Host "                  $(if($winget_programs.Contains("valinet.ExplorerPatcher")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) ExplorerPatcher `n"
-        Write-Host "                  $(if($winget_programs.Contains("Flow-Launcher.Flow-Launcher")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Flow Launcher `n"
-        Write-Host "                  $(if($winget_programs.Contains("ModernFlyouts.ModernFlyouts")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) ModernFlyouts `n"
-        Write-Host "                  $(if($winget_programs.Contains("BrianApps.Sizer")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Sizer `n"
-        Write-Host "                  $(if($winget_programs.Contains("dremin.RetroBar")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) RetroBar `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Кастомизация >> Кастомизация системы"} else {"Customize >> System Customization"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("winaero.tweaker")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Winaero"
+        Align-TextCenter "$(if($winget_programs.Contains("RamenSoftware.Windhawk")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Windhawk"
+        Align-TextCenter "$(if($winget_programs.Contains("Venturi.HideVolumeOSD")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) HideVolumeOSD"
+        Align-TextCenter "$(if($winget_programs.Contains("valinet.ExplorerPatcher")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) ExplorerPatcher"
+        Align-TextCenter "$(if($winget_programs.Contains("Flow-Launcher.Flow-Launcher")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Flow Launcher"
+        Align-TextCenter "$(if($winget_programs.Contains("ModernFlyouts.ModernFlyouts")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) ModernFlyouts"
+        Align-TextCenter "$(if($winget_programs.Contains("BrianApps.Sizer")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Sizer"
+        Align-TextCenter "$(if($winget_programs.Contains("dremin.RetroBar")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) RetroBar"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -597,19 +557,14 @@ function Customize{
     }
 
     function Wallpaper_Tools{
-
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Кастомизация >> Приложения для обоев"} else {"Customize >> Wallpaper Tools"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("rocksdanister.LivelyWallpaper")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Lively Wallpaper `n"
-        Write-Host "                  $(if($winget_programs.Contains("Rainmeter.Rainmeter")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Rainmeter `n"
-        Write-Host "                  $(if($winget_programs.Contains("kelteseth.ScreenPlay.Beta")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) ScreenPlay `n"
-        Write-Host "                  $(if($winget_programs.Contains("t1m0thyj.WinDynamicDesktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) WinDynamicDesktop `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Кастомизация >> Приложения для обоев"} else {"Customize >> Wallpaper Tools"})"-NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("rocksdanister.LivelyWallpaper")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Lively Wallpaper"
+        Align-TextCenter "$(if($winget_programs.Contains("Rainmeter.Rainmeter")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Rainmeter"
+        Align-TextCenter "$(if($winget_programs.Contains("kelteseth.ScreenPlay.Beta")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) ScreenPlay"
+        Align-TextCenter "$(if($winget_programs.Contains("t1m0thyj.WinDynamicDesktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) WinDynamicDesktop"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -636,19 +591,12 @@ function Customize{
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4")) -or ($choice -eq "Escape")) #Выход из цикла
     }
 
-
-
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Кастомизация"} else {"Customize"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  [1] $(if($Menu_Lang -eq "ru-Ru"){"Кастомизация системы\"} else {"System Customization\"}) `n"
-    Write-Host "                  [2] $(if($Menu_Lang -eq "ru-Ru"){"Приложения для обоев\"} else {"Wallpaper Tools\"}) `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Кастомизация"} else {"Customize"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Кастомизация системы\"} else {"System Customization\"})"
+    Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"Приложения для обоев\"} else {"Wallpaper Tools\"})"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -670,15 +618,11 @@ function Developer_Tools{
 
     function Database{
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Инструменты для разработки >> Датабазы"} else {"Developer Tools >> Database"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("dbeaver.dbeaver")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) DBeaver `n"
-        Write-Host "                  $(if($winget_programs.Contains("beekeeper-studio.beekeeper-studio")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Beekeeper Studio `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Инструменты для разработки >> Датабазы"} else {"Developer Tools >> Database"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("dbeaver.dbeaver")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) DBeaver"
+        Align-TextCenter "$(if($winget_programs.Contains("beekeeper-studio.beekeeper-studio")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Beekeeper Studio"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -699,20 +643,15 @@ function Developer_Tools{
     }
 
     function Network_Analysis{
-
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Инструменты для разработки >> Анализ сети"} else {"Developer Tools >> Network Analysis"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("WiresharkFoundation.Wireshark")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Wireshark `n"
-        Write-Host "                  $(if($winget_programs.Contains("PortSwigger.BurpSuite.Community")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Burp Suite Community Edition `n"
-        Write-Host "                  $(if($winget_programs.Contains("XK72.Charles")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Charles `n"
-        Write-Host "                  $(if($winget_programs.Contains("james.james")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) James `n"
-        Write-Host "                  $(if($winget_programs.Contains("mitmproxy.mitmproxy")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) mitmproxy `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Инструменты для разработки >> Анализ сети"} else {"Developer Tools >> Network Analysis"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("WiresharkFoundation.Wireshark")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Wireshark"
+        Align-TextCenter "$(if($winget_programs.Contains("PortSwigger.BurpSuite.Community")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Burp Suite Community Edition"
+        Align-TextCenter "$(if($winget_programs.Contains("XK72.Charles")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Charles"
+        Align-TextCenter "$(if($winget_programs.Contains("james.james")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) James"
+        Align-TextCenter "$(if($winget_programs.Contains("mitmproxy.mitmproxy")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) mitmproxy"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -744,22 +683,17 @@ function Developer_Tools{
     }
 
     function Virtualization{
-
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Инструменты для разработки >> Виртуализация"} else {"Developer Tools >> Virtualization"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("Docker.DockerDesktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Docker `n"
-        Write-Host "                  $(if($winget_programs.Contains("Oracle.VirtualBox")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) VirtualBox `n"
-        Write-Host "                  $(if($winget_programs.Contains("Canonical.Multipass")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Multipass `n"
-        Write-Host "                  $(if($winget_programs.Contains("RedHat.Podman-Desktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Podman Desktop `n"
-        Write-Host "                  $(if($winget_programs.Contains("SoftwareFreedomConservancy.QEMU")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) QEMU `n"
-        Write-Host "                  $(if($winget_programs.Contains("SUSE.RancherDesktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Rancher Desktop `n"
-        Write-Host "                  $(if($winget_programs.Contains("Hashicorp.Vagrant")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Vagrant `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Инструменты для разработки >> Виртуализация"} else {"Developer Tools >> Virtualization"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("Docker.DockerDesktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Docker"
+        Align-TextCenter "$(if($winget_programs.Contains("Oracle.VirtualBox")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) VirtualBox"
+        Align-TextCenter "$(if($winget_programs.Contains("Canonical.Multipass")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Multipass"
+        Align-TextCenter "$(if($winget_programs.Contains("RedHat.Podman-Desktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Podman Desktop"
+        Align-TextCenter "$(if($winget_programs.Contains("SoftwareFreedomConservancy.QEMU")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) QEMU"
+        Align-TextCenter "$(if($winget_programs.Contains("SUSE.RancherDesktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Rancher Desktop"
+        Align-TextCenter "$(if($winget_programs.Contains("Hashicorp.Vagrant")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Vagrant"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -798,18 +732,13 @@ function Developer_Tools{
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5"))-or (($choice -eq "D6") -or ($choice -eq "NumPad6"))-or (($choice -eq "D7") -or ($choice -eq "NumPad7"))-or (($choice -eq "D8") -or ($choice -eq "NumPad8")) -or ($choice -eq "Escape")) #Выход из цикла
     }
 
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Инструменты для разработки"} else {"Developer Tools"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  [1] $(if($Menu_Lang -eq "ru-Ru"){"Датабазы\"} else {"Databas\e"}) `n"
-    Write-Host "                  [2] $(if($Menu_Lang -eq "ru-Ru"){"Анализ сети\"} else {"Network Analysis\"}) `n"
-    Write-Host "                  [3] $(if($Menu_Lang -eq "ru-Ru"){"Виртуализация\"} else {"Virtualization\"}) `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Инструменты для разработки"} else {"Developer Tools"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Датабазы\"} else {"Databas\e"})"
+    Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"Анализ сети\"} else {"Network Analysis\"})"
+    Align-TextCenter "[3] $(if($Menu_Lang -eq "ru-Ru"){"Виртуализация\"} else {"Virtualization\"})"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -834,17 +763,13 @@ function Documents{
 
     function Office_Suites{
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Документы >> Офисы"} else {"Documents >> Office Suites"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("TheDocumentFoundation.LibreOffice")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) LibreOffice `n"
-        Write-Host "                  $(if($winget_programs.Contains("SoftMaker.FreeOffice.2024")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) FreeOffice `n"
-        Write-Host "                  $(if($winget_programs.Contains("ONLYOFFICE.DesktopEditors")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) OnlyOffice `n"
-        Write-Host "                  $(if($winget_programs.Contains("Kingsoft.WPSOffice")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) WPS Office `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Документы >> Офисы"} else {"Documents >> Office Suites"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("TheDocumentFoundation.LibreOffice")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) LibreOffice"
+        Align-TextCenter "$(if($winget_programs.Contains("SoftMaker.FreeOffice.2024")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) FreeOffice"
+        Align-TextCenter "$(if($winget_programs.Contains("ONLYOFFICE.DesktopEditors")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) OnlyOffice"
+        Align-TextCenter "$(if($winget_programs.Contains("Kingsoft.WPSOffice")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) WPS Office"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -873,19 +798,14 @@ function Documents{
     }
 
     function E-book{
-
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Документы >> Электронные книги"} else {"Documents >> E-book"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("DjVuLibre.DjView")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) DjVuLibre `n"
-        Write-Host "                  $(if($winget_programs.Contains("calibre.calibre")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Calibre `n"
-        Write-Host "                  $(if($winget_programs.Contains("AppByTroye.KoodoReader")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Koodo Reader `n"
-        Write-Host "                  $(if($winget_programs.Contains("chrox.Readest")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Readest `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Документы >> Электронные книги"} else {"Documents >> E-book"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("DjVuLibre.DjView")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) DjVuLibre"
+        Align-TextCenter "$(if($winget_programs.Contains("calibre.calibre")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Calibre"
+        Align-TextCenter "$(if($winget_programs.Contains("AppByTroye.KoodoReader")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Koodo Reader"
+        Align-TextCenter "$(if($winget_programs.Contains("chrox.Readest")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Readest"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -913,21 +833,18 @@ function Documents{
     }
 
     function PDF_Tools{
-
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Документы >> PDF инструменты"} else {"Documents >> PDF Tools"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("Adobe.Acrobat.Reader.64-bit")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Adobe Acrobat Reader `n"
-        Write-Host "                  $(if($winget_programs.Contains("Adobe.Acrobat.Pro")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Adobe Acrobat Pro `n"
-        Write-Host "                  $(if($winget_programs.Contains("Foxit.FoxitReader")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Foxit PDF Reader `n"
-        Write-Host "                  $(if($winget_programs.Contains("KDE.Okular")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Okular `n"
-        Write-Host "                  $(if($winget_programs.Contains("PDFArranger.PDFArranger")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) PDF Arranger `n"
-        Write-Host "                  $(if($winget_programs.Contains("geeksoftwareGmbH.PDF24Creator")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) PDF24 `n"
-        Write-Host "                  $(if($winget_programs.Contains("Xournal++.Xournal++")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Xournal++ `n"
-        Write-Host "                  $(if($winget_programs.Contains("PDFgear.PDFgear")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) PDFGear `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Документы >> PDF инструменты"} else {"Documents >> PDF Tools"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("Adobe.Acrobat.Reader.64-bit")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Adobe Acrobat Reader"
+        Align-TextCenter "$(if($winget_programs.Contains("Adobe.Acrobat.Pro")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Adobe Acrobat Pro"
+        Align-TextCenter "$(if($winget_programs.Contains("Foxit.FoxitReader")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Foxit PDF Reader"
+        Align-TextCenter "$(if($winget_programs.Contains("KDE.Okular")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Okular"
+        Align-TextCenter "$(if($winget_programs.Contains("PDFArranger.PDFArranger")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) PDF Arranger"
+        Align-TextCenter "$(if($winget_programs.Contains("geeksoftwareGmbH.PDF24Creator")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) PDF24"
+        Align-TextCenter "$(if($winget_programs.Contains("Xournal++.Xournal++")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Xournal++"
+        Align-TextCenter "$(if($winget_programs.Contains("PDFgear.PDFgear")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) PDFGear"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -970,18 +887,13 @@ function Documents{
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5"))-or (($choice -eq "D6") -or ($choice -eq "NumPad6"))-or (($choice -eq "D7") -or ($choice -eq "NumPad7"))-or (($choice -eq "D8") -or ($choice -eq "NumPad8"))-or (($choice -eq "D9") -or ($choice -eq "NumPad9")) -or ($choice -eq "Escape")) #Выход из цикла
     }
 
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Документы"} else {"Documents"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  [1] $(if($Menu_Lang -eq "ru-Ru"){"Офисы\"} else {"Office Suites\"}) `n"
-    Write-Host "                  [2] $(if($Menu_Lang -eq "ru-Ru"){"Электронные книги\"} else {"E-book\"}) `n"
-    Write-Host "                  [3] $(if($Menu_Lang -eq "ru-Ru"){"PDF инструменты\"} else {"PDF Tools\"}) `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Документы"} else {"Documents"})"-NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Офисы\"} else {"Office Suites\"})"
+    Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"Электронные книги\"} else {"E-book\"})"
+    Align-TextCenter "[3] $(if($Menu_Lang -eq "ru-Ru"){"PDF инструменты\"} else {"PDF Tools\"})"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -1003,19 +915,13 @@ function Documents{
 }
 
 function Text_Editors{
-
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Текстовые редакторы"} else {"Text Editors"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("Notepad++.Notepad++")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Notepad++ `n"
-    Write-Host "                  $(if($winget_programs.Contains("Microsoft.VisualStudioCode")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Visual Studio Code `n"
-    Write-Host "                  $(if($winget_programs.Contains("GitHub.Atom")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Atom `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
-    
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Текстовые редакторы"} else {"Text Editors"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("Notepad++.Notepad++")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Notepad++"
+    Align-TextCenter "$(if($winget_programs.Contains("Microsoft.VisualStudioCode")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Visual Studio Code"
+    Align-TextCenter "$(if($winget_programs.Contains("GitHub.Atom")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Atom"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1039,24 +945,18 @@ function Text_Editors{
 }
 
 function Games{
-
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Игровые лаунчеры"} else {"Games"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("Valve.Steam")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Steam `n"
-    Write-Host "                  $(if($winget_programs.Contains("Blizzard.BattleNet")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Battle.net `n"
-    Write-Host "                  $(if($winget_programs.Contains("Bethesda.Launcher")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Bethesda Launcher `n"
-    Write-Host "                  $(if($winget_programs.Contains("ElectronicArts.EADesktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) EA App `n"
-    Write-Host "                  $(if($winget_programs.Contains("EpicGames.EpicGamesLauncher")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Epic Games Launcher `n"
-    Write-Host "                  $(if($winget_programs.Contains("GOG.Galaxy")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) GOG Galaxy `n"
-    Write-Host "                  $(if($winget_programs.Contains("ItchIo.Itch")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Itch.io `n"
-    Write-Host "                  $(if($winget_programs.Contains("Ubisoft.Connect")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) Ubisoft Connect `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
-    
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Игровые лаунчеры"} else {"Games"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("Valve.Steam")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Steam"
+    Align-TextCenter "$(if($winget_programs.Contains("Blizzard.BattleNet")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Battle.net"
+    Align-TextCenter "$(if($winget_programs.Contains("Bethesda.Launcher")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Bethesda Launcher"
+    Align-TextCenter "$(if($winget_programs.Contains("ElectronicArts.EADesktop")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) EA App"
+    Align-TextCenter "$(if($winget_programs.Contains("EpicGames.EpicGamesLauncher")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Epic Games Launcher"
+    Align-TextCenter "$(if($winget_programs.Contains("GOG.Galaxy")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) GOG Galaxy"
+    Align-TextCenter "$(if($winget_programs.Contains("ItchIo.Itch")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Itch.io"
+    Align-TextCenter "$(if($winget_programs.Contains("Ubisoft.Connect")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) Ubisoft Connect"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1100,18 +1000,12 @@ function Games{
 }
 
 function Mobile_Emulators{
-
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Мобильные эмуляторы"} else {"Mobile Emulators"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("BlueStack.BlueStacks")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) BlueStacks `n"
-    Write-Host "                  $(if($winget_programs.Contains("Genymobile.Genymotion")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Genymotion `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
-    
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Мобильные эмуляторы"} else {"Mobile Emulators"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("BlueStack.BlueStacks")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) BlueStacks"
+    Align-TextCenter "$(if($winget_programs.Contains("Genymobile.Genymotion")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Genymotion"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1131,20 +1025,14 @@ function Mobile_Emulators{
 }
 
 function Other_Emulators{
-
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Другие эмуляторы"} else {"Other Emulators"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("Libretro.RetroArch")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) RetroArch `n"
-    Write-Host "                  $(if($winget_programs.Contains("DOSBox.DOSBox")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) DOSBox `n"
-    Write-Host "                  $(if($winget_programs.Contains("PPSSPPTeam.PPSSPP")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) PPSSPP `n"
-    Write-Host "                  $(if($winget_programs.Contains("DolphinEmulator.Dolphin")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Dolphin `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
-    
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Другие эмуляторы"} else {"Other Emulators"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("Libretro.RetroArch")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) RetroArch"
+    Align-TextCenter "$(if($winget_programs.Contains("DOSBox.DOSBox")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) DOSBox"
+    Align-TextCenter "$(if($winget_programs.Contains("PPSSPPTeam.PPSSPP")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) PPSSPP"
+    Align-TextCenter "$(if($winget_programs.Contains("DolphinEmulator.Dolphin")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Dolphin"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1172,22 +1060,16 @@ function Other_Emulators{
 }
 
 function Graphics_Tools{
-
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Графические редакторы"} else {"Graphics Tools"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("GIMP.GIMP")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) GIMP `n"
-    Write-Host "                  $(if($winget_programs.Contains("Inkscape.Inkscape")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Inkscape `n"
-    Write-Host "                  $(if($winget_programs.Contains("KDE.Krita")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Krita `n"
-    Write-Host "                  $(if($winget_programs.Contains("Figma.Figma")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Figma `n"
-    Write-Host "                  $(if($winget_programs.Contains("dotPDN.PaintDotNet")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Paint.NET `n"
-    Write-Host "                  $(if($winget_programs.Contains("Toinane.Colorpicker")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Colorpicker `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
-    
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Графические редакторы"} else {"Graphics Tools"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("GIMP.GIMP")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) GIMP"
+    Align-TextCenter "$(if($winget_programs.Contains("Inkscape.Inkscape")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Inkscape"
+    Align-TextCenter "$(if($winget_programs.Contains("KDE.Krita")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Krita"
+    Align-TextCenter "$(if($winget_programs.Contains("Figma.Figma")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Figma"
+    Align-TextCenter "$(if($winget_programs.Contains("dotPDN.PaintDotNet")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Paint.NET"
+    Align-TextCenter "$(if($winget_programs.Contains("Toinane.Colorpicker")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) Colorpicker"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1223,20 +1105,14 @@ function Graphics_Tools{
 }
 
 function 3D_Modeling_and_Animation{
-
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"3D моделирование и анимация"} else {"3D Modeling and Animation"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("BlenderFoundation.Blender")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Blender `n"
-    Write-Host "                  $(if($winget_programs.Contains("FreeCAD.FreeCAD")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) FreeCAD `n"
-    Write-Host "                  $(if($winget_programs.Contains("OpenSCAD.OpenSCAD")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) OpenSCAD `n"
-    Write-Host "                  $(if($winget_programs.Contains("Wings3D.Wings3D")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Wings 3D `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
-    
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"3D моделирование и анимация"} else {"3D Modeling and Animation"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("BlenderFoundation.Blender")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Blender `n"
+    Align-TextCenter "$(if($winget_programs.Contains("FreeCAD.FreeCAD")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) FreeCAD `n"
+    Align-TextCenter "$(if($winget_programs.Contains("OpenSCAD.OpenSCAD")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) OpenSCAD `n"
+    Align-TextCenter "$(if($winget_programs.Contains("Wings3D.Wings3D")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Wings 3D `n"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
     do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1264,21 +1140,15 @@ function 3D_Modeling_and_Animation{
 }
 
 function Image_Viewers{
-
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Просмотр изображений"} else {"Image Viewers"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("DuongDieuPhap.ImageGlass")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) ImageGlass `n"
-    Write-Host "                  $(if($winget_programs.Contains("IrfanSkiljan.IrfanView")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Irfanview `n"
-    Write-Host "                  $(if($winget_programs.Contains("sylikc.JPEGView")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) JPEGView `n"
-    Write-Host "                  $(if($winget_programs.Contains("jurplel.qView")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) qView `n"
-    Write-Host "                  $(if($winget_programs.Contains("XnSoft.XnView.Classic")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) XnView `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
-    
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Просмотр изображений"} else {"Image Viewers"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("DuongDieuPhap.ImageGlass")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) ImageGlass"
+    Align-TextCenter "$(if($winget_programs.Contains("IrfanSkiljan.IrfanView")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Irfanview"
+    Align-TextCenter "$(if($winget_programs.Contains("sylikc.JPEGView")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) JPEGView"
+    Align-TextCenter "$(if($winget_programs.Contains("jurplel.qView")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) qView"
+    Align-TextCenter "$(if($winget_programs.Contains("XnSoft.XnView.Classic")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) XnView"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1310,23 +1180,17 @@ function Image_Viewers{
 }
 
 function Remote_Access{
-
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Удалённый доступ"} else {"Remote Access"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("AnyDeskSoftwareGmbH.AnyDesk")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) AnyDesk `n"
-    Write-Host "                  $(if($winget_programs.Contains("MoonlightGameStreamingProject.Moonlight")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Moonlight `n"
-    Write-Host "                  $(if($winget_programs.Contains("Parsec.Parsec")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Parsec `n"
-    Write-Host "                  $(if($winget_programs.Contains("RustDesk.RustDesk")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) RustDesk `n"
-    Write-Host "                  $(if($winget_programs.Contains("Valve.SteamLink")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Steam Link `n"
-    Write-Host "                  $(if($winget_programs.Contains("TeamViewer.TeamViewer")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) TeamViewer `n"
-    Write-Host "                  $(if($winget_programs.Contains("Microsoft.RemoteDesktopClient")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Windows Remote Desktop `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
-    
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Удалённый доступ"} else {"Remote Access"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("AnyDeskSoftwareGmbH.AnyDesk")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) AnyDesk"
+    Align-TextCenter "$(if($winget_programs.Contains("MoonlightGameStreamingProject.Moonlight")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Moonlight"
+    Align-TextCenter "$(if($winget_programs.Contains("Parsec.Parsec")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Parsec"
+    Align-TextCenter "$(if($winget_programs.Contains("RustDesk.RustDesk")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) RustDesk"
+    Align-TextCenter "$(if($winget_programs.Contains("Valve.SteamLink")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Steam Link"
+    Align-TextCenter "$(if($winget_programs.Contains("TeamViewer.TeamViewer")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) TeamViewer"
+    Align-TextCenter "$(if($winget_programs.Contains("Microsoft.RemoteDesktopClient")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Windows Remote Desktop"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1366,23 +1230,17 @@ function Remote_Access{
 }
 
 function VPN_and_Proxy_Tools{
-
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"VPN и Прокси"} else {"VPN and Proxy"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  $(if($winget_programs.Contains("MatsuriDayo.NekoRay")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Neko Ray `n"
-    Write-Host "                  $(if($winget_programs.Contains("Hiddify.Next")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Hiddify `n"
-    Write-Host "                  $(if($winget_programs.Contains("OpenVPNTechnologies.OpenVPN")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) OpenVPN `n"
-    Write-Host "                  $(if($winget_programs.Contains("WireGuard.WireGuard")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) WireGuard `n"
-    Write-Host "                  $(if($winget_programs.Contains("SagerNet.sing-box")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Sing-box `n"
-    Write-Host "                  $(if($winget_programs.Contains("2dust.v2rayN")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) v2rayN `n"
-    Write-Host "                  $(if($winget_programs.Contains("Cloudflare.Warp")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Cloudflare WARP `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n`n"
-    
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"VPN и Прокси"} else {"VPN and Proxy"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "$(if($winget_programs.Contains("MatsuriDayo.NekoRay")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Neko Ray"
+    Align-TextCenter "$(if($winget_programs.Contains("Hiddify.Next")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Hiddify"
+    Align-TextCenter "$(if($winget_programs.Contains("OpenVPNTechnologies.OpenVPN")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) OpenVPN"
+    Align-TextCenter "$(if($winget_programs.Contains("WireGuard.WireGuard")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) WireGuard"
+    Align-TextCenter "$(if($winget_programs.Contains("SagerNet.sing-box")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Sing-box"
+    Align-TextCenter "$(if($winget_programs.Contains("2dust.v2rayN")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) v2rayN"
+    Align-TextCenter "$(if($winget_programs.Contains("Cloudflare.Warp")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Cloudflare WARP"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1425,17 +1283,13 @@ function Video{
 
     function Video_Editors{
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Видео >> Видеоредакторы"} else {"Video >> Video Editors"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("Meltytech.Shotcut")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Shotcut `n"
-        Write-Host "                  $(if($winget_programs.Contains("OpenShot.OpenShot")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) OpenShot `n"
-        Write-Host "                  $(if($winget_programs.Contains("LWKS.lightworks")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Lightworks `n"
-        Write-Host "                  $(if($winget_programs.Contains("VSDC.Editor")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) VSDC Free Video Editor `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Видео >> Видеоредакторы"} else {"Video >> Video Editors"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"-NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("Meltytech.Shotcut")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Shotcut"
+        Align-TextCenter "$(if($winget_programs.Contains("OpenShot.OpenShot")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) OpenShot"
+        Align-TextCenter "$(if($winget_programs.Contains("LWKS.lightworks")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Lightworks"
+        Align-TextCenter "$(if($winget_programs.Contains("VSDC.Editor")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) VSDC Free Video Editor"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -1464,19 +1318,14 @@ function Video{
     }
 
     function Video_Players{
-
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Видео >> Видеоплееры"} else {"Video >>  Video Players"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("VideoLAN.VLC")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) VLC Media Player `n"
-        Write-Host "                  $(if($winget_programs.Contains("Daum.PotPlayer")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) PotPlayer `n"
-        Write-Host "                  $(if($winget_programs.Contains("XBMCFoundation.Kodi")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Kodi `n"
-        Write-Host "                  $(if($winget_programs.Contains("NickeManarin.ScreenToGif")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) ScreenToGif `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Видео >> Видеоплееры"} else {"Video >>  Video Players"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("VideoLAN.VLC")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) VLC Media Player"
+        Align-TextCenter "$(if($winget_programs.Contains("Daum.PotPlayer")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) PotPlayer"
+        Align-TextCenter "$(if($winget_programs.Contains("XBMCFoundation.Kodi")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Kodi"
+        Align-TextCenter "$(if($winget_programs.Contains("NickeManarin.ScreenToGif")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) ScreenToGif"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1504,19 +1353,14 @@ function Video{
     }
 
     function Video_Streaming_and_Recording{
-
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Видео >> Стриминг и запись"} else {"Video >>  Video Streaming and Recording"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("OBSProject.OBSStudio")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) OBS Studio `n"
-        Write-Host "                  $(if($winget_programs.Contains("Jitsi.Meet")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Jitsi Meet `n"
-        Write-Host "                  $(if($winget_programs.Contains("Zoom.Zoom")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Zoom `n"
-        Write-Host "                  $(if($winget_programs.Contains("Streamlabs.Streamlabs")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Streamlabs Desktop `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Видео >> Стриминг и запись"} else {"Video >>  Video Streaming and Recording"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("OBSProject.OBSStudio")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) OBS Studio"
+        Align-TextCenter "$(if($winget_programs.Contains("Jitsi.Meet")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) Jitsi Meet"
+        Align-TextCenter "$(if($winget_programs.Contains("Zoom.Zoom")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Zoom"
+        Align-TextCenter "$(if($winget_programs.Contains("Streamlabs.Streamlabs")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Streamlabs Desktop"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1544,19 +1388,14 @@ function Video{
     }
 
     function Video_Converters_and_Compressors{
-
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Видео >> Видео конверторы и компрессоры"} else {"Video >>  Video Converters and Compressors"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("Gyan.FFmpeg")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) FFmpeg `n"
-        Write-Host "                  $(if($winget_programs.Contains("XMediaRecode.XMediaRecode")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) XMedia Recode `n"
-        Write-Host "                  $(if($winget_programs.Contains("RandomEngy.VidCoder")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) VidCoder `n"
-        Write-Host "                  $(if($winget_programs.Contains("HandBrake.HandBrake")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) HandBrake `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Видео >> Видео конверторы и компрессоры"} else {"Video >>  Video Converters and Compressors"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("Gyan.FFmpeg")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) FFmpeg"
+        Align-TextCenter "$(if($winget_programs.Contains("XMediaRecode.XMediaRecode")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) XMedia Recode"
+        Align-TextCenter "$(if($winget_programs.Contains("RandomEngy.VidCoder")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) VidCoder"
+        Align-TextCenter "$(if($winget_programs.Contains("HandBrake.HandBrake")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) HandBrake"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1583,19 +1422,14 @@ function Video{
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5"))-or (($choice -eq "D6") -or ($choice -eq "NumPad6")) -or ($choice -eq "Escape")) #Выход из цикла
     }
 
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Видео"} else {"Video"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  [1] $(if($Menu_Lang -eq "ru-Ru"){"Видеоредакторы\"} else {"Video Editors\"}) `n"
-    Write-Host "                  [2] $(if($Menu_Lang -eq "ru-Ru"){"Видеоплееры\"} else {"Video Players\"}) `n"
-    Write-Host "                  [3] $(if($Menu_Lang -eq "ru-Ru"){"Стриминг и запись\"} else {"Video Streaming and Recording\"}) `n"
-    Write-Host "                  [4] $(if($Menu_Lang -eq "ru-Ru"){"Видео конверторы и компрессоры\"} else {"Video Converters and Compressors\"}) `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Видео"} else {"Video"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Видеоредакторы\"} else {"Video Editors\"})"
+    Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"Видеоплееры\"} else {"Video Players\"})"
+    Align-TextCenter "[3] $(if($Menu_Lang -eq "ru-Ru"){"Стриминг и запись\"} else {"Video Streaming and Recording\"})"
+    Align-TextCenter "[4] $(if($Menu_Lang -eq "ru-Ru"){"Видео конверторы и компрессоры\"} else {"Video Converters and Compressors\"})"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -1623,16 +1457,12 @@ function Utility{
 
     function Metadata{
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Утилиты >> Метаданные"} else {"Utility >> Metadata"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("OliverBetz.ExifTool")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) ExifTool `n"
-        Write-Host "                  $(if($winget_programs.Contains("FlorianHeidenreich.Mp3tag")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) MP3Tag `n"
-        Write-Host "                  $(if($winget_programs.Contains("MiTeC.HexEdit")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) HexEdit `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Утилиты >> Метаданные"} else {"Utility >> Metadata"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("OliverBetz.ExifTool")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) ExifTool"
+        Align-TextCenter "$(if($winget_programs.Contains("FlorianHeidenreich.Mp3tag")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) MP3Tag"
+        Align-TextCenter "$(if($winget_programs.Contains("MiTeC.HexEdit")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) HexEdit"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -1657,20 +1487,15 @@ function Utility{
     }
 
     function File_Management{
-
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Утилиты >> Управление файлами"} else {"Utility >>  File Management"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("voidtools.Everything")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Everything `n"
-        Write-Host "                  $(if($winget_programs.Contains("WinSCP.WinSCP")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) WinSCP `n"
-        Write-Host "                  $(if($winget_programs.Contains("FarManager.FarManager")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Far Manager `n"
-        Write-Host "                  $(if($winget_programs.Contains("Bopsoft.Listary")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Listary `n"
-        Write-Host "                  $(if($winget_programs.Contains("alexx2000.DoubleCommander")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Double Commander `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Утилиты >> Управление файлами"} else {"Utility >>  File Management"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("voidtools.Everything")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) Everything"
+        Align-TextCenter "$(if($winget_programs.Contains("WinSCP.WinSCP")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) WinSCP"
+        Align-TextCenter "$(if($winget_programs.Contains("FarManager.FarManager")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) Far Manager"
+        Align-TextCenter "$(if($winget_programs.Contains("Bopsoft.Listary")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Listary"
+        Align-TextCenter "$(if($winget_programs.Contains("alexx2000.DoubleCommander")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) Double Commander"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1702,19 +1527,14 @@ function Utility{
     }
 
     function Space_Visualizer{
-
         Draw-Banner
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Утилиты >> Визуализаторы файлового пространства"} else {"Utility >> Space Visualizer"})"
-        Write-Host ""
-        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-        Write-Host ""
-        Write-Host "                  $(if($winget_programs.Contains("UderzoSoftware.SpaceSniffer")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) SpaceSniffer `n"
-        Write-Host "                  $(if($winget_programs.Contains("AntibodySoftware.WizTree")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) WizTree `n"
-        Write-Host "                  $(if($winget_programs.Contains("JAMSoftware.TreeSize")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) TreeSize `n"
-        Write-Host "                  $(if($winget_programs.Contains("KDE.Filelight")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Filelight `n"
-        Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Утилиты >> Визуализаторы файлового пространства"} else {"Utility >> Space Visualizer"})" -NewLine
+        Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+        Align-TextCenter "$(if($winget_programs.Contains("UderzoSoftware.SpaceSniffer")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) SpaceSniffer"
+        Align-TextCenter "$(if($winget_programs.Contains("AntibodySoftware.WizTree")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) WizTree"
+        Align-TextCenter "$(if($winget_programs.Contains("JAMSoftware.TreeSize")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) TreeSize"
+        Align-TextCenter "$(if($winget_programs.Contains("KDE.Filelight")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) Filelight"
+        Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
         do {
             $choice = [Console]::ReadKey($true).Key
             if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1741,23 +1561,18 @@ function Utility{
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5")) -or ($choice -eq "Escape")) #Выход из цикла
     }
 
-
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Утилиты"} else {"Utility"})"
-    Write-Host ""
-    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Write-Host "                  [1] $(if($Menu_Lang -eq "ru-Ru"){"Метаданные\"} else {"Metadata\"}) `n"
-    Write-Host "                  [2] $(if($Menu_Lang -eq "ru-Ru"){"Управление файлами\"} else {"File Management\"}) `n"
-    Write-Host "                  [3] $(if($Menu_Lang -eq "ru-Ru"){"Визуализаторы файлового пространства\"} else {"Space Visualizer\"}) `n"
-    Write-Host "                  $(if($winget_programs.Contains("Microsoft.PowerToys")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) PowerToys `n"
-    Write-Host "                  $(if($winget_programs.Contains("PuTTY.PuTTY")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) PuTTY `n"
-    Write-Host "                  $(if($winget_programs.Contains("AutoHotkey.AutoHotkey")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) AutoHotkey `n"
-    Write-Host "                  $(if($winget_programs.Contains("Famatech.AdvancedIPScanner")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Advanced IP Scanner `n"
-    Write-Host "                  $(if($winget_programs.Contains("Guru3D.Afterburner")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) MSI Afterburner `n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-
-
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Утилиты"} else {"Utility"})" -NewLine
+    Center-Text "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Метаданные\"} else {"Metadata\"})"
+    Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"Управление файлами\"} else {"File Management\"})"
+    Align-TextCenter "[3] $(if($Menu_Lang -eq "ru-Ru"){"Визуализаторы файлового пространства\"} else {"Space Visualizer\"})"
+    Align-TextCenter "$(if($winget_programs.Contains("Microsoft.PowerToys")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) PowerToys"
+    Align-TextCenter "$(if($winget_programs.Contains("PuTTY.PuTTY")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) PuTTY"
+    Align-TextCenter "$(if($winget_programs.Contains("AutoHotkey.AutoHotkey")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) AutoHotkey"
+    Align-TextCenter "$(if($winget_programs.Contains("Famatech.AdvancedIPScanner")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Advanced IP Scanner"
+    Align-TextCenter "$(if($winget_programs.Contains("Guru3D.Afterburner")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) MSI Afterburner"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
     do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
@@ -1804,7 +1619,6 @@ function Config{
     Center-Text "[1]$(if($Menu_Lang -eq "ru-Ru"){"Загрузить"} else {"Load"})   [2]$(if($Menu_Lang -eq "ru-Ru"){"Сохранить"} else {"Save"})"
     Write-Host "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
     Center-Text "[Esc]$(if($Menu_Lang -eq "ru-Ru"){"Выход"} else {"Exit"})"
-
     do {
         $choice = [Console]::ReadKey($true).Key
         if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -1832,13 +1646,6 @@ function Config{
         }
         if ($choice -eq "Escape"){Main-menu}
     } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")) -or ($choice -eq "Escape"))
-
-    
-    
-
-
-
-
     Main-menu
 }
 
@@ -1856,17 +1663,16 @@ function Search{
         Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Ничего не найдено!"} else {"Nothing was found!"})"
         Write-Host " "
     }
-    if ($global:id[0] -ne $null) {Write-Host "                  $(if($winget_programs.Contains($global:id[0])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) $($global:names[0])$(add_space -name_space $global:names[0])$($global:id[0])`n" }
-    if ($global:id[1] -ne $null) {Write-Host "                  $(if($winget_programs.Contains($global:id[1])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) $($global:names[1])$(add_space -name_space $global:names[1])$($global:id[1])`n"}
-    if ($global:id[2] -ne $null) {Write-Host "                  $(if($winget_programs.Contains($global:id[2])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) $($global:names[2])$(add_space -name_space $global:names[2])$($global:id[2])`n"}
-    if ($global:id[3] -ne $null) {Write-Host "                  $(if($winget_programs.Contains($global:id[3])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) $($global:names[3])$(add_space -name_space $global:names[3])$($global:id[3])`n"}
-    if ($global:id[4] -ne $null) {Write-Host "                  $(if($winget_programs.Contains($global:id[4])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) $($global:names[4])$(add_space -name_space $global:names[4])$($global:id[4])`n"}
-    if ($global:id[5] -ne $null) {Write-Host "                  $(if($winget_programs.Contains($global:id[5])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) $($global:names[5])$(add_space -name_space $global:names[5])$($global:id[5])`n"}
-    if ($global:id[6] -ne $null) {Write-Host "                  $(if($winget_programs.Contains($global:id[6])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) $($global:names[6])$(add_space -name_space $global:names[6])$($global:id[6])`n"}
-    if ($global:id[7] -ne $null) {Write-Host "                  $(if($winget_programs.Contains($global:id[7])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) $($global:names[7])$(add_space -name_space $global:names[7])$($global:id[7])`n"}
-    if ($global:id[8] -ne $null) {Write-Host "                  $(if($winget_programs.Contains($global:id[8])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[9]"}) $($global:names[8])$(add_space -name_space $global:names[8])$($global:id[8])`n`n`n"}
+    if ($global:id[0] -ne $null) {Align-TextCenter "$(if($winget_programs.Contains($global:id[0])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[1]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[1]"}) $($global:names[0])$(add_space -name_space $global:names[0])$($global:id[0])`n" }
+    if ($global:id[1] -ne $null) {Align-TextCenter "$(if($winget_programs.Contains($global:id[1])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[2]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[2]"}) $($global:names[1])$(add_space -name_space $global:names[1])$($global:id[1])`n"}
+    if ($global:id[2] -ne $null) {Align-TextCenter "$(if($winget_programs.Contains($global:id[2])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[3]"}) $($global:names[2])$(add_space -name_space $global:names[2])$($global:id[2])`n"}
+    if ($global:id[3] -ne $null) {Align-TextCenter "$(if($winget_programs.Contains($global:id[3])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[4]"}) $($global:names[3])$(add_space -name_space $global:names[3])$($global:id[3])`n"}
+    if ($global:id[4] -ne $null) {Align-TextCenter "$(if($winget_programs.Contains($global:id[4])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[5]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[5]"}) $($global:names[4])$(add_space -name_space $global:names[4])$($global:id[4])`n"}
+    if ($global:id[5] -ne $null) {Align-TextCenter "$(if($winget_programs.Contains($global:id[5])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[6]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[6]"}) $($global:names[5])$(add_space -name_space $global:names[5])$($global:id[5])`n"}
+    if ($global:id[6] -ne $null) {Align-TextCenter "$(if($winget_programs.Contains($global:id[6])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) $($global:names[6])$(add_space -name_space $global:names[6])$($global:id[6])`n"}
+    if ($global:id[7] -ne $null) {Align-TextCenter "$(if($winget_programs.Contains($global:id[7])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[8]"}) $($global:names[7])$(add_space -name_space $global:names[7])$($global:id[7])`n"}
+    if ($global:id[8] -ne $null) {Align-TextCenter "$(if($winget_programs.Contains($global:id[8])) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[9]"}) $($global:names[8])$(add_space -name_space $global:names[8])$($global:id[8])`n`n`n"}
     Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"[Esc] Выход"} else {"[Esc] Exit"})"
-
 
     do {
             $choice = [Console]::ReadKey($true).Key            #считывание нажатия
@@ -1925,19 +1731,15 @@ function Search{
 #Основные страницы
 function Main-page-three {
     Draw-Banner
-    Write-Host "                  [1] $(if($Menu_Lang -eq "ru-Ru"){"Удалённый доступ\"} else {"Remote Access\"})`n"
-    Write-Host "                  [2] $(if($Menu_Lang -eq "ru-Ru"){"VPN и Прокси\"} else {"VPN and Proxy\"})`n"
-    Write-Host "                  [3] $(if($Menu_Lang -eq "ru-Ru"){"Видео\"} else {"Video\"})`n"
-    Write-Host "                  [4] $(if($Menu_Lang -eq "ru-Ru"){"Утилиты\"} else {"Utility\"})`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-    Write-Host "`n`n`n`n`n`n`n`n`n`n"
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"[Пробел] - Установить"} else {"[Space] - Install"})   [F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Страница 3"} else {"Page 3"})"
-    Write-Host "                                                   <- [A]"
-
-
-
+    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Удалённый доступ\"} else {"Remote Access\"})"
+    Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"VPN и Прокси\"} else {"VPN and Proxy\"})"
+    Align-TextCenter "[3] $(if($Menu_Lang -eq "ru-Ru"){"Видео\"} else {"Video\"})"
+    Align-TextCenter "[4] $(if($Menu_Lang -eq "ru-Ru"){"Утилиты\"} else {"Utility\"})"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
+    Write-Host "`n`n`n`n`n`n`n`n`n"
+    Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"[Пробел] - Установить"} else {"[Space] - Install"})   [F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"Страница 3"} else {"Page 3"})"
+    Align-TextCenter "$([char]27)[48;5;0m$([char]27)[38;5;10m                                 <- [A]" -NoNewLine
     do {
             $choice = [Console]::ReadKey($true).Key            #считывание нажатия
             #Write-Host "Вы нажали: $choice"
@@ -1979,23 +1781,19 @@ function Main-page-three {
 
 function Main-page-two {
     Draw-Banner
-    Write-Host "                  [1] $(if($Menu_Lang -eq "ru-Ru"){"Документы\"} else {"Documents\"})`n"
-    Write-Host "                  [2] $(if($Menu_Lang -eq "ru-Ru"){"Текстовые редакторы\"} else {"Text Editors\"})`n"
-    Write-Host "                  [3] $(if($Menu_Lang -eq "ru-Ru"){"Игровые лаунчеры\"} else {"Games launchers\"})`n"
-    Write-Host "                  [4] $(if($Menu_Lang -eq "ru-Ru"){"Мобильные эмуляторы\"} else {"Mobile Emulators\"})`n"
-    Write-Host "                  [5] $(if($Menu_Lang -eq "ru-Ru"){"Другие эмуляторы\"} else {"Other Emulators\"})`n"
-    Write-Host "                  [6] $(if($Menu_Lang -eq "ru-Ru"){"Графические редакторы\"} else {"Graphics Tools\"})`n"
-    Write-Host "                  [7] $(if($Menu_Lang -eq "ru-Ru"){"3D моделирование и анимация\"} else {"3D Modeling and Animation\"})`n"
-    Write-Host "                  [8] $(if($Menu_Lang -eq "ru-Ru"){"Просмотр изображений\"} else {"Image Viewers\"})`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
-    Write-Host "`n`n"
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"[Пробел] - Установить"} else {"[Space] - Install"})   [F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})"
-    Write-Host ""
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Страница 2"} else {"Page 2"})"
-    Center-Text "<- [A]      [D] ->"
-
-
-
+    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Документы\"} else {"Documents\"})"
+    Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"Текстовые редакторы\"} else {"Text Editors\"})"
+    Align-TextCenter "[3] $(if($Menu_Lang -eq "ru-Ru"){"Игровые лаунчеры\"} else {"Games launchers\"})"
+    Align-TextCenter "[4] $(if($Menu_Lang -eq "ru-Ru"){"Мобильные эмуляторы\"} else {"Mobile Emulators\"})"
+    Align-TextCenter "[5] $(if($Menu_Lang -eq "ru-Ru"){"Другие эмуляторы\"} else {"Other Emulators\"})"
+    Align-TextCenter "[6] $(if($Menu_Lang -eq "ru-Ru"){"Графические редакторы\"} else {"Graphics Tools\"})"
+    Align-TextCenter "[7] $(if($Menu_Lang -eq "ru-Ru"){"3D моделирование и анимация\"} else {"3D Modeling and Animation\"})"
+    Align-TextCenter "[8] $(if($Menu_Lang -eq "ru-Ru"){"Просмотр изображений\"} else {"Image Viewers\"})"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
+    Write-Host "`n"
+    Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"[Пробел] - Установить"} else {"[Space] - Install"})   [F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
+    Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"Страница 2"} else {"Page 2"})"
+    Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m<- [A]      [D] ->"
     do {
             $choice = [Console]::ReadKey($true).Key            #считывание нажатия
             #Write-Host "Вы нажали: $choice"
@@ -2038,23 +1836,19 @@ function Main-page-two {
 
 function Main-menu {
     Draw-Banner
-    Write-Host "                  [F1] $(if($Menu_Lang -eq "ru-Ru"){"Обновить все установленные программы"} else {"Upgrade all installed programs"})                  $(if($Menu_Lang -eq "ru-Ru"){"   [F3] Поиск"} else {"          [F3] Search"})`n"
-    Write-Host "                  [F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов которые будут установлены"} else {"List of packages that will be installed"})          $(if($Menu_Lang -eq "ru-Ru"){"       [Tab] Загрузить/Сохранить конфиг"} else {"         [Tab] Load/Save config"})`n"
-    Write-Host "                  $(if($Menu_Lang -eq "ru-Ru"){"---------"})-------------------------------------------------------------------------------------`n"
-    Write-Host "                  [1] $(if($Menu_Lang -eq "ru-Ru"){"Звук\"} else {"Audio\"})`n"
-    Write-Host "                  [2] $(if($Menu_Lang -eq "ru-Ru"){"Браузеры\"} else {"Browsers\"})$([char]27)[24m`n"
-    Write-Host "                  [3] $(if($Menu_Lang -eq "ru-Ru"){"Общение\"} else {"Communication\"})`n"
-    Write-Host "                  [4] $(if($Menu_Lang -eq "ru-Ru"){"Сжатие и Архивирование\"} else {"Compression and Archiving\"})`n"
-    Write-Host "                  [5] $(if($Menu_Lang -eq "ru-Ru"){"Кастомизация\"} else {"Customize\"})`n"
-    Write-Host "                  [6] $(if($Menu_Lang -eq "ru-Ru"){"Инструменты для разработки\"} else {"Developer Tools\"})`n"
-    Write-Host "                  $([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mВыход в меню$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack to menu$([char]27)[0m"})"
-    Write-Host ""
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"[Пробел] - Установить"} else {"[Space] - Install"})"
-    Write-Host ""
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Страница 1"} else {"Page 1"})"
-    Center-Text "            [D] ->"
-
-
+    Align-TextCenter "[F1] $(if($Menu_Lang -eq "ru-Ru"){"Обновить все установленные программы"} else {"Upgrade all installed programs"})                  $(if($Menu_Lang -eq "ru-Ru"){"   [F3] Поиск"} else {"          [F3] Search"})"
+    Align-TextCenter "[F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов которые будут установлены"} else {"List of packages that will be installed"})          $(if($Menu_Lang -eq "ru-Ru"){"       [Tab] Загрузить/Сохранить конфиг"} else {"         [Tab] Load/Save config"})"
+    Align-TextCenter "$(if($Menu_Lang -eq "ru-Ru"){"---------"})-------------------------------------------------------------------------------------"
+    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Звук\"} else {"Audio\"})"
+    Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"Браузеры\"} else {"Browsers\"})$([char]27)[24m"
+    Align-TextCenter "[3] $(if($Menu_Lang -eq "ru-Ru"){"Общение\"} else {"Communication\"})"
+    Align-TextCenter "[4] $(if($Menu_Lang -eq "ru-Ru"){"Сжатие и Архивирование\"} else {"Compression and Archiving\"})"
+    Align-TextCenter "[5] $(if($Menu_Lang -eq "ru-Ru"){"Кастомизация\"} else {"Customize\"})"
+    Align-TextCenter "[6] $(if($Menu_Lang -eq "ru-Ru"){"Инструменты для разработки\"} else {"Developer Tools\"})"
+    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mВыход в меню$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack to menu$([char]27)[0m"})"
+    Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"[Пробел] - Установить"} else {"[Space] - Install"})" -NewLine
+    Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"Страница 1"} else {"Page 1"})"
+    Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m            [D] ->"
     do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
