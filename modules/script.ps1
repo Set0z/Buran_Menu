@@ -1,7 +1,7 @@
 ﻿
 #Объявление глобальных переменных
 $(if($PSCulture -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню"} else {$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Menu"})
-$env:version = "1.1"
+$env:version = "1.0"
 $ver= $env:version
 if ($PSScriptRoot -eq "") {
     $env:script_state = "Internet"
@@ -59,43 +59,43 @@ do {
     $choice = [Console]::ReadKey($true).Key #считывание нажатия
     #Write-Host "Вы нажали: $choice"
     if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
-        if ($PSScriptRoot -eq "") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/win_act.ps1" | iex}
+        if ($env:script_state -eq "Internet") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/win_act.ps1" | iex}
         $filePath = Join-Path -Path $scriptDir -ChildPath 'win_act.ps1'
         Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
         exit
     }
     if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-        if ($PSScriptRoot -eq "") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/rem_desk.ps1" | iex}
+        if ($env:script_state -eq "Internet") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/rem_desk.ps1" | iex}
         $filePath = Join-Path -Path $scriptDir -ChildPath 'rem_desk.ps1'
         Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
         exit
     }
     if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
-        if ($PSScriptRoot -eq "") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/office_new.ps1" | iex}
+        if ($env:script_state -eq "Internet") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/office_new.ps1" | iex}
         $filePath = Join-Path -Path $scriptDir -ChildPath 'office_new.ps1'
         Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
         exit
     }
     if (($choice -eq "D4") -or ($choice -eq "NumPad4")){
-        if ($PSScriptRoot -eq "") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/uac_ch.ps1" | iex}
+        if ($env:script_state -eq "Internet") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/uac_ch.ps1" | iex}
         $filePath = Join-Path -Path $scriptDir -ChildPath 'uac_ch.ps1'
         Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
         exit
     }
     if (($choice -eq "D5") -or ($choice -eq "NumPad5")){
-        if ($PSScriptRoot -eq "") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/reg_settings.ps1" | iex}
+        if ($env:script_state -eq "Internet") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/reg_settings.ps1" | iex}
         $filePath = Join-Path -Path $scriptDir -ChildPath 'reg_settings.ps1'
         Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
         exit
     }
     if (($choice -eq "D6") -or ($choice -eq "NumPad6")){
-        if ($PSScriptRoot -eq "") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/app_install.ps1" | iex}
+        if ($env:script_state -eq "Internet") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/app_install.ps1" | iex}
         $filePath = Join-Path -Path $scriptDir -ChildPath 'app_install.ps1'
         Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"")
         exit
     }
     if (($choice -eq "D7") -or ($choice -eq "NumPad7") -or ($choice -eq "Escape")){
-        if ($PSScriptRoot -eq "") {
+        if ($env:script_state -eq "Internet") {
             Set-ConsoleColor "DarkMagenta" "White" 1
             Clear-Host
             return

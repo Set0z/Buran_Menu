@@ -61,14 +61,15 @@ Set-ConsoleColor $Background_After_Color $Text_After_Color
 function Center-Text {
     param (
         [string]$Text,
-        [switch]$NewLine
+        [switch]$NewLine,
+        [switch]$Offset
     )
 
     # Удаляем управляющие последовательности (цветовые коды ANSI)
     $cleanText = $Text -replace '\x1b\[[0-9;]*m', ''
 
     # Получаем ширину консоли
-    $consoleWidth = ([console]::WindowWidth)
+    if($Offset) {$consoleWidth = (([console]::WindowWidth) - 18)} else {$consoleWidth = ([console]::WindowWidth)}
 
     # Вычисляем количество пробелов для отступа
     $padding = [math]::Max(0, ($consoleWidth - $cleanText.Length) / 2)
