@@ -22,37 +22,37 @@ function Set-ConsoleColor ($bc, $fc, $cl) {
 #Отрисовка меню
 function Draw-Banner {
 
-param (
-    [string]$Text_Color = "Magenta",
-    [string]$Background_Color = "Black",
-    [string]$Clear = 1,
-    [string]$Text_After_Color = "Green",
-    [string]$Background_After_Color = "Black"
-)
-Set-ConsoleColor $Background_Color $Text_Color  $Clear
-Write-Host "`n"
-Center-Text " ███████████     █████  █████    ███████████        █████████      ██████   █████   "
-Center-Text "░░███░░░░░███   ░░███  ░░███    ░░███░░░░░███      ███░░░░░███    ░░██████ ░░███    "
-Center-Text " ░███    ░███    ░███   ░███     ░███    ░███     ░███    ░███     ░███░███ ░███    "
-Center-Text " ░██████████     ░███   ░███     ░██████████      ░███████████     ░███░░███░███    "
-Center-Text " ░███░░░░░███    ░███   ░███     ░███░░░░░███     ░███░░░░░███     ░███ ░░██████    "
-Center-Text " ░███    ░███    ░███   ░███     ░███    ░███     ░███    ░███     ░███  ░░█████    "
-Center-Text " ███████████  ██ ░░████████   ██ █████   █████ ██ █████   █████ ██ █████  ░░█████ ██"
-Center-Text "░░░░░░░░░░░  ░░   ░░░░░░░░   ░░ ░░░░░   ░░░░░ ░░ ░░░░░   ░░░░░ ░░ ░░░░░    ░░░░░ ░░ "
-Write-Host "`n"          
-Center-Text "               ██████   ██████ ██████████ ██████   █████ █████  █████               "
-Center-Text "              ░░██████ ██████ ░░███░░░░░█░░██████ ░░███ ░░███  ░░███                "
-Center-Text "               ░███░█████░███  ░███  █ ░  ░███░███ ░███  ░███   ░███                "
-Center-Text "               ░███░░███ ░███  ░██████    ░███░░███░███  ░███   ░███                "
-Center-Text "               ░███ ░░░  ░███  ░███░░█    ░███ ░░██████  ░███   ░███                "
-Center-Text "               ░███      ░███  ░███ ░   █ ░███  ░░█████  ░███   ░███                "
-Center-Text "               █████     █████ ██████████ █████  ░░█████ ░░████████                 "
-Center-Text "              ░░░░░     ░░░░░ ░░░░░░░░░░ ░░░░░    ░░░░░   ░░░░░░░░                  "
-Write-Host ""
-Center-Text "(c) Set0z - https://github.com/Set0z"
-Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Версия $($ver)"} else {"Version $($ver)"})"
-Write-Host "`n"
-Set-ConsoleColor $Background_After_Color $Text_After_Color
+    param (
+        [string]$Text_Color = "Magenta",
+        [string]$Background_Color = "Black",
+        [string]$Clear = 1,
+        [string]$Text_After_Color = "Green",
+        [string]$Background_After_Color = "Black"
+    )
+    Set-ConsoleColor $Background_Color $Text_Color  $Clear
+    Write-Host "`n"
+    Center-Text " ███████████     █████  █████    ███████████        █████████      ██████   █████   "
+    Center-Text "░░███░░░░░███   ░░███  ░░███    ░░███░░░░░███      ███░░░░░███    ░░██████ ░░███    "
+    Center-Text " ░███    ░███    ░███   ░███     ░███    ░███     ░███    ░███     ░███░███ ░███    "
+    Center-Text " ░██████████     ░███   ░███     ░██████████      ░███████████     ░███░░███░███    "
+    Center-Text " ░███░░░░░███    ░███   ░███     ░███░░░░░███     ░███░░░░░███     ░███ ░░██████    "
+    Center-Text " ░███    ░███    ░███   ░███     ░███    ░███     ░███    ░███     ░███  ░░█████    "
+    Center-Text " ███████████  ██ ░░████████   ██ █████   █████ ██ █████   █████ ██ █████  ░░█████ ██"
+    Center-Text "░░░░░░░░░░░  ░░   ░░░░░░░░   ░░ ░░░░░   ░░░░░ ░░ ░░░░░   ░░░░░ ░░ ░░░░░    ░░░░░ ░░ "
+    Write-Host "`n"          
+    Center-Text "               ██████   ██████ ██████████ ██████   █████ █████  █████               "
+    Center-Text "              ░░██████ ██████ ░░███░░░░░█░░██████ ░░███ ░░███  ░░███                "
+    Center-Text "               ░███░█████░███  ░███  █ ░  ░███░███ ░███  ░███   ░███                "
+    Center-Text "               ░███░░███ ░███  ░██████    ░███░░███░███  ░███   ░███                "
+    Center-Text "               ░███ ░░░  ░███  ░███░░█    ░███ ░░██████  ░███   ░███                "
+    Center-Text "               ░███      ░███  ░███ ░   █ ░███  ░░█████  ░███   ░███                "
+    Center-Text "               █████     █████ ██████████ █████  ░░█████ ░░████████                 "
+    Center-Text "              ░░░░░     ░░░░░ ░░░░░░░░░░ ░░░░░    ░░░░░   ░░░░░░░░                  "
+    Write-Host ""
+    Center-Text "(c) Set0z - https://github.com/Set0z"
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Версия $($ver)"} else {"Version $($ver)"})"
+    Write-Host "`n"
+    Set-ConsoleColor $Background_After_Color $Text_After_Color
 }
 
 #Отображения текста по центру
@@ -301,9 +301,7 @@ function Winget-Check {
 
                 Add-AppxPackage -Path $downloadFolder -ErrorAction SilentlyContinue
                 if ($?) {
-
-                    Write-Host "НЕТ ОШИБКИ"
-
+                    #Write-Host "НЕТ ОШИБКИ"
                 } else {
                     
                     $downloadFolder_dep = Join-Path $downloadFolder "DesktopAppInstaller_Dependencies.zip"
@@ -514,48 +512,48 @@ function programs_print {
 
 function installation{
     if ($winget_programs[0] -eq $null) {
-                    Draw-Banner
-                    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Ничего не выбрано для установки!"} else {"Nothing is chosen for installation!"})"
-                    Write-Host ""
-                    pause
-                    Main-menu
-                }
-                Draw-Banner
-                Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Будут установлены следующие пакеты:"} else {"The following packages will be installed:"})"
-                Write-Host ""
-                Print-Programs -programs $winget_programs
-                Write-Host "`n"
-                Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Установить?"} else {"Install?"})"
-                Write-Host ""
-                Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"[1] Да   [2] Нет"} else {"[1] Yes   [2] No"})"
-                do {
-                    $choice = [Console]::ReadKey($true).Key
-                    if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-                        Main-menu
-                    }
-                } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")))
+        Draw-Banner
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Ничего не выбрано для установки!"} else {"Nothing is chosen for installation!"})"
+        Write-Host ""
+        pause
+        Main-menu
+    }
+    Draw-Banner
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Будут установлены следующие пакеты:"} else {"The following packages will be installed:"})"
+    Write-Host ""
+    Print-Programs -programs $winget_programs
+    Write-Host "`n"
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Установить?"} else {"Install?"})"
+    Write-Host ""
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"[1] Да   [2] Нет"} else {"[1] Yes   [2] No"})"
+    do {
+        $choice = [Console]::ReadKey($true).Key
+        if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
+            Main-menu
+        }
+    } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")))
 
-                Draw-Banner
-                Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите режим установки:"} else {"Select the installation mode:"})"
-                Write-Host ""
-                Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"[1] Обычный (рекомендуется)   [2] Тихий"} else {"[1] Normal (recommended) [2] Silent"})"
-                do {
-                    $choice = [Console]::ReadKey($true).Key
-                    if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
-                        Draw-Banner -Text_Color "White" -Background_Color "DarkMagenta" -Clear "1"
-                        Set-ConsoleColor "DarkMagenta" "White"
-                        winget install -e $winget_programs -i --accept-package-agreements
-                    }
-                    if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-                        Draw-Banner -Text_Color "White" -Background_Color "DarkMagenta" -Clear "1"
-                        Set-ConsoleColor "DarkMagenta" "White"
-                        winget install -e $winget_programs -h --accept-package-agreements
-                    }
-                } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")))
-                Write-Host ""
-                Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})"
-                pause
-                $winget_programs.Clear()
-                Main-menu
+    Draw-Banner
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите режим установки:"} else {"Select the installation mode:"})"
+    Write-Host ""
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"[1] Обычный (рекомендуется)   [2] Тихий"} else {"[1] Normal (recommended) [2] Silent"})"
+    do {
+        $choice = [Console]::ReadKey($true).Key
+        if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
+            Draw-Banner -Text_Color "White" -Background_Color "DarkMagenta" -Clear "1"
+            Set-ConsoleColor "DarkMagenta" "White"
+            winget install -e $winget_programs -i --accept-package-agreements
+        }
+        if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
+            Draw-Banner -Text_Color "White" -Background_Color "DarkMagenta" -Clear "1"
+            Set-ConsoleColor "DarkMagenta" "White"
+            winget install -e $winget_programs -h --accept-package-agreements
+        }
+    } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")))
+    Write-Host ""
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})"
+    pause
+    $winget_programs.Clear()
+     Main-menu
 }
 

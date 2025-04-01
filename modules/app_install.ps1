@@ -223,7 +223,7 @@ function Browsers{
         Align-TextCenter "$(if($winget_programs.Contains("Zen-Team.Zen-Browser")) {"$([char]27)[48;5;2m$([char]27)[38;5;0m[7]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[7]"}) Zen Browser"
         Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[8]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})`n`n"
         Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"Страница 2"} else {"Page 2"})"
-        Align-TextCenter "$([char]27)[48;5;0m$([char]27)[38;5;10m                                 <- [A]" -NoNewLine
+        Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m<- [A]            " 
     
 
         do {
@@ -1739,7 +1739,7 @@ function Main-page-three {
     Write-Host "`n`n`n`n`n`n`n`n`n"
     Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"[Пробел] - Установить"} else {"[Space] - Install"})   [F2] $(if($Menu_Lang -eq "ru-Ru"){"Список пакетов"} else {"List of packages"})" -NewLine
     Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"Страница 3"} else {"Page 3"})"
-    Align-TextCenter "$([char]27)[48;5;0m$([char]27)[38;5;10m                                 <- [A]" -NoNewLine
+    Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m<- [A]            "
     do {
             $choice = [Console]::ReadKey($true).Key            #считывание нажатия
             #Write-Host "Вы нажали: $choice"
@@ -1852,7 +1852,7 @@ function Main-menu {
     do {
             $choice = [Console]::ReadKey($true).Key
             #Write-Host "Вы нажали: $choice"
-            if (($choice -eq "F1") -or ($choice -eq "NumPad1")){
+            if ($choice -eq "F1"){
                 Draw-Banner
                 Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Вы точно хотите обновить все установленные приложения?"} else {"Are you sure you want to update all the installed apps?"})`n"
                 Center-Text "[1] $(if($Menu_Lang -eq "ru-Ru"){"Да"} else {"Yes"})   [2] $(if($Menu_Lang -eq "ru-Ru"){"Нет"} else {"No"})"
@@ -1872,28 +1872,29 @@ function Main-menu {
                     }
                 } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")))
             }
-            if (($choice -eq "F2") -or ($choice -eq "NumPad2")){
+            if ($choice -eq "F2"){
                 programs_print -exit_to "Main-menu"
             }
-            if (($choice -eq "D1") -or ($choice -eq "NumPad3")){
+            if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
                 Audio
             }
-            if (($choice -eq "D2") -or ($choice -eq "NumPad4")){
+            if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
                 Browsers
             }
-            if (($choice -eq "D3") -or ($choice -eq "NumPad5")){
+            if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
                 Communication
             }
-            if (($choice -eq "D4") -or ($choice -eq "NumPad6")){
+            if (($choice -eq "D4") -or ($choice -eq "NumPad4")){
                 Compression_and_Archiving
             }
-            if (($choice -eq "D5") -or ($choice -eq "NumPad7")){
+            if (($choice -eq "D5") -or ($choice -eq "NumPad5")){
                 Customize
             }
-            if (($choice -eq "D6") -or ($choice -eq "NumPad8")){
+            if (($choice -eq "D6") -or ($choice -eq "NumPad6")){
                 Developer_Tools
             }
-            if (($choice -eq "D7") -or ($choice -eq "NumPad9")){
+            if (($choice -eq "D7") -or ($choice -eq "NumPad7") -or ($choice -eq "Escape")){
+                if ($winget_programs.Count -eq 0) {Goto-main}
                 Draw-Banner
                 Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Вы точно хотите выйти?"} else {"Are you sure you want exit?"})`n"
                 Center-Text "[1] $(if($Menu_Lang -eq "ru-Ru"){"Да"} else {"Yes"})   [2] $(if($Menu_Lang -eq "ru-Ru"){"Нет"} else {"No"})"
@@ -1909,23 +1910,6 @@ function Main-menu {
             }
             if ($choice -eq "Spacebar") {installation}
             if (($choice -eq "D") -or ($choice -eq "RightArrow")){Main-page-two}
-            if ($choice -eq "Escape"){
-                Draw-Banner
-                Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Вы точно хотите выйти?"} else {"Are you sure you want exit?"})`n"
-                Center-Text "[1] $(if($Menu_Lang -eq "ru-Ru"){"Да"} else {"Yes"})   [2] $(if($Menu_Lang -eq "ru-Ru"){"Нет"} else {"No"})"
-                do {
-                    $choice = [Console]::ReadKey($true).Key
-                    if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
-                        Goto-main
-                    }
-                    if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-                        Main-menu
-                    }
-                    if ($choice -eq "Escape"){
-                        Main-menu
-                    }
-                } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")))
-            }
             if ($choice -eq "Tab"){
                 Config
             }

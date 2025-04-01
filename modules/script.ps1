@@ -1,5 +1,4 @@
-﻿
-#Объявление глобальных переменных
+﻿#Объявление глобальных переменных
 $(if($PSCulture -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню"} else {$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Menu"})
 $env:version = "1.0"
 $ver= $env:version

@@ -384,7 +384,7 @@ function Action-choose {
             Write-Host ""
             Write-Host "`n"
             Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"Страница 2"} else {"Page 2"})"
-            Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m<- [A]      [D] ->"
+            Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m<- [A]            "
             do {
             $choice = [Console]::ReadKey($true).Key            #считывание нажатия
             #Write-Host "Вы нажали: $choice"
@@ -544,7 +544,7 @@ function Action-choose {
         Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[9]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mВыход в меню$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack to menu$([char]27)[0m"})"
         Write-Host "`n"
         Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m$(if($Menu_Lang -eq "ru-Ru"){"Страница 1"} else {"Page 1"})"
-        Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m<- [A]      [D] ->"
+        Center-Text "$([char]27)[48;5;0m$([char]27)[38;5;10m            [D] ->"
         do {
             $choice = [Console]::ReadKey($true).Key            #считывание нажатия
             #Write-Host "Вы нажали: $choice"
