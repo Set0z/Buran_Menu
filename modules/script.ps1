@@ -25,9 +25,11 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     #Write-Host "Вы нажали: $choice"
     if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
         if ($env:script_state -eq "Internet"){
-            Start-Process powershell -Verb RunAs -ArgumentList "-Exit", "-Command", "irm 'https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1' | iex"
+            Start-Process powershell -Verb RunAs -ArgumentList "-NoExit", "-Command", "irm 'https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1' | iex"
+            exit
         } else {
-            Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -File \$($PSScriptRoot + \scriprt.ps1\)"' -Verb runAs
+            Start-Process powershell -Verb RunAs -ArgumentList "-NoExit", "-ExecutionPolicy Bypass", "-File `"$PSScriptRoot\script.ps1`""
+            exit
         }
     }
     if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
