@@ -487,8 +487,6 @@ function office_2024{
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
             Project_Visio_ver -Name Visio -Exit_to office_2024
             if ($global:result_ver -eq "Standart") {
-                Write-Host "Standart"
-                pause
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
