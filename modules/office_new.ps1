@@ -38,10 +38,10 @@ function Project_Visio_ver{
     do {
         $choice = [Console]::ReadKey($true).Key
         if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
-            return "Professional"
+            $result_ver = "Professional"
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-            return "Standart"
+            $result_ver = "Standart"
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){& $Exit_to}
         if ($choice -eq "Escape"){& $Exit_to}
@@ -451,9 +451,8 @@ function office_2024{
 
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-            if ($(Project_Visio_ver -Name Project -Exit_to office_2024) -eq "Standard") {
-
-
+            Project_Visio_ver -Name Project -Exit_to office_2024
+            if ($result_ver -eq "Standard") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -486,7 +485,8 @@ function office_2024{
             }
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
-            if ($(Project_Visio_ver -Name Visio -Exit_to office_2024) -eq "Standard") {
+            Project_Visio_ver -Name Visio -Exit_to office_2024
+            if ($result_ver -eq "Standard") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -554,7 +554,8 @@ function office_2021{
             installation_select -Office_version "ProPlus2021Retail" -Download_directory $download_dir
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-            if ($(Project_Visio_ver -Name Project -Exit_to office_2024) -eq "Standard") {
+            Project_Visio_ver -Name Project -Exit_to office_2024
+            if ($result_ver -eq "Standard") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -587,7 +588,8 @@ function office_2021{
             }
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
-            if ($(Project_Visio_ver -Name Visio -Exit_to office_2024) -eq "Standard") {
+            Project_Visio_ver -Name Visio -Exit_to office_2024
+            if ($result_ver -eq "Standard") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -655,7 +657,8 @@ function office_2019{
             installation_select -Office_version "ProPlus2019Retail" -Download_directory $download_dir
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-            if ($(Project_Visio_ver -Name Project -Exit_to office_2024) -eq "Standard") {
+            Project_Visio_ver -Name Project -Exit_to office_2024
+            if ($result_ver -eq "Standard") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -688,7 +691,8 @@ function office_2019{
             }
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
-            if ($(Project_Visio_ver -Name Visio -Exit_to office_2024) -eq "Standard") {
+            Project_Visio_ver -Name Visio -Exit_to office_2024
+            if ($result_ver -eq "Standard") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -756,7 +760,8 @@ function office_2016{
             installation_select -Office_version "ProPlusRetail" -Download_directory $download_dir
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-            if ($(Project_Visio_ver -Name Project -Exit_to office_2024) -eq "Standard") {
+            Project_Visio_ver -Name Project -Exit_to office_2024
+            if ($result_ver -eq "Standard") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -789,7 +794,8 @@ function office_2016{
             }
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
-            if ($(Project_Visio_ver -Name Visio -Exit_to office_2024) -eq "Standard") {
+            Project_Visio_ver -Name Visio -Exit_to office_2024
+            if ($result_ver -eq "Standard") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
