@@ -38,10 +38,10 @@ function Project_Visio_ver{
     do {
         $choice = [Console]::ReadKey($true).Key
         if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
-            $result_ver = "Professional"
+            $global:result_ver = "Professional"
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-            $result_ver = "Standart"
+            $global:result_ver = "Standart"
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){& $Exit_to}
         if ($choice -eq "Escape"){& $Exit_to}
@@ -452,7 +452,7 @@ function office_2024{
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
             Project_Visio_ver -Name Project -Exit_to office_2024
-            if ($result_ver -eq "Standard") {
+            if ($result_ver -eq "Standart") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -486,7 +486,9 @@ function office_2024{
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
             Project_Visio_ver -Name Visio -Exit_to office_2024
-            if ($result_ver -eq "Standard") {
+            if ($global:result_ver -eq "Standart") {
+                Write-Host "Standart"
+                pause
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -502,6 +504,8 @@ function office_2024{
                 pause
                 installation_select -Office_version "Visio" -Download_directory $download_dir
             } else {
+                Write-Host "else"
+                pause
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -555,7 +559,7 @@ function office_2021{
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
             Project_Visio_ver -Name Project -Exit_to office_2024
-            if ($result_ver -eq "Standard") {
+            if ($result_ver -eq "Standart") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -589,7 +593,7 @@ function office_2021{
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
             Project_Visio_ver -Name Visio -Exit_to office_2024
-            if ($result_ver -eq "Standard") {
+            if ($result_ver -eq "Standart") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -658,7 +662,7 @@ function office_2019{
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
             Project_Visio_ver -Name Project -Exit_to office_2024
-            if ($result_ver -eq "Standard") {
+            if ($result_ver -eq "Standart") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -692,7 +696,7 @@ function office_2019{
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
             Project_Visio_ver -Name Visio -Exit_to office_2024
-            if ($result_ver -eq "Standard") {
+            if ($result_ver -eq "Standart") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -761,7 +765,7 @@ function office_2016{
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
             Project_Visio_ver -Name Project -Exit_to office_2024
-            if ($result_ver -eq "Standard") {
+            if ($result_ver -eq "Standart") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -795,7 +799,7 @@ function office_2016{
         }
         if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
             Project_Visio_ver -Name Visio -Exit_to office_2024
-            if ($result_ver -eq "Standard") {
+            if ($result_ver -eq "Standart") {
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
