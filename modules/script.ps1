@@ -12,32 +12,6 @@ if ($PSScriptRoot -eq "") {
     Import-Module $($PSScriptRoot + "/modules") -DisableNameChecking
 }
 
-if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)) {
-    Set-ConsoleColor 'black' 'Magenta' '1'
-    Write-Host "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Скрипт запущен не от имени администратора! (ВАЖНО)"} else {"The script is not running with administrator privileges! (IMPORTANT)"})" -NewLine
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Перезапустить с правами администратора?"} else {"Restart with administrator privileges?"})"
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"[1] Да [2] Нет"} else {"[1] Yes [2] No"})"
-
-    do {
-
-    $choice = [Console]::ReadKey($true).Key #считывание нажатия
-    #Write-Host "Вы нажали: $choice"
-    if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
-        if ($env:script_state -eq "Internet"){
-            Start-Process powershell -Verb RunAs -ArgumentList "-NoExit", "-Command", "irm 'https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1' | iex"
-            exit
-        } else {
-            Start-Process powershell -Verb RunAs -ArgumentList "-NoExit", "-ExecutionPolicy Bypass", "-File `"$PSScriptRoot\script.ps1`""
-            exit
-        }
-    }
-    if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-        
-    }
-} until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))) #Выход из программы
-}
-
 if ($env:BURAN_lang -eq $null){
     Set-ConsoleColor 'black' 'Magenta' '1'
     Write-Host "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
@@ -56,6 +30,38 @@ if ($env:BURAN_lang -eq $null){
         }
     } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")) -or ($choice -eq "Escape")) #Выход из программы
 } else {$Menu_Lang = $env:BURAN_lang}
+
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)) {
+    Set-ConsoleColor 'black' 'Magenta' '1'
+    Write-Host "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Скрипт запущен не от имени администратора! (ВАЖНО)"} else {"The script is not running with administrator privileges! (IMPORTANT)"})" -NewLine
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Перезапустить с правами администратора?"} else {"Restart with administrator privileges?"})"
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"[1] Да [2] Нет"} else {"[1] Yes [2] No"})"
+
+    do {
+
+    $choice = [Console]::ReadKey($true).Key #считывание нажатия
+    #Write-Host "Вы нажали: $choice"
+    if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
+        if ($env:script_state -eq "Internet"){
+            Start-Process powershell -Verb RunAs -ArgumentList "-NoExit", "-Command", "`$env:BURAN_lang = '$Menu_Lang'; irm 'https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1' | iex"
+            exit
+        } else {
+            Start-Process powershell -Verb RunAs -ArgumentList "-NoExit", "-ExecutionPolicy Bypass", "-Command", "`$env:BURAN_lang = '$Menu_Lang'; & `"$PSScriptRoot\script.ps1`""
+            exit
+        }
+    }
+    if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
+        Set-ConsoleColor 'black' 'Magenta' '1'
+        Write-Host "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Некоторые функции могут не работать!"} else {"Some functions may not work!"})"
+        Write-Host "`n`n`n"
+        pause
+    }
+} until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))) #Выход из программы
+}
+
+
 
 
 
