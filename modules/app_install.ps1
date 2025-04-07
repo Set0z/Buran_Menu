@@ -1755,18 +1755,6 @@ function Main-page-three {
             if (($choice -eq "D4") -or ($choice -eq "NumPad4")){
                 Utility
             }
-            if (($choice -eq "D5") -or ($choice -eq "NumPad5")){
-                
-            }
-            if (($choice -eq "D6") -or ($choice -eq "NumPad6")){
-                
-            }
-            if (($choice -eq "D7") -or ($choice -eq "NumPad7")){
-                
-            }
-            if (($choice -eq "D8") -or ($choice -eq "NumPad8")){
-                
-            }
             if (($choice -eq "D9") -or ($choice -eq "NumPad9")){Main-menu}
             if ($choice -eq "Spacebar"){
                 installation
@@ -1776,7 +1764,7 @@ function Main-page-three {
             }
             if (($choice -eq "A") -or ($choice -eq "LeftArrow")){Main-page-two}
             if ($choice -eq "Escape"){Main-menu}
-        } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5"))-or (($choice -eq "D6") -or ($choice -eq "NumPad6"))-or (($choice -eq "D7") -or ($choice -eq "NumPad7"))-or (($choice -eq "D8") -or ($choice -eq "NumPad8"))-or (($choice -eq "D9") -or ($choice -eq "NumPad9")) -or ($choice -eq "A") -or ($choice -eq "Escape")) #Выход из цикла
+        } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D9") -or ($choice -eq "NumPad9")) -or ($choice -eq "A") -or ($choice -eq "Escape")) #Выход из цикла
 }
 
 function Main-page-two {

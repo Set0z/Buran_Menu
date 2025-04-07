@@ -87,7 +87,7 @@ function Align-TextCenter {
         [switch]$NoNewLine
     )
     $content = $content -replace '\x1b\[[0-9;]*(?<![0-9])m', ''  # Убираем атрибуты кроме цветов
-    $content = $content + "$([char]27)[48;5;0m"
+    $content = $content + "$([char]27)[48;5;0m "
 
     # Получаем ширину консоли
     $consoleWidth = [Console]::WindowWidth

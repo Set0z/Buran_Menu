@@ -428,7 +428,6 @@ function office_2024{
     Align-TextCenter "[3] Visio 2024"
     Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
 
-
     do {
         $choice = [Console]::ReadKey($true).Key
         if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
