@@ -12,11 +12,17 @@
 
 ## 🇺🇸 English <a id="english"></a>
 
-> ⚡ **Quick launch without downloading:**  
-> You can run the script directly in PowerShell with this command:
+> ✅ **Quick launch without downloading:**  
+> To start using the program without downloading any files, just:
+> 1. Open **PowerShell**
+> 2. Paste the following command
+> 3. Press **Enter**
+> 
 > ```powershell
 > irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1" | iex
 > ```
+> ℹ️ A temporary file `Buran_Modules.psm1` will be created in the `%temp%` folder for the program to work.  
+> You can safely delete it after you're done using the tool.
 
 ### 🖥️ System Requirements
 - Windows 10 or Windows 11 (any version)
@@ -84,11 +90,17 @@ Powered by **winget**:
 
 ## 🇷🇺 Русский <a id="русский"></a>
 
-> ⚡ **Быстрый запуск без скачивания:**  
-> Вы можете запустить скрипт прямо из PowerShell, без загрузки файлов:
+> ✅ **Быстрый запуск без скачивания:**  
+> Чтобы начать пользоваться программой без скачивания файлов:
+> 1. Откройте **PowerShell**
+> 2. Вставьте следующую команду
+> 3. Нажмите **Enter**
+> 
 > ```powershell
 > irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1" | iex
 > ```
+> ℹ️ Для работы программы будет создан временный файл `Buran_Modules.psm1` в папке `%temp%`.  
+> После завершения использования его можно безопасно удалить.
 
 ### 🖥️ Системные требования
 - Windows 10 или Windows 11 (любая версия)
