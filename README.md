@@ -1,124 +1,158 @@
 <p align="center">
-  <a href="#english">🇬🇧 English</a> •
-  <a href="#русский">🇷🇺 Русский</a>
+  <a href="#english">🇺🇸 En</a> •
+  <a href="#русский">🇷🇺 Ru</a>
 </p>
 
 ---
 
-# 🚀 Buran Menu
-**Buran** stands for **Basic Utility for Rapid Admin Needs**
+<h1 align="center">🚀 Buran Menu</h1>
+<p align="center"><i><b>Buran</b> = Basic Utility for Rapid Admin Needs</i></p>
 
 ---
 
-## 🇬🇧 English <a id="english"></a>
+## 🇺🇸 English <a id="english"></a>
 
-🖥️ **System Requirements**
+> ⚡ **Quick launch without downloading:**  
+> You can run the script directly in PowerShell with this command:
+> ```powershell
+> irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1" | iex
+> ```
+
+### 🖥️ System Requirements
 - Windows 10 or Windows 11 (any version)
 - PowerShell 5.0 or higher
 
-🔧 **Overview**  
-Buran Menu is a powerful admin toolkit designed to automate and simplify routine tasks on Windows machines. It features **6 functional modules**:
+### 🧰 About  
+**Buran Menu** is a compact and powerful toolkit tailored for system administrators and power users. It provides **6 essential modules** to streamline system setup and maintenance tasks.
+
+---
 
 ### 1️⃣ Windows Activation  
 Activate **Windows 10 & 11** (Pro and Home editions) via **KMS**.
 
+---
+
 ### 2️⃣ Remote Desktop Configuration  
-Enable and configure **Remote Desktop**:
+Enable and configure **Remote Desktop** with a single click:
 - Turn on RDP
-- Enable firewall rules
-- Start the firewall
-- Add IPs to whitelist
+- Enable required firewall rules
+- Ensure the firewall is active
+- Manage IP whitelist
+
+---
 
 ### 3️⃣ Microsoft Office Installer  
-Download, install, and activate **Microsoft Office** using **ODT** + **KMS**.  
-Supports:
-- Office 365, 2024, 2021, 2019, 2016  
-- Visio and Project
+Easily install and activate **Microsoft Office** using **ODT** + **KMS**.  
+Supported versions:
+- Office **365, 2024, 2021, 2019, 2016**
+- **Visio** and **Project**
+
+---
 
 ### 4️⃣ UAC Policy Manager  
-Modify **User Account Control** settings:
-- Enable/disable prompts
-- Adjust notification levels
+Modify **User Account Control (UAC)** settings:
+- Enable or disable notifications
+- Set desired prompt levels
+
+---
 
 ### 5️⃣ Registry Tweaks  
-Customize Windows behavior:
-- Hide items from *This PC* (Windows 10 only)
-- Set default Explorer page
+Powerful tweaks to customize your system:
+- Hide folders from *This PC* (Windows 10 only)
+- Change default Explorer start page
 - Add *Control Panel* and *Recycle Bin*
-- Hide Network section
+- Hide *Network* section
 - Disable Quick Access auto-pinning
-- Disable Bing in Search
+- Remove Bing from search
 - Hide OneDrive
-- Hide shortcut arrows
+- Remove shortcut arrows
 - Disable *Shake to Minimize*
-- Enable legacy context menu (Windows 11 only)
-- Add *Permanently delete* option to context menu
+- Enable Windows 10-style context menu (Windows 11 only)
+- Add *Permanently delete* option to right-click menu
+
+---
 
 ### 6️⃣ Application Manager  
 Powered by **winget**:
-- Auto-install `winget` if missing
-- Predefined app lists by category (Browsers, Dev Tools, VPNs, etc.)
-- Search apps by name
+- Automatically installs `winget` if missing
+- Curated app lists by category (Browsers, Dev Tools, VPNs, etc.)
+- Search and install apps by name
 - Update all installed apps
-- Save/load app config files for bulk install
+- Save/load app configs for batch installation
 
 ---
 
 ## 🇷🇺 Русский <a id="русский"></a>
 
-🖥️ **Системные требования**
+> ⚡ **Быстрый запуск без скачивания:**  
+> Вы можете запустить скрипт прямо из PowerShell, без загрузки файлов:
+> ```powershell
+> irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1" | iex
+> ```
+
+### 🖥️ Системные требования
 - Windows 10 или Windows 11 (любая версия)
 - PowerShell версии 5.0 и выше
 
-🔧 **Общее описание**  
-**Buran Menu** — это удобный набор инструментов для системного администратора, автоматизирующий рутинные задачи. Содержит **6 модулей**:
+### 🧰 О программе  
+**Buran Menu** — это лёгкий и мощный набор утилит для системных администраторов и продвинутых пользователей. Включает **6 ключевых модулей** для быстрой настройки и обслуживания системы.
+
+---
 
 ### 1️⃣ Активация Windows  
-Активация **Windows 10 и 11** (Pro и Home) через **KMS**.
+Активация **Windows 10 и 11** (версии Pro и Home) через **KMS**.
+
+---
 
 ### 2️⃣ Настройка удалённого рабочего стола  
-Позволяет:
-- Включить RDP
-- Включить правила для RDP в фаерволе
-- Запустить фаервол
-- Добавить IP-адреса в белый список
+Включение и настройка **удалённого доступа**:
+- Включение RDP
+- Настройка правил в фаерволе
+- Включение самого фаервола
+- Управление белым списком IP
+
+---
 
 ### 3️⃣ Установка Microsoft Office  
-Загрузка, установка и активация **Microsoft Office** с помощью **ODT** и **KMS**.  
-Доступны версии:
-- Office 365, 2024, 2021, 2019, 2016  
-- Visio и Project
+Установка и активация **Microsoft Office** через **ODT** + **KMS**  
+Поддерживаются версии:
+- Office **365, 2024, 2021, 2019, 2016**
+- **Visio** и **Project**
 
-### 4️⃣ Настройка политики UAC  
-Изменение настроек **UAC**:
+---
+
+### 4️⃣ Управление политикой UAC  
+Настройка **Контроля учётных записей (UAC)**:
 - Включение/отключение уведомлений
 - Регулировка уровня предупреждений
 
-### 5️⃣ Твики реестра  
-Изменение поведения системы:
+---
+
+### 5️⃣ Изменение реестра  
+Тонкая настройка системы:
 - Скрытие элементов из *Этот компьютер* (только Windows 10)
 - Изменение стартовой страницы Проводника
 - Добавление *Панели управления* и *Корзины*
-- Скрытие *Сетевого окружения*
+- Скрытие раздела *Сеть*
 - Отключение автоприкрепления в *Быстрый доступ*
-- Отключение поиска Bing
+- Удаление Bing из поиска
 - Скрытие OneDrive
-- Скрытие стрелок ярлыков
+- Удаление стрелок ярлыков
 - Отключение *Shake to Minimize*
-- Включение классического контекстного меню (только для Windows 11)
+- Включение старого контекстного меню (Windows 11)
 - Добавление пункта *Permanently delete* в контекстное меню
 
-### 6️⃣ Установка приложений  
-С помощью **winget**:
-- Автоустановка winget при отсутствии
-- Готовые списки приложений по категориям (Браузеры, VPN, Разработка и др.)
-- Поиск приложений по названию
-- Обновление всех приложений
-- Сохранение и загрузка конфигов для массовой установки
+---
+
+### 6️⃣ Менеджер приложений  
+Работает через **winget**:
+- Автоматическая установка `winget`, если отсутствует
+- Списки приложений по категориям (Браузеры, VPN, Dev и т.д.)
+- Поиск и установка по названию
+- Обновление всех установленных приложений
+- Сохранение/загрузка конфигов для быстрой установки
 
 ---
 
 📂 **Open source and customizable** — feel free to contribute or fork!  
 💬 Issues and suggestions are always welcome.
-
----
