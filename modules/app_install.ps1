@@ -260,7 +260,7 @@ function Browsers{
 	                programs_print -exit_to "Browsers-page-two"
                 }
                 if (($choice -eq "D8") -or ($choice -eq "NumPad9")){Browsers}
-                if ($choice -eq "A"){Browsers}
+                if (($choice -eq "A") -or ($choice -eq "LeftArrow")){Browsers}
                 if ($choice -eq "Escape"){Browsers}
             } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5"))-or (($choice -eq "D6") -or ($choice -eq "NumPad6"))-or (($choice -eq "D7") -or ($choice -eq "NumPad7"))-or (($choice -eq "D8") -or ($choice -eq "NumPad8")) -or ($choice -eq "A") -or ($choice -eq "Escape")) #Выход из цикла
         }
@@ -320,7 +320,7 @@ function Browsers{
 	            programs_print -exit_to "Browsers"
             }
             if (($choice -eq "D9") -or ($choice -eq "NumPad9")){Main-menu}
-            if ($choice -eq "D"){Browsers-page-two}
+            if (($choice -eq "D") -or ($choice -eq "RightArrow")){Browsers-page-two}
             if ($choice -eq "Escape"){Main-menu}
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5"))-or (($choice -eq "D6") -or ($choice -eq "NumPad6"))-or (($choice -eq "D7") -or ($choice -eq "NumPad7"))-or (($choice -eq "D8") -or ($choice -eq "NumPad8"))-or (($choice -eq "D9") -or ($choice -eq "NumPad9")) -or ($choice -eq "D") -or ($choice -eq "Escape")) #Выход из цикла
 }

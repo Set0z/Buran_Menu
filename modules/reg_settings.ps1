@@ -161,7 +161,7 @@ function Check-RegistryParameter-DisallowShaking{
 
 
 
-#Загрузка офиса 2024
+
 function Action-choose {
     
     #Скритие папок из "Этот компьютер"
@@ -524,7 +524,7 @@ function Action-choose {
                 }
             }
             if (($choice -eq "D5") -or ($choice -eq "NumPad5")){ Action-choose }
-            if ($choice -eq "A"){ Action-choose }
+            if (($choice -eq "A") -or ($choice -eq "LeftArrow")){ Action-choose }
             if ($choice -eq "Escape"){ Action-choose }
             } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")) -or (($choice -eq "D3") -or ($choice -eq "NumPad3")) -or (($choice -eq "D4") -or ($choice -eq "NumPad4")) -or (($choice -eq "D5") -or ($choice -eq "NumPad5")) -or ($choice -eq "A") -or ($choice -eq "Escape")) #Выход из цикла
             }
@@ -680,7 +680,7 @@ function Action-choose {
                 }
             }
             if (($choice -eq "D9") -or ($choice -eq "NumPad9")){ Goto-main }
-            if ($choice -eq "D"){ page-two }
+            if (($choice -eq "D") -or ($choice -eq "RightArrow")){ page-two }
             if ($choice -eq "Escape"){ Goto-main }
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")) -or (($choice -eq "D3") -or ($choice -eq "NumPad3")) -or (($choice -eq "D4") -or ($choice -eq "NumPad4")) -or (($choice -eq "D5") -or ($choice -eq "NumPad5")) -or (($choice -eq "D6") -or ($choice -eq "NumPad6")) -or (($choice -eq "D7") -or ($choice -eq "NumPad7")) -or (($choice -eq "D8") -or ($choice -eq "NumPad8")) -or (($choice -eq "D9") -or ($choice -eq "NumPad9")) -or ($choice -eq "D") -or ($choice -eq "Escape")) #Выход из цикла
     }

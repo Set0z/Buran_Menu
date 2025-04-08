@@ -68,6 +68,7 @@ do {
         Start-Sleep -Seconds 7
         slmgr /ato
         Start-Sleep -Seconds 10
+        slmgr /ckms
         }
         if ($win_ver -eq "win11") {
         Draw-Banner
@@ -78,6 +79,7 @@ do {
         Start-Sleep -Seconds 7
         slmgr /ato
         Start-Sleep -Seconds 10
+        slmgr /ckms
         }
     }
     if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
@@ -88,6 +90,7 @@ do {
         Start-Sleep -Seconds 3
 	    slmgr /cpky
         Start-Sleep -Seconds 5
+        slmgr /ckms
         }
         if ($win_ver -eq "win11") {
         Draw-Banner
@@ -96,6 +99,7 @@ do {
         Start-Sleep -Seconds 3
 	    slmgr /cpky
         Start-Sleep -Seconds 5
+        slmgr /ckms
         }
     }
     if (($choice -eq "D3") -or ($choice -eq "NumPad3")){ Version-selection }
