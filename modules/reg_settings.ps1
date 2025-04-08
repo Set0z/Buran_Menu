@@ -1,4 +1,4 @@
-﻿#Объявление глобальных переменных
+#Объявление глобальных переменных
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Конфигурация реестра"} else {$host.ui.RawUI.WindowTitle = "Registry configuration"})
 $scriptDir = $PSScriptRoot
 $Menu_Lang = $env:BURAN_lang
