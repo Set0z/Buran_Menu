@@ -1,4 +1,4 @@
-﻿#Глобальные переменные
+#Глобальные переменные
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Скачивание и Активация Офис"} else {$host.ui.RawUI.WindowTitle = "Office Download and Activation"})
 $scriptDir = $PSScriptRoot
 $Menu_Lang = $env:BURAN_lang
