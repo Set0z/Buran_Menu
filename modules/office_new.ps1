@@ -186,6 +186,7 @@ function installation_select{
 
                 Dismount-DiskImage -ImagePath $Download_directory
                 Remove-Item -Path $ODT -Recurse -Force
+                Remove-Item -Path $ODT_Path -Recurse -Force
                 Remove-Item -Path $ODT_Path_exe -Recurse -Force
                 Remove-Item -Path $Download_directory -Recurse -Force
                 Remove-Item -Path $config_file -Recurse -Force

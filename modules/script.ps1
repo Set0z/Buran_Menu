@@ -4,7 +4,15 @@ $(if($PSCulture -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню"}
 $env:version = "1.0"
 $ver= $env:version
 if ($PSScriptRoot -eq "") {
+    if(($(Get-ExecutionPolicy) -eq "Restricted") -or ($(Get-ExecutionPolicy) -eq "AllSigned")) {
+        Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1 | iex"' -Verb RunAs
+        exit
+    }
     $env:script_state = "Internet"
+    if(($(Get-ExecutionPolicy) -eq "Restricted") -or ($(Get-ExecutionPolicy) -eq "AllSigned")) {
+        Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1 | iex"' -Verb RunAs
+        exit
+    }
     if (Test-Path $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1')) {Remove-Item $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -Force}
     irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/modules.psm1" >> $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1')
     Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking
