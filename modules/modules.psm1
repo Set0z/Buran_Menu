@@ -339,9 +339,11 @@ function Winget-Check {
                 Center-Text "$(if($Menu_Lang -eq "ru-Ru"){Center-Text "Готово!"} else {Center-Text "Done!"})"
                 Write-Host ""
                 pause
-                $filePath = Join-Path -Path $scriptDir -ChildPath 'app_install.ps1'
-                Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
-                exit
+                if ($env:script_state -eq "Internet") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/app_install.ps1" | iex} else {
+                    $filePath = Join-Path -Path $scriptDir -ChildPath 'app_install.ps1'
+                    Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
+                    exit
+                }
             }
             if (($choice -eq "D2") -or ($choice -eq "NumPad2")){Goto-main}
             if ($choice -eq "Escape"){ Goto-main }
