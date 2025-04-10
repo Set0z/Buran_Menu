@@ -1,4 +1,4 @@
-﻿#Объявление глобальных переменных
+#Объявление глобальных переменных
 $host.ui.RawUI.WindowTitle = ""
 $scriptDir = $PSScriptRoot
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Выбор версии Windows"} else {$host.ui.RawUI.WindowTitle = "Windows Version Selection"})
