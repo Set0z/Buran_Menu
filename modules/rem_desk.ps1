@@ -1,4 +1,4 @@
-﻿#Объявление глобальных переменных
+#Объявление глобальных переменных
 $host.ui.RawUI.WindowTitle = ""
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Конфигурация удаленного рабочего стола 🖧"} else {$host.ui.RawUI.WindowTitle = "Remoute Desktop Configuration 🖧"})
 $scriptDir = $PSScriptRoot
