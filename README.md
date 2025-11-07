@@ -88,6 +88,14 @@ Powered by **winget**:
 
 ---
 
+### 7️⃣ System Apps Manager  
+Manage built-in Windows applications with ease:
+- Remove preinstalled apps for current user or all users
+- Delete both unnecessary apps like Office Hub and frequently used ones like Calculator
+- Helps declutter and customize your Windows installation
+
+---
+
 ## 🇷🇺 Русский <a id="русский"></a>
 
 > ✅ **Быстрый запуск без скачивания:**  
@@ -166,5 +174,10 @@ Powered by **winget**:
 
 ---
 
-📂 **Open source and customizable** — feel free to contribute or fork!  
-💬 Issues and suggestions are always welcome.
+### 7️⃣ Менеджер встроенных приложений  
+Управление встроенными приложениями Windows:
+- Удаление предустановленные приложения для текущего пользователя или для всех пользователей
+- Можно удалять как бесполезные (Office Hub), так и часто используемые (Калькулятор)
+- Помогает очистить и настроить систему под себя
+
+---
