@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 #region Объявление переменных
 $(if($PSCulture -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню 🚀"} else {$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Menu 🚀"})
