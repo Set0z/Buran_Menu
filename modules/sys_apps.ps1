@@ -1,4 +1,4 @@
-﻿#region Объявление глобальных переменных
+#region Объявление глобальных переменных
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Менеджер встроенных приложений ⚙️"} else {$host.ui.RawUI.WindowTitle = "System Apps Manager ⚙️"})
 $scriptDir = $PSScriptRoot
 $Menu_Lang = $env:BURAN_lang
