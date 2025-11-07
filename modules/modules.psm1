@@ -3,10 +3,21 @@ $ver= $env:version
 $scstate = $env:script_state
 #Функция возвращения в главное меню
 function Goto-main {
-    if ($scstate -eq "Internet"){irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1" | iex} else {
-        $filePath = Join-Path -Path $scriptDir -ChildPath 'script.ps1'
-        Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
-        exit
+    param (
+    [switch]$NotAdmin
+    )
+    if ($scstate -eq "Internet"){
+        irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1" | iex
+    } else {
+        if($NotAdmin) {
+            $filePath = Join-Path -Path $scriptDir -ChildPath 'script.ps1'
+            Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"")
+            exit
+        }else{
+            $filePath = Join-Path -Path $scriptDir -ChildPath 'script.ps1'
+            Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
+            exit
+        }
     }
 }
 
@@ -339,7 +350,10 @@ function Winget-Check {
                 Center-Text "$(if($Menu_Lang -eq "ru-Ru"){Center-Text "Готово!"} else {Center-Text "Done!"})"
                 Write-Host ""
                 pause
-                if ($env:script_state -eq "Internet") {irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/app_install.ps1" | iex} else {
+                if ($env:script_state -eq "Internet") {
+                    Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/app_install.ps1 | iex"' -Verb RunAs
+                    exit
+                } else {
                     $filePath = Join-Path -Path $scriptDir -ChildPath 'app_install.ps1'
                     Start-Process "powershell.exe" -ArgumentList @("-File `"$filePath`"") -Verb RunAs
                     exit

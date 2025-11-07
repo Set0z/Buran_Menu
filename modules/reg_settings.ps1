@@ -1,5 +1,5 @@
 ﻿#Объявление глобальных переменных
-$(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Конфигурация реестра"} else {$host.ui.RawUI.WindowTitle = "Registry configuration"})
+$(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Конфигурация реестра 🛠️"} else {$host.ui.RawUI.WindowTitle = "Registry configuration 🛠️"})
 $scriptDir = $PSScriptRoot
 $Menu_Lang = $env:BURAN_lang
 $ver= $env:version
@@ -164,7 +164,7 @@ function Check-RegistryParameter-DisallowShaking{
 
 function Action-choose {
     
-    #Скритие папок из "Этот компьютер"
+    #Скрытие папок из "Этот компьютер"
     function this-pc{
     Draw-Banner
     Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите действие"} else {"Select action"})" -NewLine

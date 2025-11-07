@@ -1,6 +1,6 @@
 ﻿#Глобальные переменные
 $Menu_Lang = $env:BURAN_lang
-$(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Установка & Обновление"} else {$host.ui.RawUI.WindowTitle = "Update & Install"})
+$(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Установка & обновление приложений 📥"} else {$host.ui.RawUI.WindowTitle = "App Upgrade & Install 📥"})
 $ver= $env:version
 $downloadsPath = Join-Path $HOME "Downloads"
 $global:winget_programs = New-Object System.Collections.ArrayList
@@ -14,7 +14,7 @@ if ($PSScriptRoot -eq "") {
 
 $Debug = $false
 
-#Функции меню
+#region Функции меню
 function Audio{
 
     function Audio-Players{
@@ -1612,6 +1612,7 @@ function Utility{
             if ($choice -eq "Escape"){Main-page-three}
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5"))-or (($choice -eq "D6") -or ($choice -eq "NumPad6"))-or (($choice -eq "D7") -or ($choice -eq "NumPad7"))-or (($choice -eq "D8") -or ($choice -eq "NumPad8"))-or (($choice -eq "D9") -or ($choice -eq "NumPad9")) -or ($choice -eq "Escape")) #Выход из цикла
 }
+#endregion
 
 function Config{
     Draw-Banner
@@ -1719,7 +1720,6 @@ function Search{
             }
         } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3"))-or (($choice -eq "D4") -or ($choice -eq "NumPad4"))-or (($choice -eq "D5") -or ($choice -eq "NumPad5"))-or (($choice -eq "D6") -or ($choice -eq "NumPad6"))-or (($choice -eq "D7") -or ($choice -eq "NumPad7"))-or (($choice -eq "D8") -or ($choice -eq "NumPad8"))-or (($choice -eq "D9") -or ($choice -eq "NumPad9")) -or ($choice -eq "Escape")) #Выход из цикла
 }
-#
 
 
 
@@ -1759,7 +1759,7 @@ function Main-page-three {
             if ($choice -eq "Spacebar"){
                 installation
             }
-            if (($choice -eq "F2") -or ($choice -eq "NumPad2")){
+            if ($choice -eq "F2"){
                 programs_print -exit_to "Main-page-three"
             }
             if (($choice -eq "A") -or ($choice -eq "LeftArrow")){Main-page-two}
@@ -1813,7 +1813,7 @@ function Main-page-two {
             if ($choice -eq "Spacebar"){
                 installation
             }
-            if (($choice -eq "F2") -or ($choice -eq "NumPad2")){
+            if ($choice -eq "F2"){
                 programs_print -exit_to "Main-page-two"
             }
             if (($choice -eq "A") -or ($choice -eq "LeftArrow")){Main-menu}
@@ -1882,14 +1882,14 @@ function Main-menu {
                 Developer_Tools
             }
             if (($choice -eq "D7") -or ($choice -eq "NumPad7") -or ($choice -eq "Escape")){
-                if ($winget_programs.Count -eq 0) {Goto-main}
+                if ($winget_programs.Count -eq 0) {if($env:notadmin){Goto-main -NotAdmin}else{Goto-main}}
                 Draw-Banner
                 Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Вы точно хотите выйти?"} else {"Are you sure you want exit?"})`n"
                 Center-Text "[1] $(if($Menu_Lang -eq "ru-Ru"){"Да"} else {"Yes"})   [2] $(if($Menu_Lang -eq "ru-Ru"){"Нет"} else {"No"})"
                 do {
                     $choice = [Console]::ReadKey($true).Key
                     if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
-                        Goto-main
+                        if($env:notadmin){Goto-main -NotAdmin}else{Goto-main}
                     }
                     if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
                         Main-menu

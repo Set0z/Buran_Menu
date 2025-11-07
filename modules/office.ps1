@@ -1,5 +1,5 @@
 ﻿#Глобальные переменные
-$(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Скачивание и Активация Офис"} else {$host.ui.RawUI.WindowTitle = "Office Download and Activation"})
+$(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Скачивание и Активация Офис 📄"} else {$host.ui.RawUI.WindowTitle = "Office Download and Activation 📄"})
 $scriptDir = $PSScriptRoot
 $Menu_Lang = $env:BURAN_lang
 $ver= $env:version
@@ -12,17 +12,7 @@ if ($PSScriptRoot -eq "") {
     $scriptDir = $PSScriptRoot
     Import-Module $($PSScriptRoot + "/modules") -DisableNameChecking
 }
-
 $Debug = $false
-
-#Import-Module "C:\Users\admin\Desktop\BURAN_Menu\modules\modules.psm1" -DisableNameChecking
-
-
-
-#######################################
-
-
-
 function Project_Visio_ver{
     param (
         [string]$Name,
