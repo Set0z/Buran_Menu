@@ -1,19 +1,18 @@
 ﻿#region
 
 #region Объявление переменных
+$env:version = "1.3"
+
 $(if($PSCulture -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню 🚀"} else {$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Menu 🚀"})
-$env:version = "1.2"
-$ver= $env:version
+$win_ver = (Get-WmiObject Win32_OperatingSystem).Caption
+#endregion
 
 #region Определение откуда запущен скрипт
 if ($PSScriptRoot -eq "") {
-    if(($(Get-ExecutionPolicy) -eq "Restricted") -or ($(Get-ExecutionPolicy) -eq "AllSigned")) {
-        Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1 | iex"'
-        exit
-    }
+    if(($(Get-ExecutionPolicy) -eq "Restricted") -or ($(Get-ExecutionPolicy) -eq "AllSigned")) {Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/script.ps1 | iex"'  ; exit}
     $env:script_state = "Internet"
     if (Test-Path $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1')) {Remove-Item $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -Force}
-    irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/modules.psm1" >> $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1')
+    irm "https://raw.githubusercontent.com/Set0z/Buran_Menu/refs/heads/main/modules/modules.psm1" -OutFile $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -UseBasicParsing
     Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking
 } elseif ($PSScriptRoot -ne "") {
     $scriptDir = $PSScriptRoot
@@ -21,14 +20,12 @@ if ($PSScriptRoot -eq "") {
 }
 #endregion
 
-#endregion
-
 #region Выбор языка
 if ($env:BURAN_lang -eq $null){
     Set-ConsoleColor 'black' 'Magenta' '1'
     Write-Host "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
-    Center-Text "Select Language"
-    Center-Text "[1] English   [2] Russian"
+    if($PSCulture -eq "ru-Ru"){Center-Text "Выберите язык"}else{Center-Text "Select Language"}
+    Center-Text "[1] English   [2] Русский"
     do {
         $choice = [Console]::ReadKey($true).Key
         if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
@@ -39,7 +36,7 @@ if ($env:BURAN_lang -eq $null){
             $env:BURAN_lang = "ru-RU"
             $Menu_Lang = "ru-RU"
         }
-    } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")) -or ($choice -eq "Escape")) #Выход из программы
+    } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")) -or ($choice -eq "Escape"))
 } else {$Menu_Lang = $env:BURAN_lang}
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню 🚀"} else {$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Menu 🚀"})
 #endregion
@@ -64,16 +61,16 @@ if ((-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIden
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
             $env:notadmin = $true
-            Set-ConsoleColor 'black' 'Magenta' '1'
-            Write-Host "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
-            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Некоторые функции могут не работать!"} else {"Some functions may not work!"})" -NewLine
-            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"______________________"} else {"__________________"})"
-            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"|Нажмите любую кнопку|"} else {"|Press any button|"})"
-            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"} else {"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"})"
-            Write-Host ""
-            do {
-                $notice = [Console]::ReadKey($true).Key
-            } until ($notice)
+            #Set-ConsoleColor 'black' 'Magenta' '1'
+            #Write-Host "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
+            #Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Некоторые функции могут не работать!"} else {"Some functions may not work!"})" -NewLine
+            #Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"______________________"} else {"__________________"})"
+            #Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"|Нажмите любую кнопку|"} else {"|Press any button|"})"
+            #Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"} else {"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"})"
+            #Write-Host ""
+            #do {
+            #    $notice = [Console]::ReadKey($true).Key
+            #} until ($notice)
         }
     } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))) #Выход из программы
 }

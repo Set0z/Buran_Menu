@@ -1,25 +1,18 @@
-﻿#region Объявление глобальных переменных
+﻿#region Объявление переменных
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Менеджер встроенных приложений ⚙️"} else {$host.ui.RawUI.WindowTitle = "System Apps Manager ⚙️"})
 $scriptDir = $PSScriptRoot
+$uiLang = (Get-Culture).Name 
 $Menu_Lang = $env:BURAN_lang
-$ver= $env:version
-if ($PSScriptRoot -eq "") {
-    Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking
-} else {
-    $scriptDir = $PSScriptRoot
-    Import-Module $($PSScriptRoot + "/modules") -DisableNameChecking
-}
-if (-not $global:AllPackages) {
-    $global:AllPackages = Get-AppxPackage -AllUsers
-}
+if ($PSScriptRoot -eq "") {Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking} else {$scriptDir = $PSScriptRoot ; Import-Module $($PSScriptRoot + "/modules") -DisableNameChecking}
+if (-not $global:AllPackages) {$global:AllPackages = Get-AppxPackage -AllUsers}
 
 $grn = "$([char]27)[48;5;0;38;5;2m"   # черный фон, зеленый текст
 $purp = "$([char]27)[48;5;0;38;5;13m"   # черный фон, фиолетовый текст
 $red = "$([char]27)[48;5;0;38;5;1m"   # чёрный фон, красный текст
 
-$sel = "$([char]27)[48;5;2;38;5;0m"   # зелёный фон, черный текст
-$selred = "$([char]27)[48;5;1;38;5;0m"   # красный фон, черный текст
-$selpurp = "$([char]27)[48;5;13;38;5;0m"   # фиолетовый фон, черный текст
+$sel = "$([char]27)[48;5;2;38;5;0m"   # зелёный фон, черный текст, выделенный
+$selred = "$([char]27)[48;5;1;38;5;0m"   # красный фон, черный текст, выделенный
+$selpurp = "$([char]27)[48;5;13;38;5;0m"   # фиолетовый фон, черный текст, выделенный
 
 $XboxPackages = @(
     "Microsoft.XboxGameOverlay",
@@ -119,7 +112,7 @@ function Removing{
         if ($PhoneSelected) {if ($PermanentMode){Get-AppxProvisionedPackage -Online | Where-Object {$_.DisplayName -eq "$($Phone.Name)"} | Remove-AppxProvisionedPackage -Online  > $null}if ((-not $Phone.HasUser)-and(-not $PermanentMode)) {Add-AppxPackage -Register "$($Phone.Path)" -DisableDevelopmentMode} else {Get-AppxPackage -Name "$($Phone.Name)" | Remove-AppxPackage}}
         if ($HelpSelected) {if ($PermanentMode){Get-AppxProvisionedPackage -Online | Where-Object {$_.DisplayName -eq "$($Help.Name)"} | Remove-AppxProvisionedPackage -Online  > $null}if ((-not $Help.HasUser)-and(-not $PermanentMode)) {Add-AppxPackage -Register "$($Help.Path)" -DisableDevelopmentMode} else {Get-AppxPackage -Name "$($Help.Name)" | Remove-AppxPackage}}
         if ($FeedbackSelected) {if ($PermanentMode){Get-AppxProvisionedPackage -Online | Where-Object {$_.DisplayName -eq "$($Feedback.Name)"} | Remove-AppxProvisionedPackage -Online  > $null}if ((-not $Feedback.HasUser)-and(-not $PermanentMode)) {Add-AppxPackage -Register "$($Feedback.Path)" -DisableDevelopmentMode} else {Get-AppxPackage -Name "$($Feedback.Name)" | Remove-AppxPackage}}
-        if ($NotepadSelected) {if ($PermanentMode){Get-AppxProvisionedPackage -Online | Where-Object {$_.DisplayName -eq "$($Notepad.Name)"} | Remove-AppxProvisionedPackage -Online  > $null}if ((-not $Notepad.HasUser)-and(-not $PermanentMode)) {Add-AppxPackage -Register "$($Notepad.Path)" -DisableDevelopmentMode} else {Get-AppxPackage -Name "$($Notepad.Name)" | Remove-AppxPackage}}
+        if ($NotepadSelected) {if ($uiLang -like "ru*") {$ShortcutName = "Блокнот.lnk"} else {$ShortcutName = "Notepad.lnk"} if ($PermanentMode){Get-AppxProvisionedPackage -Online | Where-Object {$_.DisplayName -eq "$($Notepad.Name)"} | Remove-AppxProvisionedPackage -Online  > $null ; $StartMenuPath = [Environment]::GetFolderPath('StartMenu') ; $Shortcut = $(New-Object -ComObject WScript.Shell).CreateShortcut("$StartMenuPath\$ShortcutName") ; $Shortcut.TargetPath = "C:\Windows\System32\notepad.exe" ; $Shortcut.Save()} if ((-not $Notepad.HasUser)-and(-not $PermanentMode)) {Add-AppxPackage -Register "$($Notepad.Path)" -DisableDevelopmentMode ; if (Test-Path "$StartMenuPath\$ShortcutName") {try {Remove-Item "$StartMenuPath\$ShortcutName"} catch{}}} else {Get-AppxPackage -Name "$($Notepad.Name)" | Remove-AppxPackage ; $StartMenuPath = [Environment]::GetFolderPath('StartMenu') ; $Shortcut = $(New-Object -ComObject WScript.Shell).CreateShortcut("$StartMenuPath\$ShortcutName") ; $Shortcut.TargetPath = "C:\Windows\System32\notepad.exe" ; $Shortcut.Save()}}
         if ($AssistSelected) {if ($PermanentMode){Get-AppxProvisionedPackage -Online | Where-Object {$_.DisplayName -eq "$($Assist.Name)"} | Remove-AppxProvisionedPackage -Online  > $null}if ((-not $Assist.HasUser)-and(-not $PermanentMode)) {Add-AppxPackage -Register "$($Assist.Path)" -DisableDevelopmentMode} else {Get-AppxPackage -Name "$($Assist.Name)" | Remove-AppxPackage}}
         if ($NewsSelected) {if ($PermanentMode){Get-AppxProvisionedPackage -Online | Where-Object {$_.DisplayName -eq "$($News.Name)"} | Remove-AppxProvisionedPackage -Online  > $null}if ((-not $News.HasUser)-and(-not $PermanentMode)) {Add-AppxPackage -Register "$($News.Path)" -DisableDevelopmentMode} else {Get-AppxPackage -Name "$($News.Name)" | Remove-AppxPackage}}
         if ($PortalSelected) {if ($PermanentMode){Get-AppxProvisionedPackage -Online | Where-Object {$_.DisplayName -eq "$($Portal.Name)"} | Remove-AppxProvisionedPackage -Online  > $null}if ((-not $Portal.HasUser)-and(-not $PermanentMode)) {Add-AppxPackage -Register "$($Portal.Path)" -DisableDevelopmentMode} else {Get-AppxPackage -Name "$($Portal.Name)" | Remove-AppxPackage}}
@@ -429,7 +422,7 @@ function Action_choose{
 
 
     $OneDriveSetup = $false
-    if(Test-Path "$env:LOCALAPPDATA\Microsoft\OneDrive\OneDrive.exe"){$OneDrive = $true}
+    if((Test-Path "$env:LOCALAPPDATA\Microsoft\OneDrive\OneDrive.exe") -or (Test-Path "C:\Program Files\Microsoft OneDrive\OneDrive.exe")){$OneDrive = $true}
     if((Test-Path "C:\Windows\SysWOW64\OneDriveSetup.exe") -or (Test-Path "C:\Windows\System32\OneDriveSetup.exe")){$OneDriveSetup = $true}
     $Cortana = Test-AppxPackagePresence "Microsoft.549981C3F5F10"
     $OneNote = Test-AppxPackagePresence "Microsoft.Office.OneNote"
@@ -477,6 +470,4 @@ function Action_choose{
 
 #endregion
 
-
-#Начало
 Action_choose

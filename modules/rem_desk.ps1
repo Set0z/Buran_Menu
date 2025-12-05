@@ -1,229 +1,130 @@
-﻿#Объявление глобальных переменных
-$host.ui.RawUI.WindowTitle = ""
+﻿#region Объявление переменных
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Конфигурация удаленного рабочего стола 🖧"} else {$host.ui.RawUI.WindowTitle = "Remoute Desktop Configuration 🖧"})
 $scriptDir = $PSScriptRoot
 $Menu_Lang = $env:BURAN_lang
-$ver= $env:version
+if ($PSScriptRoot -eq "") {Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking} else {$scriptDir = $PSScriptRoot ; Import-Module $($PSScriptRoot + "/modules") -DisableNameChecking}
+if (-not ((Get-Item "HKLM:\System\CurrentControlSet\Control\Terminal Server").Property -contains "updateRDStatus")) {Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "updateRDStatus" -Value 1}
+$sel = "$([char]27)[48;5;2;38;5;0m"   # зелёный фон, черный текст, выделенный
+$grn = "$([char]27)[48;5;0;38;5;2m"   # черный фон, зеленый текст
+$exared = "$([char]27)[4;48;5;0;38;5;1m"   # черный фон, красный текст, подчеркнутый
+$exa = "$([char]27)[4;48;5;0;38;5;2m"   # черный фон, зеленый текст, подчеркнутый
+$grn = "$([char]27)[24;48;5;0;38;5;2m"   # черный фон, зеленый текст, без подчёркивания
+$i = 0
+$DetailSh = $false
+#endregion
 
-if ($PSScriptRoot -eq "") {
-    Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking
-} else {
-    $scriptDir = $PSScriptRoot
-    Import-Module $($PSScriptRoot + "/modules") -DisableNameChecking
-}
-
-#Функция проверки работы профилей
 function Check-FirewallStatus($name) {
-    # Получаем результат фильтрации
     $firewallState = Get-NetFirewallProfile | Where-Object { ($_.Name -eq $name) }
-
-    if ($firewallState.Enabled -eq $true) {
-        return "Enabled"
-    } else {
-        return "Disabled"
-    }
+    if ($firewallState.Enabled -eq $true) {return "Enabled"} else {return "Disabled"}
 }
 
-#Функция проверки всего фаервола
 function Get-FirewallStatus {
-    # Проверяем состояние брандмауэра для всех профилей
     $firewallStatus = (Get-NetFirewallProfile | Where-Object {($_.Enabled -eq $true) -and ($_.Name -ne 'Domain')})
-
-    if ($firewallStatus) {
-        return "Enabled"
-    } else {
-        return "Disabled"
-    }
+    if ($firewallStatus) {return "Enabled"} else {return "Disabled"}
 }
 
+function MainMenu{
+    $DenyTSC = $(Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections").fDenyTSConnections
+    $URDStatus = $(Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "updateRDStatus").updateRDStatus
+    $BlankPass = $(Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa" -Name "LimitBlankPasswordUse").LimitBlankPasswordUse
+    if ($(Get-FirewallStatus) -eq "Disabled") {$Firewall = $true} else {$Firewall = $false}
 
+    Draw-Banner
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Статус Брандмауэра:"} else {"Firewall status:"}) | $(if($Menu_Lang -eq "ru-Ru"){"Домен: "} else {"Domain: "})$(if($(Check-FirewallStatus 'Domain') -eq "Disabled"){"${exared}Disabled$grn"} else {"${exa}Enabled$grn"}) | $(if($Menu_Lang -eq "ru-Ru"){"Частный: "} else {"Private: "})$(if($(Check-FirewallStatus 'Private') -eq "Disabled"){"${exared}Disabled$grn"} else {"${exa}Enabled$grn"}) | $(if($Menu_Lang -eq "ru-Ru"){"Общедоступный: "} else {"Public: "})$(if($(Check-FirewallStatus 'Public') -eq "Disabled"){"${exared}Disabled$grn"} else {"${exa}Enabled$grn"}) |" -NewLine
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите действие"} else {"Choose the Action"})" -NewLine
 
-
-#                                                          Начало
-
-Draw-Banner -Text_After_Color "White"
-if($Menu_Lang -eq "ru-Ru"){
-    $title = "$([char]27)[48;5;0m$([char]27)[38;5;13mВключить удаленный рабочий стол на этом компьютере?$([char]27)[48;5;0m$([char]27)[38;5;11m"
-    $message = " "
-
-    $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Включить удаленный рабочий стол"
-    $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Пропустить этот шаг"
-    $exit = New-Object System.Management.Automation.Host.ChoiceDescription "&Exit", "Выход"
-
-    $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no, $exit)
-    $defaultChoice = 0  # 0 означает, что по умолчанию будет выбрано "Yes"
-    $choice = $host.ui.PromptForChoice($title, $message, $options, $defaultChoice)
-} else {
-    $title = "$([char]27)[48;5;0m$([char]27)[38;5;13mEnable remote desktop on this computer?$([char]27)[48;5;0m$([char]27)[38;5;11m"
-    $message = " "
-
-    $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Activate Remoute Desktop"
-    $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Skip this step"
-    $exit = New-Object System.Management.Automation.Host.ChoiceDescription "&Exit", "Exit"
-
-    $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no, $exit)
-    $defaultChoice = 0  # 0 означает, что по умолчанию будет выбрано "Yes"
-    $choice = $host.ui.PromptForChoice($title, $message, $options, $defaultChoice)
-}
-if ($choice -eq 0) {
-    Enable-NetFirewallRule -Group "@FirewallAPI.dll,-28752"
-    Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
-    Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "updateRDStatus" -Value 1
-    net start termservice
-}
-if ($choice -eq 2) {Goto-main}
-
-
-
-
-if (($(Check-FirewallStatus 'Domain') -eq "Disabled") -or ($(Check-FirewallStatus 'Private') -eq "Disabled") -or ($(Check-FirewallStatus 'Public') -eq "Disabled")){
-    Draw-Banner -Text_After_Color "White"
-    if($Menu_Lang -eq "ru-Ru"){
-        $title = "$([char]27)[48;5;0m$([char]27)[38;5;13mВключить брандмауэр Windows? (Необходимо для белого списка IP)$([char]27)[48;5;0m$([char]27)[38;5;11m"
-        $message = "$([char]27)[48;5;0m$([char]27)[38;5;13mТекущее состояние: $([char]27)[48;5;0m$([char]27)[38;5;13;4mДомен$([char]27)[24m: $(Check-FirewallStatus 'Domain') | $([char]27)[48;5;0m$([char]27)[38;5;13;4mЧастный$([char]27)[24m: $(Check-FirewallStatus 'Private') | $([char]27)[48;5;0m$([char]27)[38;5;13;4mПубличный$([char]27)[24m: $(Check-FirewallStatus 'Public')$([char]27)[48;5;0m$([char]27)[38;5;15m"
-
-        $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Включение профилей брандмауэра Windows (домен, частный, общедоступный)"
-        $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Пропустить этот шаг"
-
-        $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-        $defaultChoice = 0  # 0 означает, что по умолчанию будет выбрано "Yes"
-        $choice = $host.ui.PromptForChoice($title, $message, $options, $defaultChoice)
-    } else {
-        $title = "$([char]27)[48;5;0m$([char]27)[38;5;13mEnable Windows Firewall? (Need for Ip whitelist)$([char]27)[48;5;0m$([char]27)[38;5;11m"
-        $message = "$([char]27)[48;5;0m$([char]27)[38;5;13mCurrent state: $([char]27)[48;5;0m$([char]27)[38;5;13;4mDomain$([char]27)[24m: $(Check-FirewallStatus 'Domain') | $([char]27)[48;5;0m$([char]27)[38;5;13;4mPrivate$([char]27)[24m: $(Check-FirewallStatus 'Private') | $([char]27)[48;5;0m$([char]27)[38;5;13;4mPublic$([char]27)[24m: $(Check-FirewallStatus 'Public')$([char]27)[48;5;0m$([char]27)[38;5;15m"
-
-        $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Anable Windows Firewall (Domain, Private, Publice) profiles"
-        $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Skip this step"
-
-        $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-        $defaultChoice = 0  # 0 означает, что по умолчанию будет выбрано "Yes"
-        $choice = $host.ui.PromptForChoice($title, $message, $options, $defaultChoice)
-    }
-    
-    if ($choice -eq 0) {
-        Set-NetFirewallProfile -All -Enabled True
-    }
-}
-
-
-
-if ($(Get-FirewallStatus) -eq "Enabled"){
-
-
-    if($Menu_Lang -eq "ru-Ru"){
-        Draw-Banner -Text_After_Color "White"
-        $title = "$([char]27)[48;5;0m$([char]27)[38;5;13mВключить белый список IP-адресов?$([char]27)[48;5;0m$([char]27)[38;5;11m"
-        $message = " "
-
-        $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Активировать пул IP-адресов из белого списка"
-        $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Пропустить этот шаг"
-
-        $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-        $defaultChoice = 0  # 0 означает, что по умолчанию будет выбрано "Yes"
-        $choice = $host.ui.PromptForChoice($title, $message, $options, $defaultChoice)
-    } else {
-        Draw-Banner -Text_After_Color "White"
-        $title = "$([char]27)[48;5;0m$([char]27)[38;5;13mEnable IP whitelist?$([char]27)[48;5;0m$([char]27)[38;5;11m"
-        $message = " "
-
-        $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Activate Whitelist Ip Pool"
-        $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Skip this step"
-
-        $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-        $defaultChoice = 0  # 0 означает, что по умолчанию будет выбрано "Yes"
-        $choice = $host.ui.PromptForChoice($title, $message, $options, $defaultChoice)
-    }
-    if ($choice -eq 0) {
-    Draw-Banner -Text_After_Color "White"
-    # Запрос у пользователя IP-адресов
-    $ipAddresses = @()
+    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Белый список IP-адресов\"} else {"IP whitelist\"})"
+    Align-TextCenter "$(if(($DenyTSC -eq 1) -and ($URDStatus -eq 1)){"[2] ${exa}Enable$grn |"}else{"${sel}[2]${grn} ${exa}Disable${grn} |"}) $(if($Menu_Lang -eq "ru-Ru"){"Удаленный рабочий стол"} else {"Remote desktop"})"
+    Align-TextCenter "$(if($BlankPass -eq 1){"[3] ${exa}Enable$grn  |"}else{"${sel}[3]${grn} ${exa}Disable${grn} |"}) $(if($Menu_Lang -eq "ru-Ru"){"Разрешить пустой пароль              (Если у пользователя нет пароля)"} else {"Allow Blank Password       (If user don't have password)"})"
+    Align-TextCenter "$(if($Firewall -eq 1){"[4] ${exa}Enable$grn  |"}else{"${sel}[4]${grn} ${exa}Disable${grn} |"}) $(if($Menu_Lang -eq "ru-Ru"){"Брандмауэр Windows                   (Необходим для белого списка IP)"} else {"Windows Firewall              (Need for Ip whitelist)"})"
+    Align-TextCenter "$(if($DetailSh){"$sel[5]$grn"}else{"[5]"}) $(if($Menu_Lang -eq "ru-Ru"){"Показать данные для подключения:          $(if($DetailSh){"Пользователь: $Env:UserName | IP: $ipAddress"} else {"Пользователь: ***** | IP: ***.***.***.***"})"} else {"Show connection details:         $(if($DetailSh){"Username: $Env:UserName | IP: $ipAddress"} else {"Username: ***** | IP: ***.***.***.***"})"})"
+    Align-TextCenter "$sel[6]$grn $(if($Menu_Lang -eq "ru-Ru"){"${sel}Выход в меню$grn"} else {"${sel}Back to menu$grn"})" -NewLine
 
     do {
-        $ip = Read-Host "Enter the IP address (or press Enter to finish)"
-        if ($ip -ne "") {
-            $ipAddresses += $ip
+        $choice = [Console]::ReadKey($true).Key
+        if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
+            Draw-Banner
+            $ipAddresses = @()
+            
+            Write-Host ""
+            Write-Host "$(if($Menu_Lang -eq "ru-Ru"){"Введите IP-адрес или введите пустой для завершения (Формат: ***.***.***.***)"} else {"Enter IP address or enter blank to complete (Format: ***.***.***.***)"})"
+            do {
+                $i = $i + 1
+                $ip = Read-Host "$i IP address: "
+
+                if ($ip -ne "") {
+                    if ($ip -match '^([0-9]{1,3}\.){3}[0-9]{1,3}$') {
+                        $valid = $true
+                        foreach ($octet in $ip.Split('.')) {
+                            if ([int]$octet -gt 255 -or [int]$octet -lt 0) {
+                                $valid = $false
+                                break
+                            }
+                        }
+                        if ($valid) {$ipAddresses += $ip} else {Write-Host "$(if($Menu_Lang -eq "ru-Ru"){"`n[!] Невозможный IP:"} else {"`n[!] Impossible IP:"}) $ip `n"}
+                    } else {
+                        Write-Host "$(if($Menu_Lang -eq "ru-Ru"){"`n[!] Невозможный IP:"} else {"`n[!] Impossible IP:"}) $ip `n"
+                        $i = $i - 1
+                    }
+                }
+            } while ($ip -ne "")
+            if ($ipAddresses.Count -ne 0){
+                $ipString = $ipAddresses -join '|RA4='
+                $command = "Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules' -Name 'RemoteDesktop-UserMode-In-TCP' -Value 'v2.30|Action=Allow|Active=TRUE|Dir=In|Protocol=6|LPort=3389|RA4=$ipString|App=%SystemRoot%\system32\svchost.exe|Svc=termservice|Name=@FirewallAPI.dll,-28775|Desc=@FirewallAPI.dll,-28756|EmbedCtxt=@FirewallAPI.dll,-28752|'"
+                Invoke-Expression $command
+            } else {
+                $command = "Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules' -Name 'RemoteDesktop-UserMode-In-TCP' -Value 'v2.30|Action=Allow|Active=TRUE|Dir=In|Protocol=6|LPort=3389|App=%SystemRoot%\system32\svchost.exe|Svc=termservice|Name=@FirewallAPI.dll,-28775|Desc=@FirewallAPI.dll,-28756|EmbedCtxt=@FirewallAPI.dll,-28752|'"
+                Invoke-Expression $command
+            }
+            $i = 0
+            MainMenu
         }
-    } while ($ip -ne "")
-
-    # Формирование строки с IP-адресами
-    $ipString = $ipAddresses -join '|RA4='
-
-    # Вставка IP-адресов в команду
-    $command = "Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules' -Name 'RemoteDesktop-UserMode-In-TCP' -Value 'v2.30|Action=Allow|Active=TRUE|Dir=In|Protocol=6|LPort=3389|RA4=$ipString|App=%SystemRoot%\system32\svchost.exe|Svc=termservice|Name=@FirewallAPI.dll,-28775|Desc=@FirewallAPI.dll,-28756|EmbedCtxt=@FirewallAPI.dll,-28752|'"
-
-    # Выполнение команды
-    Invoke-Expression $command
-}
-}
-
-
-
-if($Menu_Lang -eq "ru-Ru"){
-    Draw-Banner -Text_After_Color "White"
-    $title = "$([char]27)[48;5;0m$([char]27)[38;5;13mРазрешить вход с пустым паролем?$([char]27)[48;5;0m$([char]27)[38;5;11m"
-    $message = " "
-
-    $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Разрешить пустой пароль (если у пользователя нет пароля)"
-    $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Пропустить этот шаг"
-
-    $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-    $defaultChoice = 0  # 0 означает, что по умолчанию будет выбрано "Yes"
-    $choice = $host.ui.PromptForChoice($title, $message, $options, $defaultChoice)  
-} else {
-    Draw-Banner -Text_After_Color "White"
-    $title = "$([char]27)[48;5;0m$([char]27)[38;5;13mEnable login with blank password?$([char]27)[48;5;0m$([char]27)[38;5;11m"
-    $message = " "
-
-    $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Allow Blank Password (If user don't have password)"
-    $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Skip this step"
-
-    $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-    $defaultChoice = 0  # 0 означает, что по умолчанию будет выбрано "Yes"
-    $choice = $host.ui.PromptForChoice($title, $message, $options, $defaultChoice)
-}
-
-if ($choice -eq 0) {
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa" /v "LimitBlankPasswordUse" /t REG_DWORD /d 0 /f
-}
-
-
-if($Menu_Lang -eq "ru-Ru"){
-    Draw-Banner -Text_After_Color "White"
-    $title = "$([char]27)[48;5;0m$([char]27)[38;5;13mПоказать данные для входа?$([char]27)[48;5;0m$([char]27)[38;5;11m"
-    $message = " "
-
-    $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Вывести имя пользователя и IP-адрес!"
-    $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Пропустить этот шаг"
-
-    $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-    $defaultChoice = 0  # 0 означает, что по умолчанию будет выбрано "Yes"
-    $choice = $host.ui.PromptForChoice($title, $message, $options, $defaultChoice)
-} else {
-    Draw-Banner -Text_After_Color "White"
-    $title = "$([char]27)[48;5;0m$([char]27)[38;5;13mShow login details?$([char]27)[48;5;0m$([char]27)[38;5;11m"
-    $message = " "
-
-    $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Print Username and IP addreses!"
-    $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Skip this step"
-
-    $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-    $defaultChoice = 0  # 0 означает, что по умолчанию будет выбрано "Yes"
-    $choice = $host.ui.PromptForChoice($title, $message, $options, $defaultChoice)
+        if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
+            Draw-Banner
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выполняется…"} else {"In progress…"})"
+            if(($DenyTSC -eq 1) -and ($URDStatus -eq 1)){
+                Enable-NetFirewallRule -Group "@FirewallAPI.dll,-28752"
+                Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
+            } else {
+                Disable-NetFirewallRule -Group "@FirewallAPI.dll,-28752"
+                Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 1
+            }
+            Clear-Host
+            Write-Host "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"______________________"} else {"__________________"})"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"|Нажмите любую кнопку|"} else {"|Press any button|"})"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"} else {"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"})"
+            Write-Host ""
+            do {
+                $notice = [Console]::ReadKey($true).Key
+            } until ($notice)
+            MainMenu
+        }
+        if (($choice -eq "D3") -or ($choice -eq "NumPad3")){
+            if($BlankPass -eq 1){
+                Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa" -Name "LimitBlankPasswordUse" -Value 0 -Type DWord
+            } else {
+                Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa" -Name "LimitBlankPasswordUse" -Value 1 -Type DWord
+            }
+            MainMenu
+        }
+        if (($choice -eq "D4") -or ($choice -eq "NumPad4")){
+            if($Firewall){
+                Set-NetFirewallProfile -All -Enabled True
+            } else {
+                Set-NetFirewallProfile -All -Enabled False
+            }
+            MainMenu
+        }
+        if (($choice -eq "D5") -or ($choice -eq "NumPad5")){
+            if (-not $ipAddress) {
+                try {$ipAddress = (Get-NetIPAddress -InterfaceAlias Ethernet* -AddressFamily IPv4 -ErrorAction SilentlyContinue).IPAddress ; if (-not $ipAddress) {throw}} catch {if($Menu_Lang -eq "ru-Ru"){$ipAddress = "не определён"} else {$ipAddress = "not defined"}}
+            }
+            $DetailSh = -not $DetailSh ; MainMenu
+        }
+        if (($choice -eq "D6") -or ($choice -eq "NumPad6") -or ($choice -eq "Escape")){Goto-main}
+    } until ($choice -eq "Escape")
 }
 
-
-
-if ($choice -eq 0) {
-    Draw-Banner -Text_After_Color "White"
-    Set-ConsoleColor 'black' 'green'
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Данные для входа: "} else {"Login details: "})"
-    Write-Host "`n"
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Пользователь:"} else {"User:"}) $Env:UserName"
-    Write-Host ""
-    $ipAddress = (Get-NetIPAddress -InterfaceAlias Ethernet* -AddressFamily IPv4).IPAddress
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"IPv4 Адресс:"} else {"IPv4 Adress:"}) $ipAddress"
-    Write-Host "`n"
-}
-
-pause
-Goto-main
+MainMenu

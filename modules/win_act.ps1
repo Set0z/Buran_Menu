@@ -1,61 +1,94 @@
-﻿#region Объявление глобальных переменных
+﻿#region Объявление переменных
 $host.ui.RawUI.WindowTitle = ""
 $scriptDir = $PSScriptRoot
-$(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Выбор версии Windows 🔑"} else {$host.ui.RawUI.WindowTitle = "Windows Version Selection 🔑"})
 $Menu_Lang = $env:BURAN_lang
-$ver= $env:version
-if ($PSScriptRoot -eq "") {
-    Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking
-} else {
-    $scriptDir = $PSScriptRoot
-    Import-Module $($PSScriptRoot + "/modules") -DisableNameChecking
-}
+$win_ver = (Get-WmiObject Win32_OperatingSystem).Caption
+if ($PSScriptRoot -eq "") {Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking} else {$scriptDir = $PSScriptRoot ; Import-Module $($PSScriptRoot + "/modules") -DisableNameChecking}
+
+$kmsList = @(
+    "kms.digiboy.ir"
+    "hq1.chinancce.com"
+    "54.223.212.31"
+    "kms.cnlic.com"
+    "kms.chinancce.com"
+    "kms.ddns.net"
+    "franklv.ddns.net"
+    "k.zpale.com"
+    "m.zpale.com"
+    "mvg.zpale.com"
+    "kms.shuax.com"
+    "kensol263.imwork.net:1688"
+    "xykz.f3322.org"
+    "kms789.com"
+    "dimanyakms.sytes.net:1688"
+    "kms.03k.org:1688"
+)
+
+$cscript = "$env:SystemRoot\System32\cscript.exe"
+$slmgr = "$env:SystemRoot\System32\slmgr.vbs"
+
+$sel = "$([char]27)[48;5;2;38;5;0m"   # зелёный фон, черный текст, выделенный
+$grn = "$([char]27)[48;5;0;38;5;2m"   # черный фон, зеленый текст
 #endregion
 
-#region Выбор версии
-function Version-selection {
-    $host.ui.RawUI.WindowTitle = "Windows Actions 🔑"
-    Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите версию Windows"} else {"Select the Windows version"})" -NewLine
-    Align-TextCenter "[1] Windows 10 Home/Pro"
-    Align-TextCenter "[2] Windows 11 Home/Pro"
-    Align-TextCenter "[3] $(if($Menu_Lang -eq "ru-Ru"){"Узнать время до истечения активации"} else {"Time before the activation expiration"})"
-    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[4]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mВыход в меню$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack to menu$([char]27)[0m"})"
-    do {
-        $choice = [Console]::ReadKey($true).Key
-        if (($choice -eq "D1") -or ($choice -eq "NumPad1")){$win_ver = "win10" ; Action-selection}
-        if (($choice -eq "D2") -or ($choice -eq "NumPad2")){$win_ver = "win11" ; Action-selection}
-        if (($choice -eq "D3") -or ($choice -eq "NumPad3")){slmgr /xpr ; Version-selection}
-        if (($choice -eq "D4") -or ($choice -eq "NumPad4")){Goto-main}
-        if ($choice -eq "Escape"){ Goto-main }
-    } until ($choice -eq "Escape")
-}
-#endregion
-
-#region Выбор действия
-function Action-selection {
+function MainPage {
     $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Выбор действия 🔑"} else {$host.ui.RawUI.WindowTitle = "Action selection 🔑"})
     Draw-Banner
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите действие"} else {"Select the action"})" -NewLine
-    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Активировать/Продлить Windows"} else {"Activate/Renew Windows"})"
+    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выберите действие"} else {"Choose the Action"})" -NewLine
+    Align-TextCenter "[1] $(if($Menu_Lang -eq "ru-Ru"){"Активировать/Продлить Windows (KMS)"} else {"Activate/Renew Windows (KMS)"})"
     Align-TextCenter "[2] $(if($Menu_Lang -eq "ru-Ru"){"Деактивировать Windows"} else {"Deactivate Windows"})"
-    Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[3]$([char]27)[48;5;0m$([char]27)[38;5;2m $(if($Menu_Lang -eq "ru-Ru"){"$([char]27)[48;5;2m$([char]27)[38;5;0mНазад$([char]27)[0m"} else {"$([char]27)[48;5;2m$([char]27)[38;5;0mBack$([char]27)[0m"})"
+    Align-TextCenter "[3] $(if($Menu_Lang -eq "ru-Ru"){"Узнать время до истечения активации"} else {"Show time before activation expiration"})"
+    Align-TextCenter "$sel[4]$grn $(if($Menu_Lang -eq "ru-Ru"){"${sel}Выход в меню$grn"} else {"${sel}Back to menu$grn"})" -NewLine
+
     do {
         $choice = [Console]::ReadKey($true).Key
-        if (($choice -eq "D1") -or ($choice -eq "NumPad1")){if ($win_ver -eq "win10") {Draw-Banner ; Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Активация..."} else {"Activation..."})" ; slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX ; Start-Sleep -Seconds 7 ; slmgr /skms kms.digiboy.ir ; Start-Sleep -Seconds 7 ; slmgr /ato ; Start-Sleep -Seconds 10 ; slmgr /ckms} ; if ($win_ver -eq "win11") {Draw-Banner ; Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Активация..."} else {"Activation..."})" ; slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX ; Start-Sleep -Seconds 7 ; slmgr /skms kms.digiboy.ir ; Start-Sleep -Seconds 7 ; slmgr /ato ; Start-Sleep -Seconds 10 ; slmgr /ckms}}
-        if (($choice -eq "D2") -or ($choice -eq "NumPad2")){if ($win_ver -eq "win10") {Draw-Banner ; Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Деактивация..."} else {"Deactivation..."})" ; slmgr /upk ; Start-Sleep -Seconds 3 ; slmgr /cpky ; Start-Sleep -Seconds 5 ; slmgr /ckms} ; if ($win_ver -eq "win11") {Draw-Banner ; Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Деактивация..."} else {"Deactivation..."})" ; slmgr /upk ; Start-Sleep -Seconds 3 ; slmgr /cpky ; Start-Sleep -Seconds 5 ; slmgr /ckms}}
-        if (($choice -eq "D3") -or ($choice -eq "NumPad3")){ Version-selection }
-        if ($choice -eq "Escape"){ Version-selection }
-    } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")) -or (($choice -eq "D3") -or ($choice -eq "NumPad3")) -or ($choice -eq "Escape")) #Выход из цикла
-    slmgr /xpr
-    Start-Sleep -Seconds 3
-    Draw-Banner
-    Write-Host ""
-    Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Выполнено!"} else {"Done!"})"
-    Write-Host "`n`n`n"
+        if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
+            Draw-Banner
+            $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Активация 🔑"} else {$host.ui.RawUI.WindowTitle = "Activation 🔑"})
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Активация..."} else {"Activation..."})" -NewLine
+            & $cscript //NoLogo $slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+            foreach ($kms in $kmsList) {
+                Center-Text "$(if($PSCulture -eq "ru-Ru"){"Попытка активации через ${sel}${kms}${grn}`n"} else {"Attempting to activate via ${sel}${kms}${grn}`n"})"
+                & $cscript //NoLogo $slmgr /skms "$kms`:1688"
+                $output = & $cscript //NoLogo $slmgr /ato
+                $output
+                if (($output -match "успешно") -or ($output -match "successfully")) {break}
+            }
+            $status = & $cscript //NoLogo $slmgr /xpr
+            if (-not ($status -match "истечет|expire")) {& $cscript //NoLogo $slmgr /ato}
+            Start-Sleep 5
+            slmgr /xpr
+            Draw-Banner
+            Center-Text "Done!`n"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"______________________"} else {"__________________"})"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"|Нажмите любую кнопку|"} else {"|Press any button|"})"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"} else {"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"})"
+            do {
+                $notice = [Console]::ReadKey($true).Key
+            } until ($notice)
+            MainPage
+        }
+        if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
+            Draw-Banner
+            $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Деактивация 🔑"} else {$host.ui.RawUI.WindowTitle = "Deactivation 🔑"})
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Деактивация..."} else {"Deactivation..."})" -NewLine
+            & $cscript //NoLogo $slmgr /upk
+            & $cscript //NoLogo $slmgr /cpky
+            & $cscript //NoLogo $slmgr /ckms
+            Start-Sleep 5
+            Draw-Banner
+            Center-Text "Done!`n"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"______________________"} else {"__________________"})"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"|Нажмите любую кнопку|"} else {"|Press any button|"})"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"} else {"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"})"
+            do {
+                $notice = [Console]::ReadKey($true).Key
+            } until ($notice)
+            MainPage
+        }
+        if (($choice -eq "D3") -or ($choice -eq "NumPad3")){slmgr /xpr ; MainPage}
+        if (($choice -eq "D4") -or ($choice -eq "NumPad4") -or ($choice -eq "Escape")){Goto-main}
+    } until ($choice -eq "Escape")
 }
-#endregion
 
-Version-selection
-pause
-Goto-main
+MainPage
