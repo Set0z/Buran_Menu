@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 #region Объявление переменных
 $env:version = "1.3"
