@@ -1,4 +1,4 @@
-﻿#region Объявление переменных
+#region Объявление переменных
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Конфигурация реестра 🛠️"} else {$host.ui.RawUI.WindowTitle = "Registry configuration 🛠️"})
 $scriptDir = $PSScriptRoot
 $uiLang = (Get-Culture).Name 
