@@ -1,4 +1,4 @@
-﻿#region Объявление переменных
+#region Объявление переменных
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Конфигурация удаленного рабочего стола 🖧"} else {$host.ui.RawUI.WindowTitle = "Remoute Desktop Configuration 🖧"})
 $scriptDir = $PSScriptRoot
 $Menu_Lang = $env:BURAN_lang
