@@ -1,4 +1,4 @@
-﻿#region Объявление переменных
+#region Объявление переменных
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "UAC Политика 🔐"} else {$host.ui.RawUI.WindowTitle = "UAC Policy 🔐"})
 $scriptDir = $PSScriptRoot
 $Menu_Lang = $env:BURAN_lang
