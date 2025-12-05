@@ -1,4 +1,4 @@
-﻿#Глобальные переменные
+#Глобальные переменные
 $Menu_Lang = $env:BURAN_lang
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Установка & обновление приложений 📥"} else {$host.ui.RawUI.WindowTitle = "App Upgrade & Install 📥"})
 $ver= $env:version
