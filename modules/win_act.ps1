@@ -1,4 +1,4 @@
-﻿#region Объявление переменных
+#region Объявление переменных
 $host.ui.RawUI.WindowTitle = ""
 $scriptDir = $PSScriptRoot
 $Menu_Lang = $env:BURAN_lang
