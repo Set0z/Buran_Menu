@@ -31,6 +31,10 @@
 ### 🧰 About  
 **Buran Menu** is a compact and powerful toolkit tailored for system administrators and power users. It provides **6 essential modules** to streamline system setup and maintenance tasks.
 
+<p align="center">
+  <img src="./img/Main_menu_en.png" width="800">
+</p>
+
 ---
 
 ### 1️⃣ Windows Activation  
@@ -108,6 +112,10 @@ Powered by **winget**:
 
 ### 🧰 О программе  
 **Buran Menu** — это лёгкий и мощный набор утилит для системных администраторов и продвинутых пользователей. Включает **6 ключевых модулей** для быстрой настройки и обслуживания системы.
+
+<p align="center">
+  <img src="./img/Main_menu_ru.png" width="800">
+</p>
 
 ---
 
