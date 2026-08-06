@@ -1,4 +1,4 @@
-#Глобальные переменные
+#region Глобальные переменные
 $(if($Menu_Lang -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "Скачивание и Активация Офис 📄"} else {$host.ui.RawUI.WindowTitle = "Office Download and Activation 📄"})
 $scriptDir = $PSScriptRoot
 $Menu_Lang = $env:BURAN_lang
@@ -13,6 +13,10 @@ if ($PSScriptRoot -eq "") {
     Import-Module $($PSScriptRoot + "/modules") -DisableNameChecking
 }
 $Debug = $false
+$del = $false
+#endregion
+
+#region Функции
 function Project_Visio_ver{
     param (
         [string]$Name,
@@ -79,7 +83,7 @@ function installation_select{
                 Align-TextCenter "$(if($selected_programs.Contains("OneDrive")){"$([char]27)[48;5;2m$([char]27)[38;5;0m[0]$([char]27)[48;5;0m$([char]27)[38;5;2m"} else {"[0]"}) OneDrive" -Offset 7
             } else {Write-Host " "}
             Write-Host "`n"
-            Center-Text "$(Lang-translate -rus "[Enter] Подтвердить выбор    [Esc] Выход в Главное Меню" -eng "[Enter] Confirm the Choice    [Esc] Exit to Main Menu")"
+            Center-Text "$(Lang-translate -rus "[Spacebar] Подтвердить выбор    [Esc] Выход в Главное Меню" -eng "[Spacebar] Confirm the Choice    [Esc] Exit to Main Menu")"
 
 
             $choice = [Console]::ReadKey($true).Key
@@ -127,7 +131,18 @@ function installation_select{
                     }
                 } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")))
             }
-            if ($choice -eq "Enter"){
+            if ($choice -eq "Spacebar"){
+
+                Draw-Banner
+                Center-Text "$(Lang-translate -rus "Удалить файл образа после установки?" -eng "Delete the image file after installation?")" -NewLine
+                Center-Text "$(Lang-translate -rus "[1] Да    [2] Нет" -eng "[1] Yes    [2] No")"
+                Align-TextCenter ""
+                do{
+                    $choice = [Console]::ReadKey($true).Key
+                    if (($choice -eq "D1") -or ($choice -eq "NumPad1")){$del = $true}
+                    if (($choice -eq "D2") -or ($choice -eq "NumPad2")){$del = $false}
+                } until(($choice -eq "D1") -or ($choice -eq "D2"))
+
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Установка..." -eng "Installing...")"
 
@@ -174,15 +189,23 @@ function installation_select{
                 $ODT_Path = Join-Path $ODT "\setup.exe"
                 Start-Process -Wait -NoNewWindow -FilePath $ODT_Path -ArgumentList "/configure $config_file"
 
-                Dismount-DiskImage -ImagePath $Download_directory
-                Remove-Item -Path $ODT -Recurse -Force
-                Remove-Item -Path $ODT_Path -Recurse -Force
-                Remove-Item -Path $ODT_Path_exe -Recurse -Force
-                Remove-Item -Path $Download_directory -Recurse -Force
-                Remove-Item -Path $config_file -Recurse -Force
+                try{Dismount-DiskImage -ImagePath $Download_directory -ErrorAction Stop >$null}catch{}
+                try{Remove-Item -Path $ODT -Recurse -Force -ErrorAction Stop >$null}catch{}
+                #try{Remove-Item -Path $ODT_Path -Recurse -Force -ErrorAction Stop >$null}catch{}
+                try{Remove-Item -Path $ODT_Path_exe -Recurse -Force-ErrorAction Stop >$null}catch{}
+                if($del){try{Remove-Item -Path $Download_directory -Recurse -Force -ErrorAction Stop >$null}catch{}}
+                try{Remove-Item -Path $config_file -Recurse -Force -ErrorAction Stop >$null}catch{}
                 Draw-Banner
-                Center-Text "$(Lang-translate -rus "Установлено!" -eng "Installed!")"
-                
+                Write-Host "`n`n`n`n"
+                Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Установлено!"} else {"Installed!"})" -NewLine
+                Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"______________________"} else {"__________________"})"
+                Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"|Нажмите любую кнопку|"} else {"|Press any button|"})"
+                Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"} else {"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"})"
+                Write-Host ""
+                do {
+                    $notice = [Console]::ReadKey($true).Key
+                } until ($notice)
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Установлено!"} else {"Installed!"})"
                 pause
 
                 Draw-Banner
@@ -197,8 +220,79 @@ function installation_select{
                         First_menu
                     }
                 } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")))
+                
+                Draw-Banner
+                Center-Text "$(Lang-translate -rus "Добавить задачу автопродления в планировщик задач?" -eng "Add an auto-renewal task to the task scheduler?")" -NewLine
+                Center-Text "$(Lang-translate -rus "[1] Да    [2] Нет" -eng "[1] Yes    [2] No")"
+                do {
+                    $choice = [Console]::ReadKey($true).Key
+                    if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
+                        if(Test-Path "${env:ProgramFiles(x86)}\Microsoft Office\Office16") {
+                            $office_vbs_path = "${env:ProgramFiles(x86)}\Microsoft Office\Office16\ospp.vbs"
+                        } elseif (Test-Path "${env:ProgramFiles}\Microsoft Office\Office16"){
+                            $office_vbs_path = "${env:ProgramFiles}\Microsoft Office\Office16\ospp.vbs"
+                        } else {
+                            $office_vbs_path = $null
+                        }
+
+                        if ($office_vbs_path) {
+                            $name = "Buran Menu Office Reactivation $($Office_version -replace '[^a-zA-Z0-9]', '')"
+                            $comment = "$(Lang-translate -rus "Продление активации Office ($Office_version)" -eng "Office activation renewal ($Office_version)")"
+
+                            $action = New-ScheduledTaskAction `
+                                -Execute "powershell.exe" `
+                                -Argument "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command `"cscript.exe //Nologo `\`"$office_vbs_path`\`" /act`""
+
+                            $triggerRepeat = New-ScheduledTaskTrigger `
+                                -Daily `
+                                -DaysInterval 150 `
+                                -At (Get-Date)
+
+                            $principal = New-ScheduledTaskPrincipal `
+                                -UserId "SYSTEM" `
+                                -LogonType ServiceAccount `
+                                -RunLevel Highest
+
+                            $settings = New-ScheduledTaskSettingsSet `
+                                -StartWhenAvailable `
+                                -AllowStartIfOnBatteries `
+                                -DontStopIfGoingOnBatteries `
+                                -ExecutionTimeLimit (New-TimeSpan -Hours 1)
+
+                            Register-ScheduledTask `
+                                -TaskName $name `
+                                -Description $comment `
+                                -Action $action `
+                                -Trigger $triggerRepeat `
+                                -Principal $principal `
+                                -Settings $settings `
+                                -Force | Out-Null
+
+                            Draw-Banner
+                            Write-Host "`n`n`n`n"
+                            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})" -NewLine
+                            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"______________________"} else {"__________________"})"
+                            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"|Нажмите любую кнопку|"} else {"|Press any button|"})"
+                            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"} else {"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"})"
+                            Write-Host ""
+                            do {
+                                $notice = [Console]::ReadKey($true).Key
+                            } until ($notice)
+                            First_menu
+
+                        } else {
+                            Draw-Banner
+                            Center-Text "$(Lang-translate -rus "Не удаётся найти установленный Office!" -eng "Cannot find an installed Office!")" -NewLine
+                            pause
+                            First_menu
+                        }
+                    }
+                    if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
+                        First_menu
+                    }
+                } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")))
             }
-        } until (($choice -eq "Enter") -or ($choice -eq "Escape")) #Выход из цикла
+        } until (($choice -eq "Spacebar") -or ($choice -eq "Spacebar"))
 
 }
 
@@ -206,6 +300,8 @@ function Activation{
     param(
         [string]$OfficeVersion
     )
+    $calledWithParam = ($OfficeVersion -ne "")
+
     if($OfficeVersion -eq "ProPlus2024Retail"){$OfficeVersion = "ProPlus2021VL_KMS*.xrm-ms"} elseif ($OfficeVersion -eq "O365ProPlusRetail"){$OfficeVersion = "ProPlus2024VL_KMS*.xrm-ms"} elseif ($OfficeVersion -eq "ProPlus2021Retail"){$OfficeVersion = "ProPlus2021VL_KMS*.xrm-ms"} elseif ($OfficeVersion -eq "ProPlus2019Retail"){$OfficeVersion = "ProPlus2019VL_KMS*.xrm-ms"} elseif ($OfficeVersion -eq "ProPlusRetail"){$OfficeVersion = "ProPlusVL_KMS*.xrm-ms"}
     if($OfficeVersion -eq "") {
         Draw-Banner
@@ -261,8 +357,11 @@ function Activation{
     cscript $office_vbs_path /act ; Start-Sleep -Seconds 3
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Активировано!" -eng "Activated!")" -NewLine
+    Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Активировано!"} else {"Activated!"})"
     pause
-    First_menu
+    if (-not $calledWithParam) {
+        First_menu
+    }
 }
 
 function Office_Already_Fownloaded{
@@ -276,20 +375,31 @@ function Office_Already_Fownloaded{
     do {
         $choice = [Console]::ReadKey($true).Key
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
-            $download_dir = Folder-choose -default $false
-            if ($download_dir -eq $null) {version}
-            $download_dir = $download_dir + "\$($Version).img"
+
+            do {
+                $download_dir = Select-File -Title "$(Lang-translate -rus "Выберите файл образа $($Version).img" -eng "Select image file $($Version).img")" -Filter "IMG (*.img)|*.img"
+
+                if ($download_dir -eq $null) {version}
+                $expectedFileName = "$($Version).img"
+
+                if (-not ((Split-Path $download_dir -Leaf) -eq $expectedFileName)){
+                    [void][System.Windows.Forms.MessageBox]::Show(
+                    "$(Lang-translate -rus "Выбран неверный файл. Ожидался: $expectedFileName" -eng "Invalid file selected. Expected: $expectedFileName")",
+                    "$(Lang-translate -rus "Ошибка" -eng "Error")",
+                    [System.Windows.Forms.MessageBoxButtons]::OK,
+                    [System.Windows.Forms.MessageBoxIcon]::Error
+                    )
+                }
+            } until ((Split-Path $download_dir -Leaf) -eq $expectedFileName)
+
             installation_select -Office_version $Version -Download_directory $download_dir
+
         }
     } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))) #Выход из цикла
 }
+#endregion
 
-
-
-#######################################
-
-
-
+#region Страницы
 function First_menu {
     Draw-Banner
     Center-Text "   $(Lang-translate -rus "Выберите действие:" -eng "Choose the action:")" -NewLine
@@ -368,17 +478,13 @@ function version {
         if ($choice -eq "Escape"){Language}
     } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2"))-or (($choice -eq "D3") -or ($choice -eq "NumPad3")) -or ($choice -eq "Escape")) #Выход из цикла
 }
+#endregion
 
-
-
-#######################################
-
-
-
+#region Офисы
 function office_365{
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Выберите нужный пакет:" -eng "Select the desired package:")"
-    Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/O365ProPlusRetail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .iso)" -NewLine
+    Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/O365ProPlusRetail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .img)" -NewLine
     Align-TextCenter "[1] Office 365 Professional | (Word, Excel, PowerPoint OneNote, Access, OneDrive" -NoNewLine
     Align-TextCenter "                               Outlook (classic), Publisher, Skype , Teams)"
     Align-TextCenter "$([char]27)[48;5;2m$([char]27)[38;5;0m[2] $(Lang-translate -rus "Назад" -eng "Back")$([char]27)[48;5;0m$([char]27)[38;5;2m"
@@ -399,6 +505,7 @@ function office_365{
             Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/O365ProPlusRetail.img")" -seconds 5
             Draw-Banner
             Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+            Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
             Write-Host " "
             pause
             installation_select -Office_version "O365ProPlusRetail" -Download_directory $download_dir
@@ -412,7 +519,7 @@ function office_365{
 function office_2024{
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Выберите нужный пакет:" -eng "Select the desired package:")"
-    Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlus2024Retail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .iso)" -NewLine
+    Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlus2024Retail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .img)" -NewLine
     Align-TextCenter "[1] Office 2024 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access" -NoNewLine
     Align-TextCenter "                                     Skype, Teams)"
     Align-TextCenter "[2] Project 2024"
@@ -435,6 +542,7 @@ function office_2024{
             Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProPlus2024Retail.img")" -seconds 5
             Draw-Banner
             Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+            Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
             Write-Host " "
             pause
             installation_select -Office_version "ProPlus2024Retail" -Download_directory $download_dir
@@ -454,6 +562,7 @@ function office_2024{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProjectStd2024Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Project" -Download_directory $download_dir
@@ -469,6 +578,7 @@ function office_2024{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProjectPro2024Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Project" -Download_directory $download_dir
@@ -488,12 +598,11 @@ function office_2024{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/VisioStd2024Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Visio" -Download_directory $download_dir
             } else {
-                Write-Host "else"
-                pause
                 $download_dir = Folder-choose -default $false
 
                 if ($download_dir -eq $null) {office_2024}
@@ -505,6 +614,7 @@ function office_2024{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/VisioPro2024Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Visio" -Download_directory $download_dir
@@ -518,7 +628,7 @@ function office_2024{
 function office_2021{
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Выберите нужный пакет:" -eng "Select the desired package:")"
-    Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlus2021Retail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .iso)" -NewLine
+    Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlus2021Retail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .img)" -NewLine
     Align-TextCenter "[1] Office 2021 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access" -NoNewLine
     Align-TextCenter "                                     Skype, Teams)"
     Align-TextCenter "[2] Project 2021"
@@ -541,6 +651,7 @@ function office_2021{
             Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProPlus2021Retail.img")" -seconds 5
             Draw-Banner
             Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+            Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
             Write-Host " "
             pause
             installation_select -Office_version "ProPlus2021Retail" -Download_directory $download_dir
@@ -559,6 +670,7 @@ function office_2021{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProjectStd2021Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Project" -Download_directory $download_dir
@@ -574,6 +686,7 @@ function office_2021{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProjectPro2021Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Project" -Download_directory $download_dir
@@ -593,6 +706,7 @@ function office_2021{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/VisioStd2021Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Visio" -Download_directory $download_dir
@@ -608,6 +722,7 @@ function office_2021{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/VisioPro2021Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Visio" -Download_directory $download_dir
@@ -621,7 +736,7 @@ function office_2021{
 function office_2019{
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Выберите нужный пакет:" -eng "Select the desired package:")"
-    Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlus2019Retail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .iso)" -NewLine
+    Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlus2019Retail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .img)" -NewLine
     Align-TextCenter "[1] Office 2019 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access" -NoNewline
     Align-TextCenter "                                     Skype, Teams)"
     Align-TextCenter "[2] Project 2019"
@@ -644,6 +759,7 @@ function office_2019{
             Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProPlus2019Retail.img")" -seconds 5
             Draw-Banner
             Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+            Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
             Write-Host " "
             pause
             installation_select -Office_version "ProPlus2019Retail" -Download_directory $download_dir
@@ -662,6 +778,7 @@ function office_2019{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProjectStd2019Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Project" -Download_directory $download_dir
@@ -677,6 +794,7 @@ function office_2019{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProjectPro2019Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Project" -Download_directory $download_dir
@@ -696,6 +814,7 @@ function office_2019{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/VisioStd2019Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Visio" -Download_directory $download_dir
@@ -711,6 +830,7 @@ function office_2019{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/VisioPro2019Retail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Visio" -Download_directory $download_dir
@@ -724,7 +844,7 @@ function office_2019{
 function office_2016{
     Draw-Banner
     Center-Text "$(Lang-translate -rus "Выберите нужный пакет:" -eng "Select the desired package:")"
-    Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlusRetail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .iso)" -NewLine
+    Center-Text "File size: ($([char]27)[48;5;0m$([char]27)[38;5;10m$([char]27)[4m$(File-size 'https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-RU/ProPlusRetail.img')$([char]27)[0m$([char]27)[48;5;0m$([char]27)[38;5;10m Mb .img)" -NewLine
     Align-TextCenter "[1] Office 2016 Professional Plus | (Word, Excel, PowerPoint, OneNote, Outlook, Publisher, Access" -NoNewLine
     Align-TextCenter "                                     Skype, Teams)"
     Align-TextCenter "[2] Project 2016"
@@ -747,6 +867,7 @@ function office_2016{
             Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProPlusRetail.img")" -seconds 5
             Draw-Banner
             Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+            Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
             Write-Host " "
             pause
             installation_select -Office_version "ProPlusRetail" -Download_directory $download_dir
@@ -765,6 +886,7 @@ function office_2016{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProjectStdRetail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Project" -Download_directory $download_dir
@@ -780,6 +902,7 @@ function office_2016{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/ProjectProRetail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Project" -Download_directory $download_dir
@@ -799,6 +922,7 @@ function office_2016{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/VisioStdRetail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Visio" -Download_directory $download_dir
@@ -814,6 +938,7 @@ function office_2016{
                 Download-FileWithProgress -outputFile $download_dir -url "$("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/" + $language + "/VisioProRetail.img")" -seconds 5
                 Draw-Banner
                 Center-Text "$(Lang-translate -rus "Загружено!" -eng "Downloaded!")"
+                Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Загружено!"} else {"Downloaded!"})"
                 Write-Host " "
                 pause
                 installation_select -Office_version "Visio" -Download_directory $download_dir
@@ -823,15 +948,7 @@ function office_2016{
         if ($choice -eq "Escape"){version}
     } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")) -or (($choice -eq "D3") -or ($choice -eq "NumPad3")) -or (($choice -eq "D4") -or ($choice -eq "NumPad4")) -or ($choice -eq "Escape")) #Выход из цикла
 }
+#endregion
 
-
-
-#######################################
-
-
-
-#начало
 
 First_menu
-
-pause
