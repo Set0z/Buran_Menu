@@ -1914,6 +1914,6 @@ function Main-menu {
 
 
 
-#Начало
+#Начало 
 Winget-Check
 pause
