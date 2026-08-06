@@ -1,7 +1,7 @@
 #region
 
 #region Объявление переменных
-$env:version = "1.3"
+$env:version = "1.3.1"
 
 $(if($PSCulture -eq "ru-Ru"){$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Меню 🚀"} else {$host.ui.RawUI.WindowTitle = "B.U.R.A.N. Menu 🚀"})
 $win_ver = (Get-WmiObject Win32_OperatingSystem).Caption
