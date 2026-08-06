@@ -57,9 +57,51 @@ function MainPage {
             $status = & $cscript //NoLogo $slmgr /xpr
             if (-not ($status -match "истечет|expire")) {& $cscript //NoLogo $slmgr /ato}
             Start-Sleep 5
-            slmgr /xpr
+            #slmgr /xpr
+            Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Активировано!"} else {"Activated!"})"
             Draw-Banner
-            Center-Text "Done!`n"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Добавить задачу автопродления в планировщик задач?"} else {"Add an auto-renewal task to the task scheduler?"})`n"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"[1] Да   [2] Нет"} else {"[1] Yes   [2] No"})"
+            do {
+                $choice = [Console]::ReadKey($true).Key
+                if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
+                    $name = "Buran Menu Windows Reactivation"
+                    $comment = "$(if($Menu_Lang -eq "ru-Ru"){"Продление активации Windows"} else {"Windows activation renewal"})"
+
+                    $action = New-ScheduledTaskAction `
+                        -Execute "powershell.exe" `
+                        -Argument '-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command "cscript.exe //Nologo C:\Windows\System32\slmgr.vbs /ato"'
+
+                    $triggerRepeat = New-ScheduledTaskTrigger `
+                        -Daily `
+                        -DaysInterval 150 `
+                        -At (Get-Date)
+
+                    $principal = New-ScheduledTaskPrincipal `
+                        -UserId "SYSTEM" `
+                        -LogonType ServiceAccount `
+                        -RunLevel Highest
+
+                    $settings = New-ScheduledTaskSettingsSet `
+                        -StartWhenAvailable `
+                        -AllowStartIfOnBatteries `
+                        -DontStopIfGoingOnBatteries `
+                        -ExecutionTimeLimit (New-TimeSpan -Hours 1)
+
+                    Register-ScheduledTask `
+                        -TaskName $name `
+                        -Description $comment `
+                        -Action $action `
+                        -Trigger $triggerRepeat `
+                        -Principal $principal `
+                        -Settings $settings `
+                        -Force | Out-Null
+                    break
+                }
+
+            } until (($choice -eq "D2") -or ($choice -eq "NumPad2"))
+            Draw-Banner
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})`n"
             Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"______________________"} else {"__________________"})"
             Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"|Нажмите любую кнопку|"} else {"|Press any button|"})"
             Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"} else {"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"})"
@@ -76,8 +118,9 @@ function MainPage {
             & $cscript //NoLogo $slmgr /cpky
             & $cscript //NoLogo $slmgr /ckms
             Start-Sleep 5
+            Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Деактивировано!"} else {"Deactivated!"})"
             Draw-Banner
-            Center-Text "Done!`n"
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})`n"
             Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"______________________"} else {"__________________"})"
             Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"|Нажмите любую кнопку|"} else {"|Press any button|"})"
             Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"} else {"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"})"
@@ -90,5 +133,6 @@ function MainPage {
         if (($choice -eq "D4") -or ($choice -eq "NumPad4") -or ($choice -eq "Escape")){Goto-main}
     } until ($choice -eq "Escape")
 }
+
 
 MainPage
