@@ -304,7 +304,7 @@ function Winget-Check {
                 $totalSize = File-size "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
                 $downloadFolder_main = Join-Path $downloadFolder "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
 
-                Download-FileWithProgress -url "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -outputFile $downloadFolder_main
+                  Download-FileWithProgress -url "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -outputFile $downloadFolder_main
 
                 Start-Sleep -Seconds 3
                 Draw-Banner
@@ -314,37 +314,50 @@ function Winget-Check {
                 if ($?) {
                     #Write-Host "НЕТ ОШИБКИ"
                 } else {
-                    
                     $downloadFolder_dep = Join-Path $downloadFolder "DesktopAppInstaller_Dependencies.zip"
-
                     Download-FileWithProgress -url "https://github.com/microsoft/winget-cli/releases/latest/download/DesktopAppInstaller_Dependencies.zip" -outputFile $downloadFolder_dep
 
-                    #Разархивированиеl
-                    $zipPath = "$downloadFolder\DesktopAppInstaller_Dependencies.zip"
-                    $extractTo = $downloadFolder
+                    # Разархивирование
+                    $zipPath = $downloadFolder_dep
+                    $tempFolder = Join-Path $downloadFolder "temp"
                     $x64Folder = "x64"
-                    $tempFolder = Join-Path $extractTo "temp"
-                    Expand-Archive -Path $zipPath -DestinationPath $tempFolder
+
+                    # Папка, куда попадут итоговые зависимости
+                    $dependenciesFolder = Join-Path $downloadFolder "Dependencies"
+                    New-Item -ItemType Directory -Path $dependenciesFolder -Force | Out-Null
+
+                    Expand-Archive -Path $zipPath -DestinationPath $tempFolder -Force
                     $x64Files = Get-ChildItem -Path (Join-Path $tempFolder $x64Folder) -File
                     foreach ($file in $x64Files) {
-                        Copy-Item -Path $file.FullName -Destination $extractTo
+                        Copy-Item -Path $file.FullName -Destination $dependenciesFolder
                     }
                     Remove-Item -Path $tempFolder -Recurse -Force
 
-                    $downloadsPath_dep1 = Join-Path $downloadFolder "Microsoft.UI*"
-                    $downloadsPath_dep2 = Join-Path $downloadFolder "Microsoft.VCLibs*"
+                    # Устанавливаем все зависимости из папки Dependencies
+                    $depFiles = Get-ChildItem -LiteralPath $dependenciesFolder -File | 
+                        Where-Object { $_.Extension -in ".appx", ".msix" }
 
-                    $file_dep1 = Get-ChildItem -Path $downloadsPath_dep1 | Select-Object -First 1
-                    $file_dep2 = Get-ChildItem -Path $downloadsPath_dep2 | Select-Object -First 1
+                    if (-not $depFiles) {
+                        Write-Host "Не найдено ни одного файла зависимостей в $dependenciesFolder" -ForegroundColor Red
+                        pause
+                        return
+                    }
 
-                    Add-AppxPackage -Path $file_dep1.FullName
-                    Add-AppxPackage -Path $file_dep2.FullName
+                    foreach ($dep in $depFiles) {
+                        Write-Host "Установка зависимости: $($dep.Name)"
+                        try {
+                            Add-AppxPackage -Path $dep.FullName -ErrorAction Stop
+                        } catch {
+                            Write-Host "Ошибка установки $($dep.Name): $_" -ForegroundColor Red
+                        }
+                    }
+
                     Add-AppxPackage -Path $downloadFolder_main
 
-                    Remove-Item -Path $downloadFolder_dep -Recurse -Force
-                    Remove-Item -Path $downloadFolder_main -Recurse -Force
-                    Remove-Item -Path $file_dep1.FullName -Recurse -Force
-                    Remove-Item -Path $file_dep2.FullName -Recurse -Force
+                    # Очистка: удаляем архив, папку с зависимостями и сам установщик
+                    Remove-Item -Path $downloadFolder_dep -Force -ErrorAction SilentlyContinue
+                    Remove-Item -Path $downloadFolder_main -Force -ErrorAction SilentlyContinue
+                    Remove-Item -Path $dependenciesFolder -Recurse -Force -ErrorAction SilentlyContinue
                 }
                 Draw-Banner
                 Center-Text "$(if($Menu_Lang -eq "ru-Ru"){Center-Text "Готово!"} else {Center-Text "Done!"})"
@@ -558,12 +571,12 @@ function installation{
         if (($choice -eq "D1") -or ($choice -eq "NumPad1")){
             Draw-Banner -Text_Color "White" -Background_Color "DarkMagenta" -Clear "1"
             Set-ConsoleColor "DarkMagenta" "White"
-            winget install -e $winget_programs -i --accept-package-agreements
+            winget install -e $winget_programs -i --accept-package-agreements --source winget
         }
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
             Draw-Banner -Text_Color "White" -Background_Color "DarkMagenta" -Clear "1"
             Set-ConsoleColor "DarkMagenta" "White"
-            winget install -e $winget_programs -h --accept-package-agreements
+            winget install -e $winget_programs -h --accept-package-agreements --source winget
         }
     } until ((($choice -eq "D1") -or ($choice -eq "NumPad1")) -or (($choice -eq "D2") -or ($choice -eq "NumPad2")))
     Write-Host ""
@@ -573,3 +586,24 @@ function installation{
      Main-menu
 }
 
+#Показ уведомления
+function Show-BalloonTip {
+    param(
+        [string]$Title = "B.U.R.A.N. Menu",
+        [string]$Message = "Сообщение"
+    )
+    
+    $cmd = @"
+Add-Type -AssemblyName System.Windows.Forms; 
+Add-Type -AssemblyName System.Drawing;
+`$n=New-Object System.Windows.Forms.NotifyIcon;
+`$n.Icon=[System.Drawing.Icon]::ExtractAssociatedIcon((Get-Process -Id `$PID).Path);
+`$n.Visible=`$true;
+`$n.ShowBalloonTip(10000,'$($Title.Replace("'","''"))','$($Message.Replace("'","''"))',[System.Windows.Forms.ToolTipIcon]::None);
+Start-Sleep -Seconds 10;
+`$n.Dispose()
+"@
+    
+    $encoded = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($cmd))
+    Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand $encoded" -WindowStyle Hidden
+}
