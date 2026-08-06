@@ -125,9 +125,14 @@ function Removing{
         $ProgressPreference=$old
         Clear-Host
         Draw-Banner
-        Write-Host "`n`n`n`n`n`n"
-        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})"
-        pause
+        Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})"
+        Center-Text "Done!`n"
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"______________________"} else {"__________________"})"
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"|Нажмите любую кнопку|"} else {"|Press any button|"})"
+        Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"} else {"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"})"
+        do {
+            $notice = [Console]::ReadKey($true).Key
+        } until ($notice)
 
         $OneDriveSelected = $false
         $CortanaSelected = $false
