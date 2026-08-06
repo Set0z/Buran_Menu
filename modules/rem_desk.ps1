@@ -89,9 +89,9 @@ function MainMenu{
                 Disable-NetFirewallRule -Group "@FirewallAPI.dll,-28752"
                 Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 1
             }
-            Clear-Host
-            Write-Host "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
-            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})"
+            Show-BalloonTip -Message "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})"
+            Draw-Banner
+            Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})`n"
             Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"______________________"} else {"__________________"})"
             Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"|Нажмите любую кнопку|"} else {"|Press any button|"})"
             Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"} else {"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"})"
