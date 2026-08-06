@@ -5,7 +5,7 @@ $uiLang = (Get-Culture).Name
 $Menu_Lang = $env:BURAN_lang
 $win_ver = (Get-WmiObject Win32_OperatingSystem).Caption
 $registryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons"
-New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT
+New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT *>$null
 
 if ($PSScriptRoot -eq "") {
     Import-Module $(Join-Path -Path $env:TEMP -ChildPath 'Buran_Modules.psm1') -DisableNameChecking
@@ -15,12 +15,12 @@ if ($PSScriptRoot -eq "") {
 }
 
 if($(Test-Path -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag") -like "False"){
-    New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag"
+    New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" *>$null
     $needrestartexp = 1
 }
 if ($(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -ErrorAction SilentlyContinue) -eq $null){
-    New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -PropertyType String
-    Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -Value Show
+    New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -PropertyType String *>$null
+    Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -Value Show *>$null
 }
 
 #region Объявление цветов
@@ -210,20 +210,20 @@ function Action-choose {
             Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag" -Name "ThisPCPolicy" -Value Hide
 
             if($(Test-Path -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag") -like "False"){
-                New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag"
+                New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" *>$null
             }
             if ($(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -ErrorAction SilentlyContinue) -eq $null){
-                New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -PropertyType String
+                New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -PropertyType String *>$null
             }
             Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -Value Hide
 
 
             if($(Test-Path -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag") -like "False"){
-                New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag"
+                New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" *>$null
                 $needrestartexp = 1
             }
             if ($(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -ErrorAction SilentlyContinue) -eq $null){
-                New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -PropertyType String
+                New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -PropertyType String *>$null
             }
             Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -Value Hide
             if ($needrestartexp -eq 1){
@@ -234,7 +234,6 @@ function Action-choose {
 
                 Start-Sleep -Seconds 3
                 if (-not (Get-Process -Name explorer -ErrorAction SilentlyContinue)) {
-                # Если процесс не найден, запускаем explorer.exe
                 Start-Process "explorer.exe"
                 }
 
@@ -366,10 +365,10 @@ function Action-choose {
 
         if ($regstate -eq "Enable") {
             if($(Test-Path -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag") -like "False"){
-                New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag"
+                New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" *>$null
             }
             if ($(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -ErrorAction SilentlyContinue) -eq $null){
-                New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -PropertyType String
+                New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -PropertyType String *>$null
             }
             Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -Value Hide
             this-pc
@@ -407,12 +406,12 @@ function Action-choose {
                 $regstate = Check-RegistryParameter-DisallowShaking
 
                 if($regstate -eq "Enable"){
-                    New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisallowShaking" -PropertyType DWord -Value 1
+                    New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisallowShaking" -PropertyType DWord -Value 1 *>$null
                     page-two
                 }
 
                 if($regstate -eq "Disable"){
-                    Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisallowShaking"
+                    Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisallowShaking" *>$null
                     page-two
                 }
             }
@@ -436,11 +435,11 @@ function Action-choose {
             }
             if (($choice -eq "D4") -or ($choice -eq "NumPad4")){
                 if (-not (Test-Path -Path $registryPath)) {
-                    New-Item -Path $registryPath -Force | Out-Null
+                    New-Item -Path $registryPath -Force | Out-Null *>$null
                 }
                 $regstate = Check-RegistryParameter-Arrow
                 if ($regstate -eq "Disable") {
-                    Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" -Name "29" -Force
+                    Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" -Name "29" -Force *>$null
                     Stop-Process -Name explorer -Force
                     Draw-Banner
                     Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"В процессе..."} else {"Processing..."})"
@@ -452,7 +451,7 @@ function Action-choose {
                     }
                 }
                 if ($regstate -eq "Enable") {
-                    New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" -Name "29" -PropertyType String -Value "$env:SystemRoot\System32\shell32.dll,-50" -Force
+                    New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" -Name "29" -PropertyType String -Value "$env:SystemRoot\System32\shell32.dll,-50" -Force *>$null
                     Stop-Process -Name explorer -Force
                     Draw-Banner
                     Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"В процессе..."} else {"Processing..."})"
@@ -484,12 +483,12 @@ function Action-choose {
             if ($regstate -eq "Enable") {
                 if ($(Test-Path -Path "HKCU:\Software\Classes\CLSID") -like "False" -or $(Test-Path -Path "HKCU:\Software\Classes\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}") -like "False"){
                 if ($(Test-Path -Path "HKCU:\Software\Classes\CLSID") -like "False"){New-Item -Path "HKCU:\Software\Classes\CLSID"}
-                if ($(Test-Path -Path "HKCU:\Software\Classes\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}") -like "False") {New-Item -Path "HKCU:\Software\Classes\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}" -Force}
-                    New-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}" -Name "System.IsPinnedToNameSpaceTree" -PropertyType DWord -Value 1
+                if ($(Test-Path -Path "HKCU:\Software\Classes\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}") -like "False") {New-Item -Path "HKCU:\Software\Classes\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}" -Force *>$null}
+                    New-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}" -Name "System.IsPinnedToNameSpaceTree" -PropertyType DWord -Value 1 *>$null
                     page-two
                 } else { 
                     if ($(Get-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}" -Name "System.IsPinnedToNameSpaceTree" -ErrorAction SilentlyContinue) -eq $null){
-                        New-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}" -Name "System.IsPinnedToNameSpaceTree" -PropertyType DWord -Value 1
+                        New-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}" -Name "System.IsPinnedToNameSpaceTree" -PropertyType DWord -Value 1 *>$null
                         page-two
                     } else {
                         Set-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}" -Name "System.IsPinnedToNameSpaceTree" -Value 1
@@ -507,12 +506,12 @@ function Action-choose {
             if ($regstate -eq "Enable") {
                 if ($(Test-Path -Path "HKCU:\Software\Classes\CLSID") -like "False" -or $(Test-Path -Path "HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}") -like "False"){
                 if ($(Test-Path -Path "HKCU:\Software\Classes\CLSID") -like "False"){New-Item -Path "HKCU:\Software\Classes\CLSID"}
-                if ($(Test-Path -Path "HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}") -like "False") {New-Item -Path "HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}" -Force}
-                    New-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}" -Name "System.IsPinnedToNameSpaceTree" -PropertyType DWord -Value 1
+                if ($(Test-Path -Path "HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}") -like "False") {New-Item -Path "HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}" -Force *>$null}
+                    New-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}" -Name "System.IsPinnedToNameSpaceTree" -PropertyType DWord -Value 1 *>$null
                     page-two
                 } else { 
                     if ($(Get-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}" -Name "System.IsPinnedToNameSpaceTree" -ErrorAction SilentlyContinue) -eq $null){
-                        New-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}" -Name "System.IsPinnedToNameSpaceTree" -PropertyType DWord -Value 1 
+                        New-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}" -Name "System.IsPinnedToNameSpaceTree" -PropertyType DWord -Value 1 *>$null
                         page-two
                     } else {
                         Set-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}" -Name "System.IsPinnedToNameSpaceTree" -Value 1
@@ -528,11 +527,11 @@ function Action-choose {
                     Draw-Banner
                     Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"В процессе..."} else {"Processing..."})"
                     Write-Host ""
-                    New-Item -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete"
-                    New-ItemProperty -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete" -Name "CommandStateSync" -PropertyType String
-                    New-ItemProperty -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete" -Name "ExplorerCommandHandler" -PropertyType String
-                    New-ItemProperty -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete" -Name "Icon" -PropertyType String
-                    New-ItemProperty -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete" -Name "Position" -PropertyType String
+                    New-Item -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete" *>$null
+                    New-ItemProperty -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete" -Name "CommandStateSync" -PropertyType String *>$null
+                    New-ItemProperty -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete" -Name "ExplorerCommandHandler" -PropertyType String *>$null
+                    New-ItemProperty -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete" -Name "Icon" -PropertyType String *>$null
+                    New-ItemProperty -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete" -Name "Position" -PropertyType String *>$null
 
                     Draw-Banner
                     Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"В процессе..."} else {"Processing..."})"
@@ -549,7 +548,7 @@ function Action-choose {
                     Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"В процессе..."} else {"Processing..."})"
                     Write-Host ""
 
-                    Remove-Item -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete" -Recurse
+                    Remove-Item -Path "HKCR:\AllFilesystemObjects\shell\Windows.PermanentDelete" -Recurse *>$null
                     Start-Sleep -Seconds 1
                 }
                 Draw-Banner
@@ -597,8 +596,8 @@ function Action-choose {
                 $regstate = Check-RegistryParameter-Win11Classic
                 
                 if ($regstate -eq "Enable"){
-                    New-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" -Force
-                    New-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" -Force
+                    New-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" -Force *>$null 
+                    New-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" -Force *>$null
                     Set-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" -Name "(default)" -Value ""
 
                     Stop-Process -Name explorer -Force
@@ -623,7 +622,7 @@ function Action-choose {
                     Action-choose
                 }
                 if ($regstate -eq "Disable"){
-                    Remove-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" -Recurse
+                    Remove-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" -Recurse *>$null
                     Action-choose
                 }
             }
@@ -632,11 +631,11 @@ function Action-choose {
         if (($choice -eq "D2") -or ($choice -eq "NumPad2")){
             $regstate = Check-RegistryParameter-ThisPC
             if ($regstate -eq "Disable") {
-                Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo"
+                Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" *>$null
                 Action-choose    
             }
             if ($regstate -eq "Enable") {
-                New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -PropertyType DWord -Value 1
+                New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -PropertyType DWord -Value 1 *>$null
                 Action-choose
             }
         }
@@ -658,7 +657,7 @@ function Action-choose {
                 Action-choose
             }
             if ($regstate -eq "Enable"){
-                if ($(Get-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -ErrorAction SilentlyContinue) -eq $null) { New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -PropertyType DWord }
+                if ($(Get-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -ErrorAction SilentlyContinue) -eq $null) { New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -PropertyType DWord *>$null}
                 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Value 0
                 Action-choose
             }
@@ -667,14 +666,14 @@ function Action-choose {
                 $regstate = Check-RegistryParameter-SystemUsesLightTheme
                 if ($regstate -eq "Enable"){Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "SystemUsesLightTheme" -Value "0" -Type "Dword"}
                 if ($regstate -eq "Disable"){Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "SystemUsesLightTheme" -Value "1" -Type "Dword"}
-                if ($(Get-WmiObject Win32_OperatingSystem).Caption -match "Windows 11"){
+                #if ($(Get-WmiObject Win32_OperatingSystem).Caption -match "Windows 11"){
                     Stop-Process -Name explorer -Force
                     Draw-Banner
                     Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"В процессе..."} else {"Processing..."})"
                     Write-Host ""
                     Start-Sleep -Seconds 3
                     if (-not (Get-Process -Name explorer -ErrorAction SilentlyContinue)) {Start-Process "explorer.exe"}
-                }
+                #}
                 Draw-Banner
                 Write-Host "`n`n`n`n`n`n`n"
                 Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})" -NewLine
@@ -691,14 +690,14 @@ function Action-choose {
             $regstate = Check-RegistryParameter-AppsUseLightTheme
             if ($regstate -eq "Enable"){Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "AppsUseLightTheme" -Value "0" -Type "Dword"}
             if ($regstate -eq "Disable"){Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "AppsUseLightTheme" -Value "1" -Type "Dword"}
-            if ($(Get-WmiObject Win32_OperatingSystem).Caption -match "Windows 11"){
+            #if ($(Get-WmiObject Win32_OperatingSystem).Caption -match "Windows 11"){
                 Stop-Process -Name explorer -Force
                 Draw-Banner
                 Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"В процессе..."} else {"Processing..."})"
                 Write-Host ""
                 Start-Sleep -Seconds 3
                 if (-not (Get-Process -Name explorer -ErrorAction SilentlyContinue)) {Start-Process "explorer.exe"}
-            }
+            #}
             Draw-Banner
             Write-Host "`n`n`n`n`n`n`n"
             Center-Text "$(if($Menu_Lang -eq "ru-Ru"){"Готово!"} else {"Done!"})" -NewLine
@@ -732,8 +731,8 @@ function Action-choose {
             }
             if ($regstate -eq "Enable"){
                 if ($(Test-Path -Path "HKCU:\Software\Classes\CLSID") -Like "False"){New-Item -Path "HKCU:\Software\Classes\CLSID"}
-                if ($(Test-Path -Path "HKCU:\Software\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}") -Like "False"){New-Item -Path "HKCU:\Software\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}"}
-                if ($(Get-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}" -Name "System.IsPinnedToNameSpaceTree" -ErrorAction SilentlyContinue) -eq $null) {New-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}" -Name "System.IsPinnedToNameSpaceTree" -PropertyType DWord}
+                if ($(Test-Path -Path "HKCU:\Software\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}") -Like "False"){New-Item -Path "HKCU:\Software\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}" *>$null}
+                if ($(Get-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}" -Name "System.IsPinnedToNameSpaceTree" -ErrorAction SilentlyContinue) -eq $null) {New-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}" -Name "System.IsPinnedToNameSpaceTree" -PropertyType DWord *>$null}
                 Set-ItemProperty -Path "HKCU:\Software\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}" -Name "System.IsPinnedToNameSpaceTree" -Value 0
                 Action-choose
             }
